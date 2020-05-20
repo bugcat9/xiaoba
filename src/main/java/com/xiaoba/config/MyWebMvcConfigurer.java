@@ -26,6 +26,6 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
         //这个将应用到url中
         registry.addResourceHandler("/images/**")
                 //这里填的是图片的绝对父路径
-                .addResourceLocations("file:/home/images");
+                .addResourceLocations("file:/home/images/");
     }
 }
