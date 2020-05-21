@@ -9,8 +9,10 @@ public class SysUser {
     private Integer userId;
     private String userName;
     private String userPassword;
-    private Date createTime;
-    private Date updateTime;
+    private String userRole;
+    private String userAvatarPath;
+    private Integer userSex;
+
 
     public Integer getUserId() {
         return userId;
@@ -36,19 +38,39 @@ public class SysUser {
         this.userPassword = userPassword;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public String getUserRole() {
+        return userRole;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public String getUserAvatarPath() {
+        return userAvatarPath;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setUserAvatarPath(String userAvatarPath) {
+        this.userAvatarPath = userAvatarPath;
+    }
+
+    public Integer getUserSex() {
+        return userSex;
+    }
+
+    public void setUserSex(Integer userSex) {
+        this.userSex = userSex;
+    }
+
+    @Override
+    public String toString() {
+        return "SysUser{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userRole='" + userRole + '\'' +
+                ", userAvatarPath='" + userAvatarPath + '\'' +
+                ", userSex=" + userSex +
+                '}';
     }
 }

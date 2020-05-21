@@ -1,9 +1,13 @@
 package com.xiaoba.controller;
 
 import com.xiaoba.bean.SysUser;
+import com.xiaoba.service.LoginService;
+import com.xiaoba.service.LoginServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,23 +19,28 @@ import java.util.Map;
 @RestController
 public class LoginController {
 
+    @Autowired
+    LoginService loginService;
+
     @PostMapping("/login")
-    public Map<String,String> login(@RequestParam("userName") String username,
-                                    @RequestParam("password") String password){
-        Map<String,String> map = new HashMap<>(3);
-        map.put("token",username);
+    public Map<String,Object> login(@RequestParam("userName") String userName,
+                                    @RequestParam("userPassword") String userPassword,
+                                    HttpSession session){
+        //先直接返回,后面再进行判断
+        Map<String,Object> map = loginService.login(userName,userPassword);
+        String token = (String) map.get("token");
+        if (!token.equals("-1")){
+            //说明登录成功
+            //放在session当中，用于判断是否登录
+            session.setAttribute("token", token);
+        }
         return map;
     }
 
     @PostMapping("/user")
-    public SysUser getInfo(@RequestParam("token")  String token){
-        SysUser sysUser = new SysUser();
-        sysUser.setUserId(10);
-        sysUser.setUserName("zhouning");
-        sysUser.setUserPassword("123456");
-        sysUser.setCreateTime(new Date());
-        sysUser.setUpdateTime(new Date());
-        return sysUser;
+    public SysUser getInfo(@RequestParam("token")  String token,HttpSession session){
+
+        return loginService.getInfo(token);
     }
 
 }

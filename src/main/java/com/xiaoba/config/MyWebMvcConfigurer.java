@@ -1,10 +1,8 @@
 package com.xiaoba.config;
 
+import com.xiaoba.handlerinterceptor.LoginHandlerIntercep;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 
 /**
  * @author zhouning
@@ -28,4 +26,12 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
                 //这里填的是图片的绝对父路径
                 .addResourceLocations("file:/home/images/");
     }
+
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        // addPathPatterns表示对请求进行拦截，excludePathPatterns表示除了()请求之外
+//        registry.addInterceptor(new LoginHandlerIntercep()).addPathPatterns("/**").
+//                excludePathPatterns("/index.html","/","/login");
+//
+//    }
 }

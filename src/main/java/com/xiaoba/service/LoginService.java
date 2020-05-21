@@ -1,14 +1,26 @@
 package com.xiaoba.service;
 
-import com.xiaoba.mapper.SysUserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.xiaoba.bean.SysUser;
+
+import java.util.Map;
 
 /**
  * @author zhouning
  */
-public class LoginService {
-    @Autowired
-    SysUserMapper sysUserMapper;
+public interface LoginService {
 
+    /**
+     *
+     * @param userName
+     * @param userPassword
+     * @return
+     */
+    public Map<String,Object> login(String userName, String userPassword);
 
+    /**
+     * 通过 token 得到用户信息
+     * @param token
+     * @return
+     */
+    public SysUser getInfo(String token);
 }
