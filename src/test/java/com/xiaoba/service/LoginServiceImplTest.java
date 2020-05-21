@@ -20,6 +20,7 @@ class LoginServiceImplTest {
     LoginService loginService;
 
 
+    
     @Before
     public void autowiredTest(){
         Assert.assertNotNull(loginService);
