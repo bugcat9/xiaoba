@@ -52,12 +52,12 @@ public class FileController {
         try {
             // 保存到服务器中
             file.transferTo(dest);
-            return "上传成功";
+            return "http://39.99.203.80:8081/images/"+file.getOriginalFilename();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return "http://39.99.203.80:8081/images/"+file.getOriginalFilename();
+        return "上传失败";
     }
 
 }
