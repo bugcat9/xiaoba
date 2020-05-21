@@ -1,5 +1,7 @@
 package com.xiaoba.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import java.util.UUID;
 @RequestMapping("/file/")
 public class FileController {
 
+    Logger logger = (Logger) LoggerFactory.getLogger(getClass());
     @Value("${filepath}")
     private String filepath;
 
@@ -35,8 +38,11 @@ public class FileController {
         // String suffixName = fileName.substring(fileName.lastIndexOf("."));
 
         // 文件重命名，防止重复
-//        fileName = filepath + UUID.randomUUID() + fileName;
+        //fileName = filepath + UUID.randomUUID() + fileName;
         fileName = filepath + fileName;
+        System.out.println(fileName);
+        logger.info("托盘存放位置"+fileName);
+
         // 文件对象
         File dest = new File(fileName);
         // 判断路径是否存在，如果不存在则创建
