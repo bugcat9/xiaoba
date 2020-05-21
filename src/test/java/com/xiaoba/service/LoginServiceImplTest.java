@@ -19,7 +19,6 @@ class LoginServiceImplTest {
     @Autowired
     LoginService loginService;
 
-
     
     @Before
     public void autowiredTest(){
