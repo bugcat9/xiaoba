@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class LoginServiceImplTest {
-
     
     @Autowired
     LoginService loginService;
