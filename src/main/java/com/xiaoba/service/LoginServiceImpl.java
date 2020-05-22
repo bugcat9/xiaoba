@@ -20,10 +20,11 @@ public class LoginServiceImpl implements LoginService {
     public Map<String,Object> login(String userName, String userPassword){
         System.out.println(userName);
         System.out.println(userPassword);
-        SysUser sysUser =sysUserMapper.getUser(userName, userPassword);
+        SysUser sysUser =sysUserMapper.getUserByName(userName);
 
         Map<String,Object> map = new HashMap<>(3);
-        if (sysUser!=null){
+        //判断sysUser是否为空已经userPassword是否正确
+        if (sysUser!=null && sysUser.getUserPassword().equals(userPassword)){
             //设置 token
             map.put("token", sysUser.getUserId()+"");
             //设置 头像
