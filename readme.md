@@ -15,7 +15,3 @@ LoginController:
                                     @RequestParam("userPassword") String userPassword,
                                     HttpSession session)
 ```
-{
-     "userName": "BeJson",
-     "userPassword": "1234",
- }
