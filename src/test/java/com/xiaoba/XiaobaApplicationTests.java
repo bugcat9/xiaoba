@@ -1,7 +1,7 @@
 package com.xiaoba;
 
 import com.xiaoba.bean.SysUser;
-import com.xiaoba.mapper.SysUserMapper;
+//import com.xiaoba.mapper.SysUserMapper;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
