@@ -5,8 +5,11 @@ import com.xiaoba.mapper.SysUserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.event.annotation.AfterTestClass;
+import org.springframework.test.context.event.annotation.BeforeTestClass;
 
 @SpringBootTest
+
 public class SysUserMapperTest {
 //    @Autowired
 //    SysUserMapper sysUserMapper;
@@ -14,40 +17,30 @@ public class SysUserMapperTest {
 //    @Test
 //    void insertUserTest(){
 //        SysUser sysUser = new SysUser();
-//        sysUser.setUserName("zhouning");
+//        sysUser.setUserName("zhouningTest");
 //        sysUser.setUserPassword("123456");
 //        sysUser.setUserAvatarPath("1.jpg");
 //        sysUser.setUserRole("user");
 //        sysUser.setUserSex(1);
-//        int a = sysUserMapper.insertUser(sysUser);
-//        System.out.println(a);
+//        int result = sysUserMapper.insertUser(sysUser);
+//        assert (result==1);
+//
 //    }
 //
 //    @Test
 //    void updateUserTest(){
-//        SysUser sysUser = sysUserMapper.getUserById(16);
+//        SysUser sysUser = sysUserMapper.getUserByName("zhouningTest");
 //        sysUser.setUserPassword("123aaa");
 //        sysUserMapper.updateUser(sysUser);
 //        System.out.println(sysUser);
+//        assert (sysUser!=null);
 //    }
 //
-//    @Test
-//    void getUserByIdTest(){
-//       SysUser sysUser = sysUserMapper.getUserById(1);
-//       System.out.println(sysUser);
-//    }
-//
-//    @Test
-//    void getUserTest(){
-//        String userName = "zhouning";
-//        String userPassword = "123456";
-//        SysUser sysUser = sysUserMapper.getUser(userName, userPassword);
-//        System.out.println(sysUser);
-//    }
 //
 //    @Test
 //    void deleteUserByIdTest(){
-//        int a = sysUserMapper.deleteUserById(17);
-//        System.out.println(a);
+//        SysUser sysUser = sysUserMapper.getUserByName("zhouningTest");
+//        int result = sysUserMapper.deleteUserById(sysUser.getUserId());
+//        assert (result==1);
 //    }
 }

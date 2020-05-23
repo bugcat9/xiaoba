@@ -29,7 +29,7 @@ public class LoginController {
      * @param session
      * @return json文件，其中有个token用户判断用户登录是否成功
      */
-    @PostMapping("/login")
+    @GetMapping("/login")
     public Map<String,Object> login(@RequestParam("userName") String userName,
                                     @RequestParam("userPassword") String userPassword,
                                     HttpSession session){
@@ -44,7 +44,7 @@ public class LoginController {
         return map;
     }
 
-    @PostMapping("/user")
+    @GetMapping("/user")
     public SysUser getInfo(@RequestParam("token")  String token,HttpSession session){
 
         return loginService.getInfo(token);
