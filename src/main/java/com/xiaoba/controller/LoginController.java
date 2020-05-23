@@ -22,6 +22,13 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
+    /**
+     * 登录
+     * @param userName 用户名
+     * @param userPassword  密码
+     * @param session
+     * @return json文件，其中有个token用户判断用户登录是否成功
+     */
     @PostMapping("/login")
     public Map<String,Object> login(@RequestParam("userName") String userName,
                                     @RequestParam("userPassword") String userPassword,

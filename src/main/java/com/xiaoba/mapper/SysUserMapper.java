@@ -44,11 +44,10 @@ public interface SysUserMapper {
     /**
      * 通过用户名和密码查询用户
      * @param userName
-     * @param userPassword
      * @return
      */
-    @Select("select * from sys_user where user_name=#{userName} and user_password=#{userPassword}")
-    SysUser getUser(String userName,String userPassword);
+    @Select("select * from sys_user where user_name=#{userName} ")
+    SysUser getUserByName(String userName);
 
 
 }
