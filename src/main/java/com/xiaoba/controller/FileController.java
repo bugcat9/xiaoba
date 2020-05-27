@@ -29,14 +29,14 @@ public class FileController {
         return "upload";
     }
 
-
+    private String url = "http://39.99.203.80:8080/images/";
     @RequestMapping("/upload")
     @ResponseBody
     public String upload (@RequestParam("file") MultipartFile file) {
 
         boolean result = fileService.upload(file);
         if (result){
-            return "http://39.99.203.80:8081/images/"+file.getOriginalFilename();
+            return url+file.getOriginalFilename();
         }
         return "上传失败";
     }
@@ -46,7 +46,7 @@ public class FileController {
     public String saveHtml(String content,String title){
         String filename = fileService.writeToHtml(content, title);
         if (filename!=null){
-            return "http://39.99.203.80:8081/images/"+filename;
+            return url+filename;
         }
         return "编写失败";
     }

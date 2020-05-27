@@ -88,6 +88,6 @@ public class FileServiceImpl implements FileService{
         essay.setSavePath(fileName);
         System.out.println(essay);
 //      essayMapper.insertEssay(essay);
-        return pathName;
+        return fileName;
     }
 }
