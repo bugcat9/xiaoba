@@ -50,4 +50,10 @@ public class LoginController {
         return loginService.getInfo(token);
     }
 
+    @GetMapping("/logout")
+    public void logout(HttpSession session){
+        if (session.getAttribute("token")!=null){
+            session.removeAttribute("token");
+        }
+    }
 }

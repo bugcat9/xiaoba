@@ -9,6 +9,7 @@ public interface FileService {
     /**
      * 将发送过来的 html内容转化为htnl文件存在服务器上
      * @param content
+     * @return 在服务器上的地址
      */
-    public void writeToHtml(String content);
+    public String writeToHtml(String content,String title);
 }

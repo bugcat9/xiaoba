@@ -68,4 +68,16 @@ public class Essay {
     public void setEssayAbstract(String essayAbstract) {
         this.essayAbstract = essayAbstract;
     }
+
+    @Override
+    public String toString() {
+        return "Essay{" +
+                "essayId=" + essayId +
+                ", essayTitle='" + essayTitle + '\'' +
+                ", essayAbstract='" + essayAbstract + '\'' +
+                ", essayAuthor='" + essayAuthor + '\'' +
+                ", essayPublishTime=" + essayPublishTime +
+                ", savePath='" + savePath + '\'' +
+                '}';
+    }
 }

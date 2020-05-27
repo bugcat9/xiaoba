@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -37,10 +38,17 @@ public class FileController {
         if (result){
             return "http://39.99.203.80:8081/images/"+file.getOriginalFilename();
         }
-
         return "上传失败";
     }
 
-
+    @RequestMapping("/html")
+    @ResponseBody
+    public String saveHtml(String content,String title){
+        String filename = fileService.writeToHtml(content, title);
+        if (filename!=null){
+            return "http://39.99.203.80:8081/images/"+filename;
+        }
+        return "编写失败";
+    }
 
 }
