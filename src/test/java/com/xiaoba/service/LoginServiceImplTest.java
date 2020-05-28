@@ -2,7 +2,6 @@ package com.xiaoba.service;
 
 import com.xiaoba.bean.SysUser;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,19 +9,15 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
 import java.util.Map;
 
-@SpringBootTest
+import static org.testng.Assert.*;
 
-class LoginServiceImplTest extends AbstractTestNGSpringContextTests {
+@SpringBootTest
+public class LoginServiceImplTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     LoginService loginService;
 
-    @Before
-    public void testAutowired(){
-        Assert.assertNotNull(loginService);
-    }
-
-    @Test
+    @org.junit.jupiter.api.Test
     public void testErroPassword(){
         System.out.print("开始测试登录时密码错误的情况......");
         Map<String,Object> map=loginService.login("user02","000000");
@@ -31,7 +26,7 @@ class LoginServiceImplTest extends AbstractTestNGSpringContextTests {
         //System.out.print("测试结束......");
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testErroName(){
         System.out.print("开始测试登录时用户不存在的情况......");
         Map<String,Object> map=loginService.login("111111","000000");
@@ -39,7 +34,7 @@ class LoginServiceImplTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(map.get("token"),"-1");
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testLogin() {
         System.out.print("开始测试正常登录......");
         Map<String,Object> map=loginService.login("user02","12345678");

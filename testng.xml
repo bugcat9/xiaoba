@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="D:/Users/IDEA_/xiaoba">
+        <classes>
+
+            <class name="com.xiaoba.service.LoginServiceImplTest">
+                <methods>
+                    <include name="testErroPassword"/>
+                    <include name="testErroName"/>
+                    <include name="testLogin"/>
+                    <include name="testGetInfo"/>
+                </methods>
+            </class>
+            <class name="com.xiaoba.service.RegisterServiceImplTest">
+                <methods>
+                    <include name="testAutowired"/>
+                    <include name="testRegisterUser"/>
+                </methods>
+            </class>
+
+        </classes>
+    </test>
+</suite>
