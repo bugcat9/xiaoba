@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证码</title>
+</head>
+<body>
+生成的验证码：<img id="changeCaptcha" src="http://127.0.0.1:8080/captcha.jpg?uuid=111"> <a href="javascript:changeCaptcha()">看不清，换一张</a>
+<br>
+<br>
+请输入验证码：<input id="captchaCode" type="text"> <input type="button" value="提交验证" onclick="checkCaptcha()">
+</body>
+<script type="text/javascript">
+    //获取验证码图片
+    function changeCaptcha(){
+        $("#changeCaptcha").attr("src","http://127.0.0.1/captcha/getCaptchaCode.htm");
+    }
+    //验证输入的验证码
+    function checkCaptcha(){
+        var captchaCode = $("#captchaCode").val();
+        $.ajax({
+            type:'post',
+            async : false,
+            url:'http://127.0.0.1/captcha/checkCaptchaCode.htm',
+            data:{"captchaCode" : captchaCode},
+            success:function(res){
+                alert(res);
+            }
+        });
+    }
+</script>
+
+</html>

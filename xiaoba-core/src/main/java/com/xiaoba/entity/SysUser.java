@@ -1,9 +1,11 @@
 package com.xiaoba.entity;
 
+import java.io.Serializable;
+
 /**
  * @author zhouning
  */
-public class SysUser {
+public class SysUser implements Serializable {
     private Integer userId;
     private String userName;
     private String userPassword;
