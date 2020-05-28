@@ -2,11 +2,13 @@ package com.xiaoba.mapper;
 
 import com.xiaoba.bean.SysUser;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author zhouning
  */
 @Mapper
+@Repository
 public interface SysUserMapper {
 
     /**
@@ -46,7 +48,7 @@ public interface SysUserMapper {
      * @param userName
      * @return
      */
-    @Select("select * from sys_user where user_name=#{userName} ")
+    @Select("select user_id,user_name,user_password,user_role,user_avatar_path from sys_user where user_name=#{userName} ")
     SysUser getUserByName(String userName);
 
 

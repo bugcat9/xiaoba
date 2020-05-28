@@ -1,11 +1,12 @@
 package com.xiaoba.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author zhouning
  */
-public class Essay {
+public class Essay implements Serializable {
     private Integer essayId;
     private String essayTitle;
     private String essayAbstract;
