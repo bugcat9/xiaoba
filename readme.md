@@ -15,3 +15,24 @@ LoginController:
                                     @RequestParam("userPassword") String userPassword,
                                     HttpSession session)
 ```
+
+```java
+    /**
+     * 查询用户信息
+     * @param token
+     * @return
+     */
+ @GetMapping("/user")
+    public SysUser getInfo(@RequestParam("token")  String token)
+```
+
+```java
+    /**
+     * 注册
+     * @param userName 用户名
+     * @param userPassword 密码
+     * @return
+     */
+    @GetMapping("/register")
+    public boolean register(@RequestParam("userName") String userName,@RequestParam("userPassword") String userPassword)
+```

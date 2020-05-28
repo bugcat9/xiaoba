@@ -1,6 +1,4 @@
-package com.xiaoba.bean;
-
-import java.util.Date;
+package com.xiaoba.entity;
 
 /**
  * @author zhouning

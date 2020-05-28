@@ -1,6 +1,6 @@
 package com.xiaoba.mapper;
 
-import com.xiaoba.bean.SysUser;
+import com.xiaoba.entity.SysUser;
 import org.apache.ibatis.annotations.*;
 
 /**

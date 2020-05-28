@@ -1,6 +1,6 @@
 package com.xiaoba.service;
 
-import com.xiaoba.bean.SysUser;
+import com.xiaoba.entity.SysUser;
 import com.xiaoba.mapper.SysUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ public class LoginServiceImpl implements LoginService {
             //设置 token
             map.put("token", sysUser.getUserId()+"");
             //设置 头像
-            String avatar = "http://39.99.203.80:8081/images/"+sysUser.getUserAvatarPath();
+            String avatar = "http://39.99.203.80:8080/images/"+sysUser.getUserAvatarPath();
             map.put("avatar", avatar);
             //设置 权限
             String access = "admin";

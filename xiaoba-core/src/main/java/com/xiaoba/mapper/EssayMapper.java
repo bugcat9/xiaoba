@@ -1,6 +1,6 @@
 package com.xiaoba.mapper;
 
-import com.xiaoba.bean.Essay;
+import com.xiaoba.entity.Essay;
 import org.apache.ibatis.annotations.*;
 
 import java.util.Date;

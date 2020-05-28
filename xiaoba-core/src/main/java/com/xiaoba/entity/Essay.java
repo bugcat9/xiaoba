@@ -1,4 +1,4 @@
-package com.xiaoba.bean;
+package com.xiaoba.entity;
 
 import java.util.Date;
 

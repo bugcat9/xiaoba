@@ -1,6 +1,6 @@
 package com.xiaoba.service;
 
-import com.xiaoba.bean.SysUser;
+import com.xiaoba.entity.SysUser;
 
 import java.util.Map;
 
