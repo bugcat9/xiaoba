@@ -39,7 +39,7 @@ public interface SysUserMapper {
      * @return
      */
     @Select("select * from sys_user where user_id=#{userId}")
-    SysUser getUserById(Integer userId);
+    SysUser selectById(Integer userId);
 
     /**
      * 通过用户名和密码查询用户

@@ -6,10 +6,10 @@ import org.apache.shiro.authc.AuthenticationToken;
  * 认证类
  * @author zhouning
  */
-public class Auth2Token implements AuthenticationToken {
+public class AuthToken implements AuthenticationToken {
     private String token;
 
-    public Auth2Token(String token) {
+    public AuthToken(String token) {
         this.token = token;
     }
 

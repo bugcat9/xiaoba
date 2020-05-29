@@ -5,6 +5,11 @@ import com.xiaoba.entity.SysUserToken;
 
 import java.util.Set;
 
+/**
+ *  权限控制service层
+ *
+ * @author zhouning
+ */
 public interface ShiroService {
     /**
      * 获取用户的所有权限

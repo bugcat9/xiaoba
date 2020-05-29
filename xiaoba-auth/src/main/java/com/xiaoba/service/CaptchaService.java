@@ -3,6 +3,7 @@ package com.xiaoba.service;
 import java.awt.image.BufferedImage;
 
 /**
+ * 验证码service层
  * @author zhouning
  */
 public interface CaptchaService {

@@ -14,11 +14,15 @@ import org.springframework.stereotype.Component;
 import java.util.Set;
 
 @Component
-public class Auth2Realm extends AuthorizingRealm {
+public class AuthRealm extends AuthorizingRealm {
 
     @Autowired
     private ShiroService shiroService;
 
+    @Override
+    public boolean supports(AuthenticationToken token) {
+        return token instanceof AuthToken;
+    }
     /**
      * 授权(验证权限时调用)
      */

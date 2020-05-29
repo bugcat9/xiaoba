@@ -1,7 +1,7 @@
 package com.xiaoba.config;
 
-import com.xiaoba.Auth2Filter;
-import com.xiaoba.Auth2Realm;
+import com.xiaoba.AuthFilter;
+import com.xiaoba.AuthRealm;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -19,58 +19,59 @@ import java.util.Map;
 
 @Configuration
 public class ShiroConfig {
-//    @Bean("sessionManager")
-//    public SessionManager sessionManager(){
-//        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-//        // 是否定时检查session
-//        sessionManager.setSessionValidationSchedulerEnabled(false);
-//        return sessionManager;
-//    }
-//
-//    @Bean("securityManager")
-//    public SecurityManager securityManager(Auth2Realm auth2Realm, SessionManager sessionManager){
-//        DefaultWebSecurityManager securityManager=new DefaultWebSecurityManager();
-//        securityManager.setRealm(auth2Realm);
-//        securityManager.setSessionManager(sessionManager);
-//        return securityManager;
-//    }
-//
-//    @Bean("shiroFilter")
-//    public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
-//        ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
-//        shiroFilter.setSecurityManager(securityManager);
-//
-//        //oauth过滤
-//        Map<String, Filter> filters = new HashMap<>();
-//        filters.put("oauth2", new Auth2Filter());
-//        shiroFilter.setFilters(filters);
-//
-//        Map<String, String> filterMap = new LinkedHashMap<>();
-//        // 两个url规则都可以匹配同一个url，只执行第一个
-//        filterMap.put("/admin/sys/login", "anon");
-//        filterMap.put("/admin/**", "oauth2");
-//        filterMap.put("/**", "anon");
-//        shiroFilter.setFilterChainDefinitionMap(filterMap);
-//
-//        return shiroFilter;
-//    }
-//
-//    @Bean("lifecycleBeanPostProcessor")
-//    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
-//        return new LifecycleBeanPostProcessor();
-//    }
-//
-//    @Bean
-//    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
-//        DefaultAdvisorAutoProxyCreator proxyCreator = new DefaultAdvisorAutoProxyCreator();
-//        proxyCreator.setProxyTargetClass(true);
-//        return proxyCreator;
-//    }
-//
-//    @Bean
-//    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
-//        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
-//        advisor.setSecurityManager(securityManager);
-//        return advisor;
-//    }
+    @Bean("sessionManager")
+    public SessionManager sessionManager(){
+        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+        // 是否定时检查session
+        sessionManager.setSessionValidationSchedulerEnabled(false);
+        return sessionManager;
+    }
+
+    @Bean("securityManager")
+    public SecurityManager securityManager(AuthRealm authRealm, SessionManager sessionManager){
+        DefaultWebSecurityManager securityManager=new DefaultWebSecurityManager();
+        securityManager.setRealm(authRealm);
+        securityManager.setSessionManager(sessionManager);
+        return securityManager;
+    }
+
+    //需要修改
+    @Bean("shiroFilter")
+    public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
+        ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
+        shiroFilter.setSecurityManager(securityManager);
+
+        //auth过滤
+        Map<String, Filter> filters = new HashMap<>();
+        filters.put("auth", new AuthFilter());
+        shiroFilter.setFilters(filters);
+
+        Map<String, String> filterMap = new LinkedHashMap<>();
+        // 两个url规则都可以匹配同一个url，只执行第一个
+        filterMap.put("/admin/sys/login", "anon");
+        filterMap.put("/admin/**", "oauth2");
+        filterMap.put("/**", "anon");
+        shiroFilter.setFilterChainDefinitionMap(filterMap);
+
+        return shiroFilter;
+    }
+
+    @Bean("lifecycleBeanPostProcessor")
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+        return new LifecycleBeanPostProcessor();
+    }
+
+    @Bean
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator proxyCreator = new DefaultAdvisorAutoProxyCreator();
+        proxyCreator.setProxyTargetClass(true);
+        return proxyCreator;
+    }
+
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
+        advisor.setSecurityManager(securityManager);
+        return advisor;
+    }
 }

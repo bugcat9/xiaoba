@@ -1,5 +1,9 @@
 package com.xiaoba.entity;
 
+/**
+ * 存放 id 和 token
+ * 方便对两者进行查询
+ */
 public class SysUserToken {
     private static final long serialVersionUID = 1L;
 
