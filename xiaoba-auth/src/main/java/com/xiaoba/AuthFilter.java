@@ -33,7 +33,6 @@ public class AuthFilter extends AuthenticatingFilter {
         if(((HttpServletRequest) request).getMethod().equals(RequestMethod.OPTIONS.name())){
             return true;
         }
-
         return false;
     }
 
@@ -69,7 +68,6 @@ public class AuthFilter extends AuthenticatingFilter {
         if(StringUtils.isEmpty(token)){
             token = httpRequest.getParameter("token");
         }
-
         return token;
     }
 }

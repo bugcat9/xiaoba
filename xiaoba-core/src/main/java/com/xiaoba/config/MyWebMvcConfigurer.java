@@ -26,11 +26,4 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
                 .addResourceLocations("file:/home/images/");
     }
 
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        // addPathPatterns表示对请求进行拦截，excludePathPatterns表示除了()请求之外
-//        registry.addInterceptor(new LoginHandlerIntercep()).addPathPatterns("/**").
-//                excludePathPatterns("/index.html","/","/login");
-//
-//    }
 }

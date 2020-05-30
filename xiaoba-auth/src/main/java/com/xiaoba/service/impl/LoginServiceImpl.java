@@ -1,7 +1,10 @@
-package com.xiaoba.service;
+package com.xiaoba.service.impl;
 
 import com.xiaoba.entity.SysUser;
 import com.xiaoba.mapper.SysUserMapper;
+import com.xiaoba.service.LoginService;
+import com.xiaoba.service.TokenService;
+import com.xiaoba.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,33 +19,35 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     SysUserMapper sysUserMapper;
 
+    @Autowired
+    TokenService tokenService;
+
     @Override
     public Map<String,Object> login(String userName, String userPassword){
         System.out.println(userName);
         System.out.println(userPassword);
         SysUser sysUser =sysUserMapper.getUserByName(userName);
 
-        Map<String,Object> map = new HashMap<>(3);
-        //判断sysUser是否为空已经userPassword是否正确
-        if (sysUser!=null && sysUser.getUserPassword().equals(userPassword)){
-            //设置 token
-            map.put("token", sysUser.getUserId()+"");
-            //设置 头像
+
+        Result result = new Result(3);
+//        判断sysUser是否为空已经userPassword是否正确
+        if (sysUser!=null && sysUser.getUserPassword().equals(userPassword)) {
+            String token = tokenService.createToken(sysUser.getUserId());
+            result.put("token", token);
             String avatar = "http://39.99.203.80:8080/images/"+sysUser.getUserAvatarPath();
-            map.put("avatar", avatar);
-            //设置 权限
+            result.put("avatar", avatar);
             String access = "admin";
-            map.put("access", access);
+            result.put("access", access);
         }else {
-            map.put("token", -1+"");
+            result.put("token", -1+"");
         }
 
-        return map;
+        return result;
     }
 
     @Override
     public SysUser getInfo(String token) {
         Integer id = Integer.valueOf(token);
-        return sysUserMapper.getUserById(id);
+        return sysUserMapper.selectById(id);
     }
 }
