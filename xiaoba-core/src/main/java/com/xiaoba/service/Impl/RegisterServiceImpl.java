@@ -1,7 +1,8 @@
-package com.xiaoba.service;
+package com.xiaoba.service.Impl;
 
 import com.xiaoba.entity.SysUser;
 import com.xiaoba.mapper.SysUserMapper;
+import com.xiaoba.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

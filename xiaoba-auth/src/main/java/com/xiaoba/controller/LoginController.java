@@ -2,9 +2,11 @@ package com.xiaoba.controller;
 
 import com.google.code.kaptcha.Producer;
 import com.xiaoba.AuthToken;
+import com.xiaoba.entity.SysLoginForm;
 import com.xiaoba.entity.SysUser;
 import com.xiaoba.service.CaptchaService;
 import com.xiaoba.service.LoginService;
+import com.xiaoba.util.Result;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -12,10 +14,7 @@ import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IOUtils;
 
 import javax.annotation.Resource;
@@ -41,8 +40,6 @@ public class LoginController {
     @Autowired
     private CaptchaService captchaService;
 
-    @Resource
-    private Producer kaptchaProducer;
 
     /**
      *
@@ -54,7 +51,7 @@ public class LoginController {
     public void captcha(HttpServletRequest request,HttpServletResponse response, String uuid) throws IOException {
         response.setHeader("Cache-Control", "no-store, no-cache");
         response.setContentType("image/png");
-        System.out.println(uuid);
+//        System.out.println(uuid);
         //获取图片验证码
         BufferedImage image = captchaService.getCaptcha(uuid);
 
@@ -64,18 +61,20 @@ public class LoginController {
     }
 
     /**
-     * 登录
-     * @param userName 用户名
-     * @param userPassword  密码
-     * @return json文件，其中有个token用户判断用户登录是否成功
+     *
+     * @param form
+     * @return
      */
     @GetMapping("/login")
     @ResponseBody
-    public Map<String,Object> login(@RequestParam("userName") String userName,
-                                    @RequestParam("userPassword") String userPassword){
+    public Map<String,Object> login(SysLoginForm form){
         //需要输入验证码
-
-        Map<String,Object> map = loginService.login(userName,userPassword);
+        boolean captcha=captchaService.validate(form.getUuid(),form.getCaptcha());
+        if(!captcha){
+            // 验证码不正确
+            return new Result().put("token", "-1");
+        }
+        Map<String,Object> map = loginService.login(form.getUserName(),form.getUserPassword());
         //添加用户认证信息
         Subject subject = SecurityUtils.getSubject();
         AuthToken authToken = new AuthToken((String) map.get("token"));

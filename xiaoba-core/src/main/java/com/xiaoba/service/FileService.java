@@ -11,5 +11,5 @@ public interface FileService {
      * @param content
      * @return 在服务器上的地址
      */
-    public String writeToHtml(String content,String title);
+    public String writeToMd(String content,String title);
 }
