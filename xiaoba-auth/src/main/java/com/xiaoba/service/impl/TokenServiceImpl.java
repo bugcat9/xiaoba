@@ -7,8 +7,10 @@ import com.xiaoba.service.TokenService;
 import com.xiaoba.util.RedisUtils;
 import com.xiaoba.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+@Service
 public class TokenServiceImpl implements TokenService {
     //12小时后过期
     private final static int EXPIRE = 3600 * 12;
@@ -16,7 +18,7 @@ public class TokenServiceImpl implements TokenService {
     private RedisUtils redisUtils;
 
     @Override
-    public Result createToken(Integer userId) {
+    public String createToken(Integer userId) {
         // 生成一个token
         String token = TokenGenerator.generateValue();
         //得到缓存的key
@@ -32,7 +34,7 @@ public class TokenServiceImpl implements TokenService {
         redisUtils.set(tokenKey,userId,EXPIRE);
         redisUtils.set(userIdKey,token,EXPIRE);
 
-        return new Result().put("token",token).put("expire",EXPIRE);
+        return token;
     }
 
     @Override

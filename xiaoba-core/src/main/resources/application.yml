@@ -24,8 +24,8 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
-redis:
-  database: 0
-  host: 39.98.61.174
-  port: 6379
-  timeout: 10000 #连接池超时时长
+  redis:
+    database: 0
+    host: 39.98.61.174
+    port: 6379
+    timeout: 10000 #连接池超时时长

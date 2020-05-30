@@ -7,8 +7,12 @@ import java.util.HashMap;
  */
 public class Result extends HashMap<String, Object> {
     public Result() {
-        put("code", 200);
-        put("msg", "success");
+//        put("code", 200);
+//        put("msg", "success");
+    }
+
+    public Result(int initialCapacity){
+        super(initialCapacity);
     }
 
     public static Result ok() {

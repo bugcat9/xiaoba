@@ -39,6 +39,7 @@ public class ShiroConfig {
     @Bean("shiroFilter")
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
+        //设置安全管理
         shiroFilter.setSecurityManager(securityManager);
 
         //auth过滤
@@ -48,9 +49,10 @@ public class ShiroConfig {
 
         Map<String, String> filterMap = new LinkedHashMap<>();
         // 两个url规则都可以匹配同一个url，只执行第一个
-        filterMap.put("/admin/sys/login", "anon");
-        filterMap.put("/admin/**", "oauth2");
-        filterMap.put("/**", "anon");
+        filterMap.put("/login", "anon");
+        filterMap.put("/captcha.jpg", "anon");
+        filterMap.put("/admin/**", "auth");
+        filterMap.put("/**", "authc");
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 
         return shiroFilter;

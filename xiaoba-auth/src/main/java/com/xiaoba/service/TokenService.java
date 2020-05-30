@@ -14,7 +14,7 @@ public interface TokenService {
      * @param userId
      * @return
      */
-    Result createToken(Integer userId);
+    String createToken(Integer userId);
 
     /**
      * 查询token
