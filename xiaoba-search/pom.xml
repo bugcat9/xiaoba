@@ -9,6 +9,8 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
+
+
     <groupId>com.xiaoba</groupId>
     <artifactId>xiaoba-search</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -59,6 +61,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+
             </plugin>
         </plugins>
     </build>

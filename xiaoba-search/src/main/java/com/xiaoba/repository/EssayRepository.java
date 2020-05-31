@@ -1,6 +1,6 @@
-package com.xiaoba.xiaobasearch.repository;
+package com.xiaoba.repository;
 
-import com.xiaoba.xiaobasearch.entity.EssayIndex;
+import com.xiaoba.entity.EssayIndex;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 public interface EssayRepository extends ElasticsearchRepository<EssayIndex, String> {

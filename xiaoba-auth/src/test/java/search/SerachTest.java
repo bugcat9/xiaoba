@@ -1,20 +1,19 @@
-package com.xiaoba.xiaobasearch;
-
+package search;
 
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-@SpringBootTest
-public class ElasticsearchTest extends AbstractTestNGSpringContextTests   {
+@ComponentScan(basePackages = {"com.xiaoba"})
+public class SerachTest  extends AbstractTestNGSpringContextTests {
     @Autowired
     private RestHighLevelClient restHighLevelClient;
 
@@ -24,8 +23,4 @@ public class ElasticsearchTest extends AbstractTestNGSpringContextTests   {
         CreateIndexResponse response= restHighLevelClient.indices().create(createIndexRequest, RequestOptions.DEFAULT);
         System.out.print(response);
     }
-
-
-
-
 }

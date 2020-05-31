@@ -1,4 +1,4 @@
-package com.xiaoba.xiaobasearch.entity;
+package com.xiaoba.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;

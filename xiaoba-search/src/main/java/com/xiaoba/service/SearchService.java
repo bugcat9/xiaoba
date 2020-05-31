@@ -1,10 +1,7 @@
-package com.xiaoba.xiaobasearch.service;
+package com.xiaoba.service;
 
 import com.xiaoba.entity.Essay;
-import com.xiaoba.xiaobasearch.entity.EssayIndex;
-import com.xiaoba.xiaobasearch.repository.EssayRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import com.xiaoba.entity.EssayIndex;
 
 import java.util.Map;
 

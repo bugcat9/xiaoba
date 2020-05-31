@@ -1,4 +1,4 @@
-package com.xiaoba.xiaobasearch.contants;
+package com.xiaoba.contants;
 
 public class SearchContants {
     public final static String TOTAL = "total";

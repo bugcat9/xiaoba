@@ -1,4 +1,4 @@
-package com.xiaoba.xiaobasearch.config;
+package com.xiaoba.config;
 
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;

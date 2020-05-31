@@ -1,22 +1,12 @@
-package com.xiaoba.xiaobasearch.service;
+package com.xiaoba.service;
 
 import com.xiaoba.entity.Essay;
-import com.xiaoba.xiaobasearch.contants.SearchContants;
-import com.xiaoba.xiaobasearch.entity.EssayIndex;
-import com.xiaoba.xiaobasearch.repository.EssayRepository;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.index.query.QueryStringQueryBuilder;
+import com.xiaoba.entity.EssayIndex;
+import com.xiaoba.repository.EssayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
-import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
-import org.springframework.data.elasticsearch.core.query.FetchSourceFilter;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.PageRequest;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
