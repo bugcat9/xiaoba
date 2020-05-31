@@ -54,7 +54,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public String writeToMd(String content,String title) {
+    public String writeToMd(String content,String title,String essayAbstract,String author) {
         String fileName = title+".md";
         String pathName = filepath + fileName;
         try {
@@ -70,12 +70,13 @@ public class FileServiceImpl implements FileService {
 
         Essay essay = new Essay();
         essay.setEssayTittle(title);
-        essay.setEssayAbstract("andoiniopadsfpo");
-        essay.setEssayAuthor("zhouning");
+        essay.setEssayAbstract(essayAbstract);
+        essay.setEssayAuthor(author);
         essay.setEssayPublishTime(new Date());
         essay.setSavePath(fileName);
         System.out.println(essay);
-//      essayMapper.insertEssay(essay);
+        essayMapper.insertEssay(essay);
+
         return fileName;
     }
 }

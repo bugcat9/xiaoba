@@ -41,8 +41,8 @@ public class FileController {
 
     @RequestMapping("/md")
     @ResponseBody
-    public String saveMd(String content,String title){
-        String filename = fileService.writeToMd(content, title);
+    public String saveMd(String content,String title,String essayAbstract,String author){
+        String filename = fileService.writeToMd(content, title,essayAbstract,author);
         if (filename!=null){
             return url+filename;
         }
