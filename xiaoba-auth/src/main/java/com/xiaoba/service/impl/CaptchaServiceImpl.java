@@ -30,12 +30,23 @@ public class CaptchaServiceImpl implements CaptchaService {
         //生成文字验证码
         String code = producer.createText();
         // 存进redis,5分钟后过期
-//        redisUtils.set(genRedisKey(uuid),code,CAPTCHA_EXPIRE);
+        redisUtils.set(genRedisKey(uuid),code,CAPTCHA_EXPIRE);
         return producer.createImage(code);
     }
 
     @Override
     public boolean validate(String uuid, String code) {
+        if(StringUtils.isEmpty(uuid)||StringUtils.isEmpty(code)){
+            return false;
+        }
+        // 从redis中取
+        String redisKey=genRedisKey(uuid);
+        String captchaCode=redisUtils.get(redisKey);
+        //删除验证码
+        redisUtils.delete(redisKey);
+        if(code.equalsIgnoreCase(captchaCode)){
+            return true;
+        }
         return false;
     }
 

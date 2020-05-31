@@ -52,7 +52,8 @@ public class ShiroConfig {
         filterMap.put("/login", "anon");
         filterMap.put("/captcha.jpg", "anon");
         filterMap.put("/admin/**", "auth");
-        filterMap.put("/**", "authc");
+        //先把认证关了
+        filterMap.put("/**", "anon");
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 
         return shiroFilter;

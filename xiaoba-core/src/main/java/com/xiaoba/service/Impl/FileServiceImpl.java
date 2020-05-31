@@ -1,7 +1,8 @@
-package com.xiaoba.service;
+package com.xiaoba.service.Impl;
 
 import com.xiaoba.entity.Essay;
 import com.xiaoba.mapper.EssayMapper;
+import com.xiaoba.service.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.io.*;
 import java.util.Date;
 
 @Service
-public class FileServiceImpl implements FileService{
+public class FileServiceImpl implements FileService {
 
     private Logger logger = (Logger) LoggerFactory.getLogger(getClass());
 
@@ -53,40 +54,29 @@ public class FileServiceImpl implements FileService{
     }
 
     @Override
-    public String writeToHtml(String content,String title) {
-        String fileName = title+".html";
+    public String writeToMd(String content,String title,String essayAbstract,String author) {
+        String fileName = title+".md";
         String pathName = filepath + fileName;
         try {
             PrintWriter pWriter = new PrintWriter(new FileOutputStream(new File(pathName)));
-            pWriter.println("<!DOCTYPE html>\n" +
-                    "<html lang=\"en\">\n" +
-                    "<head>\n" +
-                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"hello.css\">\n" +
-                    "\n" +
-                    "\n" +
-                    "    <meta charset=\"UTF-8\">\n" +
-                    "    <title>Title</title>\n" +
-                    "</head>\n" +
-                    "<body>");
             //写下中间内容
             pWriter.println(content);
-            pWriter.println("</body>\n" +
-                    "</html>");
             pWriter.close();
             logger.info("编写了文章",pathName);
         } catch (FileNotFoundException e) {
-            logger.error("存储为html文件错误:",e);
+            logger.error("存储为md文件错误:",e);
             e.printStackTrace();
         }
 
         Essay essay = new Essay();
         essay.setEssayTittle(title);
-        essay.setEssayAbstract("andoiniopadsfpo");
-        essay.setEssayAuthor("zhouning");
+        essay.setEssayAbstract(essayAbstract);
+        essay.setEssayAuthor(author);
         essay.setEssayPublishTime(new Date());
         essay.setSavePath(fileName);
         System.out.println(essay);
-//      essayMapper.insertEssay(essay);
+        essayMapper.insertEssay(essay);
+
         return fileName;
     }
 }

@@ -7,8 +7,6 @@
     <modules>
         <module>xiaoba-core</module>
         <module>xiaoba-auth</module>
-        <module>xiaoba-search</module>
-
     </modules>
 
     <parent>
@@ -168,18 +166,18 @@
     </dependencyManagement>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <!--添加SpringBoot插件:tomcat-->
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <configuration>
-                        <mainClass>com.xiaoba.XiaobaApplication</mainClass>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
+
+
 
 </project>

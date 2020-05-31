@@ -1,5 +1,6 @@
 package com.xiaoba.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
 
@@ -9,12 +10,19 @@ import org.springframework.web.servlet.config.annotation.*;
 @Configuration
 public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
+    @Value("${filepath}")
+    private String filepath;
+
+    /**
+     * 跨域配置
+     * @param registry
+     */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("*")
                 .allowCredentials(true)
-                .allowedMethods("GET", "POST", "DELETE", "PUT")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .maxAge(3600);
     }
 
@@ -23,7 +31,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
         //这个将应用到url中
         registry.addResourceHandler("/images/**")
                 //这里填的是图片的绝对父路径
-                .addResourceLocations("file:/home/images/");
+                .addResourceLocations("file:"+filepath);
     }
 
 }

@@ -50,4 +50,5 @@ public class LoginServiceImpl implements LoginService {
         Integer id = Integer.valueOf(token);
         return sysUserMapper.selectById(id);
     }
+
 }
