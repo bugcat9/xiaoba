@@ -54,9 +54,6 @@ public class AuthRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         System.out.println("进行登录认证");
         String accessToken = (String) authenticationToken.getPrincipal();
-        if (accessToken.equals("-1")){
-            throw new IncorrectCredentialsException("用户名或者密码错误，请检查用户名或者密码");
-        }
 
         //根据accessToken，查询用户信息
         SysUserToken tokenEntity = shiroService.queryByToken(accessToken);

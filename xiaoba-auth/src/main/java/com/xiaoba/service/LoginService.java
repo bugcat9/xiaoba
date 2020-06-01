@@ -24,5 +24,6 @@ public interface LoginService {
      */
      SysUser getInfo(String token);
 
+     void logout(String token);
 
 }
