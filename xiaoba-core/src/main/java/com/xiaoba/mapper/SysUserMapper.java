@@ -32,7 +32,7 @@ public interface SysUserMapper {
      * @param sysUser
      */
     @Update("update sys_user set user_name=#{userName},user_password=#{userPassword},user_role=#{userRole},user_avatar_path=#{userAvatarPath},user_sex=#{userSex},user_telephone=#{userTelephone},user_email=#{userEmail} where user_id=#{userId}")
-    public void updateUser(SysUser sysUser);
+    int updateUser(SysUser sysUser);
 
     /**
      * 通过 userId 查询 SysUser

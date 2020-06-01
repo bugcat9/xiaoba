@@ -12,7 +12,7 @@ public class SysUser implements Serializable {
     private String userRole;
     private String userAvatarPath;
     private Integer userSex;
-    private Integer userTelephone;
+    private String userTelephone;
     private String userEmail;
 
     public Integer getUserId() {
@@ -63,11 +63,11 @@ public class SysUser implements Serializable {
         this.userSex = userSex;
     }
 
-    public Integer getUserTelephone() {
+    public String getUserTelephone() {
         return userTelephone;
     }
 
-    public void setUserTelephone(Integer userTelephone) {
+    public void setUserTelephone(String userTelephone) {
         this.userTelephone = userTelephone;
     }
 

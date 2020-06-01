@@ -31,8 +31,8 @@ public class RegisterController{
         return registerService.registerUser(userName, userPassword);
     }
 
-//    @RequestMapping("/")
-//    public boolean updateUser(){
-//
-//    }
+    @RequestMapping("/user/update")
+    public boolean updateUser(String token,String userName,Integer sex,String telephone,String email){
+        return registerService.updateUser(token,userName,sex,telephone,email);
+    }
 }
