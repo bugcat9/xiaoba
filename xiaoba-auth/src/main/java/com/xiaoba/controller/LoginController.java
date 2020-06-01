@@ -4,6 +4,7 @@ import com.xiaoba.AuthToken;
 import com.xiaoba.entity.SysLoginForm;
 import com.xiaoba.entity.SysUser;
 import com.xiaoba.exception.ErrorEnum;
+import com.xiaoba.exception.MyException;
 import com.xiaoba.service.CaptchaService;
 import com.xiaoba.service.LoginService;
 import com.xiaoba.util.Result;
@@ -69,28 +70,17 @@ public class LoginController {
         boolean captcha=captchaService.validate(form.getUuid(),form.getCaptcha());
         if(!captcha){
             // 验证码不正确
-            return  Result.error(ErrorEnum.CAPTCHA_WRONG);
+            throw new MyException();
         }
         Map<String,Object> map = loginService.login(form.getUserName(),form.getUserPassword());
         String token = (String) map.get("token");
 
-        if (token==null){
-            return map;
-        }
-
         //添加用户认证信息
         Subject subject = SecurityUtils.getSubject();
         AuthToken authToken = new AuthToken(token);
-        try {
-            //进行验证，这里可以捕获异常，然后返回对应信息
-            subject.login(authToken);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-//            return Result.error(ErrorEnum.NO_AUTH);
-        } catch (AuthorizationException e) {
-            e.printStackTrace();
-//            return Result.error(ErrorEnum.NO_AUTH);
-        }
+        //进行验证，这里可以捕获异常，然后返回对应信息
+        subject.login(authToken);
+
         return map;
     }
 

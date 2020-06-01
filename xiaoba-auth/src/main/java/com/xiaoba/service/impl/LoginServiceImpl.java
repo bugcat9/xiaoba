@@ -3,6 +3,7 @@ package com.xiaoba.service.impl;
 import com.xiaoba.entity.SysUser;
 import com.xiaoba.entity.SysUserToken;
 import com.xiaoba.exception.ErrorEnum;
+import com.xiaoba.exception.MyException;
 import com.xiaoba.mapper.SysUserMapper;
 import com.xiaoba.service.LoginService;
 import com.xiaoba.service.TokenService;
@@ -41,7 +42,7 @@ public class LoginServiceImpl implements LoginService {
             String access = "admin";
             result.put("access", access);
         }else {
-            return  Result.error(ErrorEnum.USERNAME_OR_PASSWORD_WRONG);
+            throw new MyException();
         }
         return result;
     }
