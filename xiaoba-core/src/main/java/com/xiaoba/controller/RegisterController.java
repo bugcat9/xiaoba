@@ -1,8 +1,10 @@
 package com.xiaoba.controller;
 
+import com.xiaoba.entity.SysUser;
 import com.xiaoba.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,4 +30,9 @@ public class RegisterController{
 
         return registerService.registerUser(userName, userPassword);
     }
+
+//    @RequestMapping("/")
+//    public boolean updateUser(){
+//
+//    }
 }

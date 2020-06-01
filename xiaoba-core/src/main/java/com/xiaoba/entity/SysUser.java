@@ -12,7 +12,7 @@ public class SysUser implements Serializable {
     private String userRole;
     private String userAvatarPath;
     private Integer userSex;
-    private Integer userTelephoe;
+    private Integer userTelephone;
     private String userEmail;
 
     public Integer getUserId() {
@@ -63,12 +63,12 @@ public class SysUser implements Serializable {
         this.userSex = userSex;
     }
 
-    public Integer getUserTelephoe() {
-        return userTelephoe;
+    public Integer getUserTelephone() {
+        return userTelephone;
     }
 
-    public void setUserTelephoe(Integer userTelephoe) {
-        this.userTelephoe = userTelephoe;
+    public void setUserTelephone(Integer userTelephone) {
+        this.userTelephone = userTelephone;
     }
 
     public String getUserEmail() {
@@ -88,7 +88,7 @@ public class SysUser implements Serializable {
                 ", userRole='" + userRole + '\'' +
                 ", userAvatarPath='" + userAvatarPath + '\'' +
                 ", userSex=" + userSex +
-                ", userTelephoe=" + userTelephoe +
+                ", userTelephone=" + userTelephone +
                 ", userEmail='" + userEmail + '\'' +
                 '}';
     }
