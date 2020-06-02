@@ -93,12 +93,10 @@ public class SysLoginForm {
 ```
 ### SearchController
 搜索
-例子：http://localhost:8080/search/c++/0
+例子：http://localhost:8080/search?keyword=c++&&currentPage=0
 ```java
- @ResponseBody
-    @GetMapping("/search/{keyword}/{currentPage}")
-    public Map<String,Object> search(@PathVariable("keyword")String keyword,
-                                     @PathVariable("currentPage")int currentPage) throws IOException {
-        return elasticSearchService.search(keyword,currentPage);
-    }
+   @ResponseBody
+    @GetMapping("/search")
+    public Map<String,Object> search(String keyword, int currentPage) 
+       
 ```

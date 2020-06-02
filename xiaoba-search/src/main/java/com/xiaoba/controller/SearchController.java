@@ -16,9 +16,8 @@ public class SearchController {
     private ElasticSearchService elasticSearchService;
 
     @ResponseBody
-    @GetMapping("/search/{keyword}/{currentPage}")
-    public Map<String,Object> search(@PathVariable("keyword")String keyword,
-                                     @PathVariable("currentPage")int currentPage) throws IOException {
+    @GetMapping("/search")
+    public Map<String,Object> search(String keyword, int currentPage) throws IOException {
         return elasticSearchService.search(keyword,currentPage);
     }
 }
