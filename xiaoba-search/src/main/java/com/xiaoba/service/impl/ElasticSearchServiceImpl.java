@@ -1,4 +1,4 @@
-package com.xiaoba.service.impl;
+package com.xiaoba.service.Impl;
 
 import com.xiaoba.contants.ElasticSearchContants;
 import com.xiaoba.entity.Essay;
