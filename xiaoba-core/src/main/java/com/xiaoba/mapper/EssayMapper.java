@@ -2,13 +2,16 @@ package com.xiaoba.mapper;
 
 import com.xiaoba.entity.Essay;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author zhouning
  */
 @Mapper
+@Repository
 public interface EssayMapper {
 
     /**
@@ -28,4 +31,7 @@ public interface EssayMapper {
 
     @Select("select * from sys_user where essay_title=#{essayTitle} and essay_author=#{essayAuthor} and essay_publish_time=#{essayPublishTime}")
     public Essay getEssay(String essayTitle, String essayAuthor, Date essayPublishTime);
+
+    @Select("select * from essay")
+    public List<Essay> getAllEssay();
 }

@@ -1,0 +1,6 @@
+spring:
+  elasticsearch:
+    rest:
+      uris: http://39.98.61.174:9200
+  profiles:
+    active: core
