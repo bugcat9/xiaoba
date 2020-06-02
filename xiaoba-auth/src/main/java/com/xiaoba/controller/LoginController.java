@@ -1,15 +1,15 @@
 package com.xiaoba.controller;
 
-import com.google.code.kaptcha.Producer;
 import com.xiaoba.AuthToken;
 import com.xiaoba.entity.SysLoginForm;
 import com.xiaoba.entity.SysUser;
+import com.xiaoba.exception.ErrorEnum;
+import com.xiaoba.exception.MyException;
 import com.xiaoba.service.CaptchaService;
 import com.xiaoba.service.LoginService;
 import com.xiaoba.util.Result;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +17,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IOUtils;
 
-import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 
@@ -42,9 +39,10 @@ public class LoginController {
 
 
     /**
-     *
+     * 获得验证码图片
+     * @param request
      * @param response
-     * @param uuid
+     * @param uuid 生成 验证码的 id
      * @throws IOException
      */
     @GetMapping("/captcha.jpg")
@@ -62,7 +60,7 @@ public class LoginController {
 
     /**
      *
-     * @param form
+     * @param form 登录的表单
      * @return
      */
     @GetMapping("/login")
@@ -72,24 +70,16 @@ public class LoginController {
         boolean captcha=captchaService.validate(form.getUuid(),form.getCaptcha());
         if(!captcha){
             // 验证码不正确
-            return new Result().put("token", "-1");
+            throw new MyException();
         }
         Map<String,Object> map = loginService.login(form.getUserName(),form.getUserPassword());
+        String token = (String) map.get("token");
+
         //添加用户认证信息
         Subject subject = SecurityUtils.getSubject();
-        AuthToken authToken = new AuthToken((String) map.get("token"));
-        try {
-            //进行验证，这里可以捕获异常，然后返回对应信息
-            subject.login(authToken);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-
-            return map;
-        } catch (AuthorizationException e) {
-            e.printStackTrace();
-
-            return map;
-        }
+        AuthToken authToken = new AuthToken(token);
+        //进行验证，这里可以捕获异常，然后返回对应信息
+        subject.login(authToken);
 
         return map;
     }
@@ -102,15 +92,12 @@ public class LoginController {
     @GetMapping("/user")
     @ResponseBody
     public SysUser getInfo(@RequestParam("token")  String token){
-
         return loginService.getInfo(token);
     }
 
     @GetMapping("/logout")
-    public void logout(HttpSession session){
-        if (session.getAttribute("token")!=null){
-            session.removeAttribute("token");
-        }
+    public void logout(String token){
+        loginService.logout(token);
     }
 
     @GetMapping("/captcha")

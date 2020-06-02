@@ -26,7 +26,7 @@ public class ShiroServiceImpl implements ShiroService {
 
     @Override
     public SysUserToken queryByToken(String token) {
-        return tokenService.queryByToken(RedisKeyConstants.MANAGE_SYS_USER_TOKEN+token);
+        return tokenService.queryByToken(token);
     }
 
     @Override

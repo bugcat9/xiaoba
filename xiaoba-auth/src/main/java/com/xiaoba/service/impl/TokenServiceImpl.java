@@ -39,7 +39,8 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public SysUserToken queryByToken(String token) {
-        String userId=redisUtils.get(token);
+        String tokenKey= RedisKeyConstants.MANAGE_SYS_USER_TOKEN+token;
+        String userId=redisUtils.get(tokenKey);
         if(StringUtils.isEmpty(userId)){
             return null;
         }

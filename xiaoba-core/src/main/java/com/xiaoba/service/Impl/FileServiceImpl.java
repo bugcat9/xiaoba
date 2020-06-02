@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.Date;
 
@@ -78,5 +80,33 @@ public class FileServiceImpl implements FileService {
         essayMapper.insertEssay(essay);
 
         return fileName;
+    }
+
+    @Override
+    public void downloadFile(HttpServletRequest request, HttpServletResponse response, String fileName) {
+        // 设置相关格式
+        response.setContentType("application/force-download");
+        // 设置下载后的文件名以及header
+        response.addHeader("Content-disposition", "attachment;fileName=" + fileName);
+        // 文件地址，真实环境是存放在数据库中的
+        File file = new File(filepath+'/'+fileName);
+        // 穿件输入对象
+        FileInputStream fis = null;
+        // 创建输出对象
+        OutputStream os = null;
+        try {
+            fis = new FileInputStream(file);
+            os = response.getOutputStream();
+            byte[] buf = new byte[1024];
+            int len = 0;
+            while((len = fis.read(buf)) != -1) {
+                os.write(buf, 0, len);
+            }
+            fis.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

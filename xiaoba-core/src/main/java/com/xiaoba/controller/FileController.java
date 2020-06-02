@@ -21,6 +21,8 @@ public class FileController {
     @Autowired
     FileService fileService;
 
+
+
     @RequestMapping("/")
     public String index(){
         return "upload";
@@ -28,6 +30,12 @@ public class FileController {
 
     private String url = "http://39.99.203.80:8080/images/";
 
+
+    /**
+     * 上传文件
+     * @param file
+     * @return
+     */
     @RequestMapping("/upload")
     @ResponseBody
     public String upload (@RequestParam("file") MultipartFile file) {
@@ -39,6 +47,14 @@ public class FileController {
         return "上传失败";
     }
 
+    /**
+     * 传送 md 内容给服务器，存为md文件
+     * @param content
+     * @param title
+     * @param essayAbstract
+     * @param author
+     * @return
+     */
     @RequestMapping("/md")
     @ResponseBody
     public String saveMd(String content,String title,String essayAbstract,String author){
@@ -55,35 +71,8 @@ public class FileController {
      * @param response
      */
     @RequestMapping("/download")
-    public void downloadFile(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("进行下载");
-
-        // 文件名
-        String fileName = "timg.jpg";
-        // 设置相关格式
-        response.setContentType("application/force-download");
-        // 设置下载后的文件名以及header
-        response.addHeader("Content-disposition", "attachment;fileName=" + fileName);
-        // 文件地址，真实环境是存放在数据库中的
-        File file = new File("E:\\home\\images\\timg.jpg");
-        // 穿件输入对象
-        FileInputStream fis = null;
-        // 创建输出对象
-        OutputStream os = null;
-        try {
-            fis = new FileInputStream(file);
-            os = response.getOutputStream();
-            byte[] buf = new byte[1024];
-            int len = 0;
-            while((len = fis.read(buf)) != -1) {
-                os.write(buf, 0, len);
-            }
-            fis.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void downloadFile(HttpServletRequest request, HttpServletResponse response,String fileName) {
+        fileService.downloadFile(request, response, fileName);
     }
 
 }

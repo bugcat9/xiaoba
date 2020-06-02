@@ -1,8 +1,10 @@
-package com.xiaoba.service.Impl;
+package com.xiaoba.service.impl;
 
 import com.xiaoba.entity.SysUser;
+import com.xiaoba.entity.SysUserToken;
 import com.xiaoba.mapper.SysUserMapper;
 import com.xiaoba.service.RegisterService;
+import com.xiaoba.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,9 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Autowired
     SysUserMapper sysUserMapper;
+
+    @Autowired
+    TokenService tokenService;
 
     @Override
     public boolean registerUser(String userName, String userPassword) {
@@ -34,6 +39,25 @@ public class RegisterServiceImpl implements RegisterService {
 
         //进行数据库的插入
         if(sysUserMapper.insertUser(sysUser)==1){
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean updateUser(String token, String userName, Integer sex, String telephone, String email) {
+        SysUserToken sysUserToken = tokenService.queryByToken(token);
+        if (sysUserToken==null){
+            return false;
+        }
+
+        SysUser sysUser = sysUserMapper.selectById(sysUserToken.getUserId());
+        sysUser.setUserName(userName);
+        sysUser.setUserSex(sex);
+        sysUser.setUserTelephone(telephone);
+        sysUser.setUserEmail(email);
+        if (sysUserMapper.updateUser(sysUser)==1){
             return true;
         }
 

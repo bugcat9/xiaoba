@@ -17,7 +17,8 @@ public interface SysUserMapper {
      * @return
      */
     @Options(useGeneratedKeys = true,keyProperty = "userId")
-    @Insert("insert into sys_user(user_name,user_password,user_role,user_avatar_path,user_sex) values(#{userName},#{userPassword},#{userRole},#{userAvatarPath},#{userSex})")
+    @Insert("insert into sys_user(user_name,user_password,user_role,user_avatar_path,user_sex,user_telephone,user_email) " +
+            "values(#{userName},#{userPassword},#{userRole},#{userAvatarPath},#{userSex},#{userTelephone},#{userEmail})")
     public int insertUser(SysUser sysUser);
 
     /**
@@ -32,8 +33,8 @@ public interface SysUserMapper {
      * 更新 sys_user
      * @param sysUser
      */
-    @Update("update sys_user set user_name=#{userName},user_password=#{userPassword},user_role=#{userRole},user_avatar_path=#{userAvatarPath},user_sex=#{userSex} where user_id=#{userId}")
-    public void updateUser(SysUser sysUser);
+    @Update("update sys_user set user_name=#{userName},user_password=#{userPassword},user_role=#{userRole},user_avatar_path=#{userAvatarPath},user_sex=#{userSex},user_telephone=#{userTelephone},user_email=#{userEmail} where user_id=#{userId}")
+    int updateUser(SysUser sysUser);
 
     /**
      * 通过 userId 查询 SysUser
