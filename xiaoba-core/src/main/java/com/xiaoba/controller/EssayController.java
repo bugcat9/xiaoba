@@ -22,4 +22,9 @@ public class EssayController {
     public List<Essay> getEssay(String author){
         return essayMapper.listEssay(author);
     }
+
+    @GetMapping("/getEssay")
+    public Essay getEssay(Integer id){
+        return essayMapper.findEssayById(id);
+    }
 }
