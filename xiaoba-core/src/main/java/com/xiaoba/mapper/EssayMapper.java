@@ -30,7 +30,7 @@ public interface EssayMapper {
     @Select("select * from sys_user where essay_title=#{essayTitle} and essay_author=#{essayAuthor} and essay_publish_time=#{essayPublishTime}")
     Essay getEssay(String essayTitle, String essayAuthor, Date essayPublishTime);
 
-
+    @Select("select * from sys_user where essay_author=#{essayAuthor}")
     List<Essay> listEssay(String author);
 
 }

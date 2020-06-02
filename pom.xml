@@ -7,6 +7,7 @@
     <modules>
         <module>xiaoba-core</module>
         <module>xiaoba-auth</module>
+        <module>xiaoba-search</module>
     </modules>
 
     <parent>
@@ -41,6 +42,7 @@
         <springboot.version>2.1.2.RELEASE</springboot.version>
         <lombok.version>1.18.4</lombok.version>
         <mysql.version>8.0.11</mysql.version>
+        <elasticsearch.version>7.6.2</elasticsearch.version>
     </properties>
 
     <dependencyManagement>
@@ -164,20 +166,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-
-
 </project>

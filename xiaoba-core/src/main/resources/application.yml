@@ -26,6 +26,10 @@ spring:
 
   redis:
     database: 0
-    host: 39.98.61.174
+    host: 39.98.248.52
     port: 6379
     timeout: 10000 #连接池超时时长
+
+  elasticsearch:
+    rest:
+      uris: http://39.98.61.174:9200

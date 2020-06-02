@@ -91,3 +91,14 @@ public class SysLoginForm {
     @ResponseBody
     public String saveMd(String content,String title,String essayAbstract,String author)
 ```
+### SearchController
+搜索
+例子：http://localhost:8080/search/c++/0
+```java
+ @ResponseBody
+    @GetMapping("/search/{keyword}/{currentPage}")
+    public Map<String,Object> search(@PathVariable("keyword")String keyword,
+                                     @PathVariable("currentPage")int currentPage) throws IOException {
+        return elasticSearchService.search(keyword,currentPage);
+    }
+```
