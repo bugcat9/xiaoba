@@ -1,6 +1,8 @@
 package com.xiaoba.controller;
 
+import com.xiaoba.constans.PathContants;
 import com.xiaoba.service.FileService;
+import com.xiaoba.util.PathLoadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +30,9 @@ public class FileController {
         return "upload";
     }
 
-    private String url = "http://39.99.203.80:8080/images/";
+    /**
+     * private String url = "http://39.99.203.80:8080/images/";
+     */
 
 
     /**
@@ -42,7 +46,10 @@ public class FileController {
 
         boolean result = fileService.upload(file);
         if (result){
-            return url+file.getOriginalFilename();
+            /**
+             *  return url+file.getOriginalFilename();
+             */
+            return PathLoadUtil.loadImages(file.getOriginalFilename());
         }
         return "上传失败";
     }
@@ -60,7 +67,10 @@ public class FileController {
     public String saveMd(String content,String title,String essayAbstract,String author){
         String filename = fileService.writeToMd(content, title,essayAbstract,author);
         if (filename!=null){
-            return url+filename;
+            /**
+             * return url+filename;
+             */
+            return PathLoadUtil.loadEssay(filename);
         }
         return "编写失败";
     }

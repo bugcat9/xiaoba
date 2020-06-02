@@ -26,6 +26,6 @@ public class ElasticSearchServiceImplTest extends AbstractTestNGSpringContextTes
 
     @Test
     public void testSearch() throws IOException {
-         elasticSearchService.search("c++",0);
+         elasticSearchService.search("文章",0);
     }
 }

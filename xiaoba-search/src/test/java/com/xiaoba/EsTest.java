@@ -5,11 +5,8 @@ import com.xiaoba.entity.EssayIndex;
 import com.xiaoba.mapper.EssayMapper;
 import com.xiaoba.repository.EssayIndexRepository;
 import com.xiaoba.service.Impl.ElasticSearchServiceImpl;
-import com.xiaoba.util.MapperUtil;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
+
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -34,11 +31,11 @@ public class EsTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testInit(){
-        List<Essay> essayList= essayMapper.getAllEssay();
-        Assert.assertNotNull(essayList);
-        essayIndexRepository.saveAll(essayList.stream()
-                .map(elasticSearchService::buildEssayIndex)
-                .collect(Collectors.toList()));
+//        //List<Essay> essayList= essayMapper.getAllEssay();
+//        Assert.assertNotNull(essayList);
+//        essayIndexRepository.saveAll(essayList.stream()
+//                .map(elasticSearchService::buildEssayIndex)
+//                .collect(Collectors.toList()));
     }
 
     @Test

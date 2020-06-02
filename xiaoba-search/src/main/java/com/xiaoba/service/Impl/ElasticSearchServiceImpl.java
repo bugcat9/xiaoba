@@ -5,6 +5,7 @@ import com.xiaoba.entity.Essay;
 import com.xiaoba.entity.EssayIndex;
 import com.xiaoba.entity.SysUser;
 import com.xiaoba.service.ElasticSearchService;
+import com.xiaoba.util.PathLoadUtil;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -86,11 +87,12 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
             Map<String,Object> map=documentFields.getSourceAsMap();
             map.remove("@version");
             map.remove("@timestamp");
+            map.replace("savePath", PathLoadUtil.loadEssay(String.valueOf(map.get("savePath"))));
             list.add(map);
         }
         int size=(int)response.getHits().getTotalHits().value;
         int pageNum=size/ElasticSearchContants.PAGE_SIZE+1;
-
+        System.out.println(pageNum);
         //装载返回结果
         Map<String,Object> result =new HashMap<>();
         //当前页的页数

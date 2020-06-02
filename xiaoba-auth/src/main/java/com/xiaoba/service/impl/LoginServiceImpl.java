@@ -1,5 +1,6 @@
 package com.xiaoba.service.impl;
 
+import com.xiaoba.constans.PathContants;
 import com.xiaoba.entity.SysUser;
 import com.xiaoba.entity.SysUserToken;
 import com.xiaoba.exception.ErrorEnum;
@@ -7,6 +8,7 @@ import com.xiaoba.exception.MyException;
 import com.xiaoba.mapper.SysUserMapper;
 import com.xiaoba.service.LoginService;
 import com.xiaoba.service.TokenService;
+import com.xiaoba.util.PathLoadUtil;
 import com.xiaoba.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +39,11 @@ public class LoginServiceImpl implements LoginService {
             String token = tokenService.createToken(sysUser.getUserId());
 
             result.put("token", token);
-            String avatar = "http://39.99.203.80:8080/images/"+sysUser.getUserAvatarPath();
+            /**
+             * String avatar = "http://39.99.203.80:8080/images/"+sysUser.getUserAvatarPath();
+             */
+            String avatar = PathLoadUtil.loadImages(sysUser.getUserAvatarPath());
+
             result.put("avatar", avatar);
             String access = "admin";
             result.put("access", access);
