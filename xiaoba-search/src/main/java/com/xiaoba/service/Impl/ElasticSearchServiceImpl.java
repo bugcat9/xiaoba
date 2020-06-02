@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import javax.naming.directory.SearchResult;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -49,7 +50,7 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
     }
 
     @Override
-    public List<Map<String,Object>> search(String keyWord, int currentPage) throws IOException {
+    public Map<String,Object> search(String keyWord, int currentPage) throws IOException {
         if(currentPage<=0){
             currentPage=0;
         }
@@ -82,10 +83,23 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
         //解析结果
         List<Map<String,Object>> list=new ArrayList<>();
         for(SearchHit documentFields:response.getHits().getHits()){
-            list.add(documentFields.getSourceAsMap());
+            Map<String,Object> map=documentFields.getSourceAsMap();
+            map.remove("@version");
+            map.remove("@timestamp");
+            list.add(map);
         }
+        int size=(int)response.getHits().getTotalHits().value;
+        int pageNum=size/ElasticSearchContants.PAGE_SIZE+1;
 
-        System.out.println(list);
-        return list;
+        //装载返回结果
+        Map<String,Object> result =new HashMap<>();
+        //当前页的页数
+        result.put(ElasticSearchContants.CURRENT_PAGE,currentPage);
+        //总的页数
+        result.put(ElasticSearchContants.PAGE_NUM,pageNum);
+        //搜索结果
+        result.put(ElasticSearchContants.SEARCH_LIST,list);
+        System.out.print(result);
+        return result;
     }
 }

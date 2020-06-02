@@ -17,5 +17,5 @@ public interface ElasticSearchService {
 
     public EssayIndex buildEssayIndex(Essay essay);
 
-    public List<Map<String,Object>> search(String keyWord,int currentPage) throws IOException;
+    public Map<String,Object> search(String keyWord,int currentPage) throws IOException;
 }

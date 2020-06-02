@@ -1,5 +1,6 @@
 package com.xiaoba.entity;
 
+import com.xiaoba.contants.ElasticSearchContants;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,11 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 
-@Document(indexName = "xiaoba",type = "_doc",shards = 1, replicas = 0)
+/**
+ * @author 王文旭
+ * @date 2020/6/2
+ */
+@Document(indexName = ElasticSearchContants.INDEX,type = "_doc",shards = 1, replicas = 0)
 public class EssayIndex {
     @Id
     private Integer essayId;

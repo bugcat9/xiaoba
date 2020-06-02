@@ -4,11 +4,20 @@ public class ElasticSearchContants {
     /**
      * 索引名
      */
-    final public static String INDEX="xiaoba";
+    final public static String INDEX="essay";
     /**
      * 当前页
      */
-    final public static int CURRENT_PAGE=1;
+    final public static String CURRENT_PAGE="currentPage";
+    /**
+     * 页数
+     */
+    final public static String PAGE_NUM="pageNum";
+
+    /**
+     * 文章搜索结果列表
+     */
+    final public static String SEARCH_LIST="searchList";
     /**
      * 单页最大显示
      */

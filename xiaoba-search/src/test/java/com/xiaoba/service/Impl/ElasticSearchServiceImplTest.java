@@ -2,6 +2,7 @@ package com.xiaoba.service.Impl;
 
 import com.xiaoba.mapper.EssayMapper;
 import com.xiaoba.mapper.SysUserMapper;
+import com.xiaoba.service.ElasticSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -15,7 +16,7 @@ import static org.testng.Assert.*;
 public class ElasticSearchServiceImplTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    ElasticSearchServiceImpl elasticSearchService;
+    ElasticSearchService elasticSearchService;
 
 
     @Test
@@ -25,6 +26,6 @@ public class ElasticSearchServiceImplTest extends AbstractTestNGSpringContextTes
 
     @Test
     public void testSearch() throws IOException {
-         elasticSearchService.search("好一篇文章",0);
+         elasticSearchService.search("c++",0);
     }
 }
