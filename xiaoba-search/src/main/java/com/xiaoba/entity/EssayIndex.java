@@ -1,22 +1,12 @@
 package com.xiaoba.entity;
-
 import com.xiaoba.contants.ElasticSearchContants;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-
-/**
- * @author 王文旭
- * @date 2020/6/2
- */
 @Document(indexName = ElasticSearchContants.INDEX,type = "_doc",shards = 1, replicas = 0)
 public class EssayIndex {
     @Id
@@ -78,6 +68,5 @@ public class EssayIndex {
     public void setSavePath(String savePath) {
         this.savePath = savePath;
     }
-
 
 }

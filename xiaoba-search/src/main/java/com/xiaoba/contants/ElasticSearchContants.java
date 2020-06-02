@@ -21,7 +21,7 @@ public class ElasticSearchContants {
     /**
      * 单页最大显示
      */
-    final public static int PAGE_SIZE=2;
+    final public static int PAGE_SIZE=10;
     /**
      * 文章标题
      */
@@ -34,7 +34,4 @@ public class ElasticSearchContants {
      * 文章作者
      */
     final public static String ESSAY_AUTHOR="essayAuthor";
-
-
-
 }

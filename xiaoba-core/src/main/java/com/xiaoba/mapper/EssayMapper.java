@@ -27,10 +27,10 @@ public interface EssayMapper {
     @Update("update essay set essay_title=#{essayTitle},essay_author=#{essayAuthor},essay_publish_time=#{essayPublishTime},save_path=#{savePath}")
     void updateEssay(Essay essay);
 
-    @Select("select * from sys_user where essay_title=#{essayTitle} and essay_author=#{essayAuthor} and essay_publish_time=#{essayPublishTime}")
+    @Select("select * from essay where essay_title=#{essayTitle} and essay_author=#{essayAuthor} and essay_publish_time=#{essayPublishTime}")
     Essay getEssay(String essayTitle, String essayAuthor, Date essayPublishTime);
 
-
-    List<Essay> listEssay(String author);
+    @Select("select * from essay where essay_author=#{essayAuthor}")
+    List<Essay> listEssay(String essayAuthor);
 
 }

@@ -91,3 +91,12 @@ public class SysLoginForm {
     @ResponseBody
     public String saveMd(String content,String title,String essayAbstract,String author)
 ```
+### SearchController
+搜索
+例子：http://localhost:8080/search?keyword=c++&&currentPage=0
+```java
+   @ResponseBody
+    @GetMapping("/search")
+    public Map<String,Object> search(String keyword, int currentPage) 
+       
+```
