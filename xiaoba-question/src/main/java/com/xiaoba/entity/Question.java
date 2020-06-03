@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Question {
     private Integer questionId;
+    private String questionTitle;
     private String questionerName;
     private Date questionTime;
     private String questionContent;
@@ -15,6 +16,14 @@ public class Question {
 
     public void setQuestionId(Integer questionId) {
         this.questionId = questionId;
+    }
+
+    public String getQuestionTitle() {
+        return questionTitle;
+    }
+
+    public void setQuestionTitle(String questionTitle) {
+        this.questionTitle = questionTitle;
     }
 
     public String getQuestionerName() {
@@ -53,6 +62,7 @@ public class Question {
     public String toString() {
         return "Question{" +
                 "questionId=" + questionId +
+                ", questionTitle='" + questionTitle + '\'' +
                 ", questionerName='" + questionerName + '\'' +
                 ", questionTime=" + questionTime +
                 ", questionContent='" + questionContent + '\'' +

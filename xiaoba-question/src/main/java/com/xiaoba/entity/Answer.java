@@ -6,7 +6,7 @@ public class Answer {
 
     private Integer answerId;
     private Integer questionId;
-    private String answer;
+    private String answerer;
     private Date answerTime;
     private String savePath;
     private Integer commentNum;
@@ -27,12 +27,12 @@ public class Answer {
         this.questionId = questionId;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getAnswerer() {
+        return answerer;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setAnswerer(String answerer) {
+        this.answerer = answerer;
     }
 
     public Date getAnswerTime() {
@@ -64,7 +64,7 @@ public class Answer {
         return "Answer{" +
                 "answerId=" + answerId +
                 ", questionId=" + questionId +
-                ", answer='" + answer + '\'' +
+                ", answerer='" + answerer + '\'' +
                 ", answerTime=" + answerTime +
                 ", savePath='" + savePath + '\'' +
                 ", commentNum=" + commentNum +
