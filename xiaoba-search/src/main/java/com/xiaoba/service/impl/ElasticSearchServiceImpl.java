@@ -4,6 +4,7 @@ import com.xiaoba.contants.ElasticSearchContants;
 import com.xiaoba.entity.Essay;
 import com.xiaoba.entity.EssayIndex;
 import com.xiaoba.service.ElasticSearchService;
+import com.xiaoba.util.PathLoadUtil;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -13,6 +14,7 @@ import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -21,6 +23,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+/**
+ * @author dell
+ */
 @Service
 public class ElasticSearchServiceImpl implements ElasticSearchService {
 
@@ -76,6 +81,7 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
             Map<String,Object> map=documentFields.getSourceAsMap();
             map.remove("@version");
             map.remove("@timestamp");
+            map.replace("savaPath", PathLoadUtil.loadEssay((String)map.get("savePath")));
             list.add(map);
         }
         int size=(int)response.getHits().getTotalHits().value;
