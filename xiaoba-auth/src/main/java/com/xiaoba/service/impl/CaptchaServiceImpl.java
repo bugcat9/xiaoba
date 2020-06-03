@@ -19,7 +19,7 @@ public class CaptchaServiceImpl implements CaptchaService {
     @Autowired
     private RedisUtils redisUtils;
 
-    //验证码的时间为5秒钟
+    //验证码的时间为5分钟
     public final static long CAPTCHA_EXPIRE = 60 * 5;
 
     @Override

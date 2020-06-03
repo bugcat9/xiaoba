@@ -33,3 +33,11 @@ spring:
   elasticsearch:
     rest:
       uris: http://39.98.61.174:9200
+
+#  邮箱设置
+  mail:
+    host: smtp.qq.com
+    username: 1767508581@qq.com
+    password: jgukizrhflnjddhd
+    default-encoding: UTF-8
+

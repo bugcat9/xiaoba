@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * @author zhouning
  */
-public class Essay extends BaseEntity{
+public class Essay {
     private Integer essayId;
     private String essayTitle;
     private String essayAbstract;

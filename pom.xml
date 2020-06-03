@@ -164,6 +164,12 @@
                 <artifactId>spring-boot-starter-amqp</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
+<!--            邮箱相关-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-mail</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

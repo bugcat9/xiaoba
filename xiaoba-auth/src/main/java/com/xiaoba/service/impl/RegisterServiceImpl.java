@@ -21,7 +21,7 @@ public class RegisterServiceImpl implements RegisterService {
     TokenService tokenService;
 
     @Override
-    public boolean registerUser(String userName, String userPassword) {
+    public boolean registerUser(String userName, String userPassword,String email) {
 
         SysUser sysUser = sysUserMapper.getUserByName(userName);
         //判断是否已经注册了
@@ -33,10 +33,11 @@ public class RegisterServiceImpl implements RegisterService {
         sysUser = new SysUser();
         sysUser.setUserName(userName);
         sysUser.setUserPassword(userPassword);
+        sysUser.setUserEmail(email);
         sysUser.setUserRole("user");
         sysUser.setUserAvatarPath("1.jpg");
         sysUser.setUserSex(1);
-
+        sysUser.setUserTelephone("000000");
         //进行数据库的插入
         if(sysUserMapper.insertUser(sysUser)==1){
             return true;
