@@ -32,7 +32,8 @@ public class UserComment {
 
     private Date commentTime;
 
-    private String savePath;
+    private String commentContent;
+
 
     public Integer getCommentId() {
         return commentId;
@@ -74,11 +75,11 @@ public class UserComment {
         this.commentTime = commentTime;
     }
 
-    public String getSavePath() {
-        return savePath;
+    public String getCommentContent() {
+        return commentContent;
     }
 
-    public void setSavePath(String savePath) {
-        this.savePath = savePath;
+    public void setCommentContent(String commentContent) {
+        this.commentContent = commentContent;
     }
 }
