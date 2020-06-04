@@ -2,7 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <packaging>jar</packaging>
     <parent>
         <artifactId>xiaoba</artifactId>
         <groupId>com.xiaoba</groupId>
@@ -10,10 +9,10 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.xiao</groupId>
-    <artifactId>xiaoba-search</artifactId>
+    <groupId>com.xiaoba</groupId>
+    <artifactId>xiaoba-question</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>xiaoba-search</name>
+    <name>xiaoba-question</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -23,28 +22,39 @@
     <dependencies>
 
         <dependency>
+            <groupId>com.xiaoba</groupId>
+            <artifactId>xiaoba-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.68</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
 
-        <dependency>
-            <groupId>com.xiaoba</groupId>
-            <artifactId>xiaoba-auth</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.1.0</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -52,19 +62,8 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <!-- 指定该Main Class为全局的唯一入口 -->
-                    <mainClass>com.xiaoba.XiaobaApplication</mainClass>
-                    <layout>ZIP</layout>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
+
 </project>

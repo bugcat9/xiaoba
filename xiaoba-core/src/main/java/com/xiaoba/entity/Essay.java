@@ -12,6 +12,7 @@ public class Essay {
     private String essayAuthor;
     private Date essayPublishTime;
     private String savePath;
+    private Integer commentNum;
 
     public Integer getEssayId() {
         return essayId;
@@ -67,6 +68,14 @@ public class Essay {
 
     public void setEssayAbstract(String essayAbstract) {
         this.essayAbstract = essayAbstract;
+    }
+
+    public Integer getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(Integer commentNum) {
+        this.commentNum = commentNum;
     }
 
     @Override

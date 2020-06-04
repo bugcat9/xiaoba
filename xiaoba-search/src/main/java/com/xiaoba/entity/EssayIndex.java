@@ -11,14 +11,12 @@ import java.util.Date;
 public class EssayIndex {
     @Id
     private Integer essayId;
-    @Field(type = FieldType.Text, analyzer = "ik_max_word")
     private String essayTitle;
-    @Field(type = FieldType.Text, analyzer = "ik_max_word")
     private String essayAbstract;
-    @Field(type = FieldType.Text, analyzer = "ik_max_word")
     private String essayAuthor;
     private Date essayPublishTime;
     private String savePath;
+    private Integer commentNum;
 
 
     public Integer getEssayId() {
@@ -69,4 +67,11 @@ public class EssayIndex {
         this.savePath = savePath;
     }
 
+    public Integer getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(Integer commentNum) {
+        this.commentNum = commentNum;
+    }
 }
