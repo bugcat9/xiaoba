@@ -22,12 +22,20 @@ public class Essay {
         this.essayId = essayId;
     }
 
-    public String getEssayTittle() {
+    public String getEssayTitle() {
         return essayTitle;
     }
 
-    public void setEssayTittle(String essayTitle) {
+    public void setEssayTitle(String essayTitle) {
         this.essayTitle = essayTitle;
+    }
+
+    public String getEssayAbstract() {
+        return essayAbstract;
+    }
+
+    public void setEssayAbstract(String essayAbstract) {
+        this.essayAbstract = essayAbstract;
     }
 
     public String getEssayAuthor() {
@@ -54,22 +62,6 @@ public class Essay {
         this.savePath = savePath;
     }
 
-    public String getEssayTitle() {
-        return essayTitle;
-    }
-
-    public void setEssayTitle(String essayTitle) {
-        this.essayTitle = essayTitle;
-    }
-
-    public String getEssayAbstract() {
-        return essayAbstract;
-    }
-
-    public void setEssayAbstract(String essayAbstract) {
-        this.essayAbstract = essayAbstract;
-    }
-
     public Integer getCommentNum() {
         return commentNum;
     }
@@ -87,6 +79,7 @@ public class Essay {
                 ", essayAuthor='" + essayAuthor + '\'' +
                 ", essayPublishTime=" + essayPublishTime +
                 ", savePath='" + savePath + '\'' +
+                ", commentNum=" + commentNum +
                 '}';
     }
 }

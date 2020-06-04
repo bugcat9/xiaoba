@@ -71,7 +71,7 @@ public class FileServiceImpl implements FileService {
         }
 
         Essay essay = new Essay();
-        essay.setEssayTittle(title);
+        essay.setEssayTitle(title);
         essay.setEssayAbstract(essayAbstract);
         essay.setEssayAuthor(author);
         essay.setEssayPublishTime(new Date());

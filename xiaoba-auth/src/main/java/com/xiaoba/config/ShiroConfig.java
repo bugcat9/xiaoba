@@ -51,9 +51,11 @@ public class ShiroConfig {
         // 两个url规则都可以匹配同一个url，只执行第一个
         filterMap.put("/login", "anon");
         filterMap.put("/captcha.jpg", "anon");
+        filterMap.put("/captcha","anon");
+        filterMap.put("/logout", "logout");
         filterMap.put("/admin/**", "auth");
         //先把认证关了
-        filterMap.put("/**", "anon");
+        filterMap.put("/**", "authc");
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 
         return shiroFilter;

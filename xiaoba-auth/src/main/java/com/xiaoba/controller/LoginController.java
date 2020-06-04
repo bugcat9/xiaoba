@@ -95,11 +95,13 @@ public class LoginController {
         return loginService.getInfo(token);
     }
 
+    @ResponseBody
     @GetMapping("/logout")
-    public void logout(String token){
+    public String logout(String token){
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
         loginService.logout(token);
+        return "登出";
     }
 
     @GetMapping("/captcha")
