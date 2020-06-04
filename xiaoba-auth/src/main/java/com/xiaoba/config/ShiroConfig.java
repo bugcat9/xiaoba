@@ -55,7 +55,7 @@ public class ShiroConfig {
         filterMap.put("/logout", "logout");
         filterMap.put("/admin/**", "auth");
         //先把认证关了
-        filterMap.put("/**", "authc");
+        filterMap.put("/**", "anon");
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 
         return shiroFilter;
