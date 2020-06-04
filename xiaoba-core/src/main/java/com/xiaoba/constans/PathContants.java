@@ -9,6 +9,6 @@ public class PathContants {
     /**
      * 文章存储路径
      */
-    public final static String ESSAY_PATH ="http://39.99.203.80:8080/md/";
+    public final static String ESSAY_PATH ="http://39.99.203.80:8080/images/";
 
 }
