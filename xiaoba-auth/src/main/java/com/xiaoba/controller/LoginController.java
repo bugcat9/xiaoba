@@ -97,6 +97,8 @@ public class LoginController {
 
     @GetMapping("/logout")
     public void logout(String token){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
         loginService.logout(token);
     }
 
