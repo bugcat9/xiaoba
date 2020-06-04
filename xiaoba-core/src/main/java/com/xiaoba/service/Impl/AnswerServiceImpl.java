@@ -1,4 +1,4 @@
-package com.xiaoba.service.impl;
+package com.xiaoba.service.Impl;
 
 import com.xiaoba.entity.Answer;
 import com.xiaoba.mapper.AnswerMapper;
