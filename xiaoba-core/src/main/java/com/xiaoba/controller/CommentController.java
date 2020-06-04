@@ -21,4 +21,9 @@ public class CommentController {
         return commentService.listCommentsByEssay(essayId);
     }
 
+    @GetMapping("/addComment")
+    public boolean addComment(Integer essayId,String commentatorName,String commentContent){
+        return commentService.addCommentOfEssay(essayId,commentatorName,commentContent);
+    }
+
 }

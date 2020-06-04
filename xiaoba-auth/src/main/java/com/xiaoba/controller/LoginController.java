@@ -98,6 +98,7 @@ public class LoginController {
     @ResponseBody
     @GetMapping("/logout")
     public String logout(String token){
+        System.out.println("退出登录");
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
         loginService.logout(token);

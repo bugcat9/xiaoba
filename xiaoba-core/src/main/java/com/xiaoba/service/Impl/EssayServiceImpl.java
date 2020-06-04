@@ -8,6 +8,7 @@ import com.xiaoba.util.PathLoadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,5 +29,24 @@ public class EssayServiceImpl implements EssayService {
     @Override
     public Essay getEssay(Integer id) {
         return essayMapper.findEssayById(id);
+    }
+
+
+    @Override
+    public boolean publishEssay(String essayTitle, String essayAbstract, String essayAuthor, String savePath) {
+        Essay essay=new Essay();
+        essay.setEssayTitle(essayTitle);
+        essay.setEssayAbstract(essayAbstract);
+        essay.setEssayAuthor(essayAuthor);
+        essay.setSavePath(savePath);
+        essay.setEssayPublishTime(new Date());
+        int result=essayMapper.insertEssay(essay);
+        return result==1;
+    }
+
+    @Override
+    public boolean deleteEssay(Integer essayId) {
+        int result=essayMapper.deleteEssayById(essayId);
+        return result==1;
     }
 }

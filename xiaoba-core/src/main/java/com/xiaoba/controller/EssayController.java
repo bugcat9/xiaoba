@@ -28,4 +28,6 @@ public class EssayController {
     public Essay getEssay(Integer id){
         return essayService.getEssay(id);
     }
+
+
 }

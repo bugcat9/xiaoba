@@ -36,4 +36,20 @@ public interface EssayMapper {
     @Select("select * from essay where essay_author=#{essayAuthor}")
     List<Essay> listEssay(String essayAuthor);
 
+    /**
+     * 当文章被评论时，评论数加一
+     * @param essayId 文章id
+     * @return 修改成功返回1
+     */
+    @Update("update essay set comment_num=comment_num+1 where essay_id=#{essayId}")
+    int addCommentNum(Integer essayId);
+
+    /**
+     * 文章评论被删时，评论数减一
+     * @param essayId 文章id
+     * @return 修改成功返回1
+     */
+    @Update("update essay set comment_num=comment_num-1 where essay_id=#{essayId} and comment_num>0")
+    int decCommentNum(Integer essayId);
+
 }
