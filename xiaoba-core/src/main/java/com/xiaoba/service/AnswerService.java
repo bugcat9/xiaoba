@@ -16,26 +16,26 @@ public interface AnswerService {
      * @param savePath 回答的md文件的保存路径
      * @return 成功发出回答则返回true
      */
-    public boolean answerQuestion(String answerer,int questionId,String savePath);
+     boolean answerQuestion(String answerer,int questionId,String savePath);
 
     /**
      * 根据回答的id号删除回答
      * @param answerId 回答的id号
      * @return 删除成功返回true
      */
-    public boolean deleteAnswer(int answerId);
+     boolean deleteAnswer(int answerId);
 
     /**
      * 获得某个人的所有回答
      * @param anserer 回答者的用户名
      * @return 回答列表
      */
-    public List<Answer> getAnswerBySomeone(String anserer);
+     List<Answer> getAnswerBySomeone(String anserer);
 
     /**
      * 获得某个问题下的所有回答
      * @param questionId 问题的ID号
      * @return 回答列表
      */
-    public List<Answer> getAnswerByQuestion(int questionId);
+     List<Answer> getAnswerByQuestion(int questionId);
 }
