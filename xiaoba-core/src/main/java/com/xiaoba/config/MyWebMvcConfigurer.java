@@ -32,6 +32,8 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
         registry.addResourceHandler("/images/**")
                 //这里填的是图片的绝对父路径
                 .addResourceLocations("file:"+filepath);
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
 }

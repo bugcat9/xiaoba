@@ -8,6 +8,8 @@ import com.xiaoba.exception.MyException;
 import com.xiaoba.service.CaptchaService;
 import com.xiaoba.service.LoginService;
 import com.xiaoba.util.Result;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authz.AuthorizationException;
@@ -63,6 +65,8 @@ public class LoginController {
      * @param form 登录的表单
      * @return
      */
+    @ApiOperation(value = "接口的功能介绍",notes = "提示接口使用者注意事项",httpMethod = "GET")
+    @ApiImplicitParam(dataType = "string",name = "name",value = "姓名",required = true)
     @GetMapping("/login")
     @ResponseBody
     public Map<String,Object> login(SysLoginForm form){

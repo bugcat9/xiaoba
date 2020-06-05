@@ -7,6 +7,7 @@ import java.util.Properties;
 import com.google.code.kaptcha.util.Config;
 /**
  * @author zhouning
+ * 验证码图片配置
  */
 @Configuration
 public class KaptchaConfig {
