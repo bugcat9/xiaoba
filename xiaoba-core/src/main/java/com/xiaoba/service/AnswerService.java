@@ -5,7 +5,7 @@ import com.xiaoba.entity.Answer;
 import java.util.List;
 
 /**
- * @author dell
+ * @author 王文旭
  */
 public interface AnswerService {
 

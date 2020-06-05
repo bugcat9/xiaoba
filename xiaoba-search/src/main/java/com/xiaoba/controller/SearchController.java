@@ -20,4 +20,12 @@ public class SearchController {
     public Map<String,Object> search(String keyword, int currentPage) throws IOException {
         return elasticSearchService.search(keyword,currentPage);
     }
+
+    @ResponseBody
+    @GetMapping("/highLight")
+    public Map<String,Object> esarchHighLight(String keyWord,int currentPage) throws IOException {
+       return elasticSearchService.esarchHighLight(keyWord, currentPage);
+    }
+
+
 }

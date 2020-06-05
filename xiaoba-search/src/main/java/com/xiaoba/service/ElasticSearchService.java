@@ -17,4 +17,12 @@ public interface ElasticSearchService {
     public EssayIndex buildEssayIndex(Essay essay);
 
     public Map<String,Object> search(String keyWord, int currentPage) throws IOException;
+
+    /**
+     * 高亮搜索
+     * @param keyWord
+     * @param currentPage
+     * @return
+     */
+    public Map<String,Object> esarchHighLight(String keyWord,int currentPage) throws IOException;
 }

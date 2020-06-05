@@ -1,6 +1,7 @@
 package com.xiaoba.entity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author zhouning
@@ -13,6 +14,8 @@ public class Essay {
     private Date essayPublishTime;
     private String savePath;
     private Integer commentNum;
+    private Category category;
+    private List<Tag> tagList;
 
     public Integer getEssayId() {
         return essayId;
@@ -70,6 +73,22 @@ public class Essay {
         this.commentNum = commentNum;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public List<Tag> getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(List<Tag> tagList) {
+        this.tagList = tagList;
+    }
+
     @Override
     public String toString() {
         return "Essay{" +
@@ -80,6 +99,8 @@ public class Essay {
                 ", essayPublishTime=" + essayPublishTime +
                 ", savePath='" + savePath + '\'' +
                 ", commentNum=" + commentNum +
+                ", category=" + category +
+                ", tagList=" + tagList +
                 '}';
     }
 }
