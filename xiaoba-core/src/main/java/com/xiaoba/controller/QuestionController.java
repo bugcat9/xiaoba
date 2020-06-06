@@ -34,7 +34,7 @@ public class QuestionController {
     )
     @GetMapping("/askQuestion")
     @ResponseBody
-    public boolean askQuestion(String asker,String questionTitle,String questionContent){
+    public String askQuestion(String asker,String questionTitle,String questionContent){
         return questionService.askQuestion(asker, questionTitle, questionContent);
     }
 

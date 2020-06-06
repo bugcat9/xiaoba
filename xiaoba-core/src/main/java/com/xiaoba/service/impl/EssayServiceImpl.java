@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.xml.crypto.Data;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -33,6 +33,9 @@ public class EssayServiceImpl implements EssayService {
         //设置访问位置
         for (Essay e : essays) {
             e.setSavePath(PathContants.ESSAY_PATH+e.getSavePath());
+            //得到标签
+            List<Tag> tags=tagMapper.getTagsByEssayId(e.getEssayId());
+            e.setTagList(tags);
         }
         return essays;
     }
@@ -56,7 +59,8 @@ public class EssayServiceImpl implements EssayService {
         essay.setEssayAbstract(essayAbstract);
         essay.setEssayAuthor(essayAuthor);
         essay.setSavePath(fileName);
-        essay.setEssayPublishTime(new Date());
+        java.util.Date utilDate=new java.util.Date();
+        essay.setEssayPublishTime(new Date(utilDate.getTime()));
         int result=essayMapper.insertEssay(essay);
 
         return path;

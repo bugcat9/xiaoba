@@ -1,12 +1,14 @@
 package com.xiaoba.service.impl;
 
+import com.xiaoba.constans.PathContants;
 import com.xiaoba.entity.Question;
 import com.xiaoba.mapper.QuestionMapper;
+import com.xiaoba.service.FileService;
 import com.xiaoba.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -18,15 +20,20 @@ public class QuestionServiceImpl implements QuestionService {
     @Autowired
     QuestionMapper questionMapper;
 
+    @Autowired
+    FileService fileService;
+
     @Override
-    public boolean askQuestion(String asker,String questionTitle, String questionContent) {
+    public String askQuestion(String asker,String questionTitle, String questionContent) {
         Question question=new Question();
         question.setQuestionTitle(questionTitle);
         question.setQuestionerName(asker);
-        question.setQuestionContent(questionContent);
-        question.setQuestionTime(new Date());
+        java.util.Date utilDate=new java.util.Date();
+        question.setQuestionTime(new Date(utilDate.getTime()));
+        String filename = questionTitle+".md";
+        String path = fileService.writeToMd(questionContent, filename);
         int result=questionMapper.insertQuestion(question);
-        return result==1;
+        return path;
     }
 
     @Override
@@ -37,6 +44,10 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<Question> getQuestionsBySomeone(String asker) {
-        return questionMapper.getQuestionOfSb(asker);
+        List<Question> questions = questionMapper.getQuestionOfSb(asker);
+        for (Question question: questions) {
+            question.setSavePath(PathContants.ESSAY_PATH+question.getSavePath());
+        }
+        return questions;
     }
 }

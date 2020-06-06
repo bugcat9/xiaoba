@@ -1,13 +1,14 @@
 package com.xiaoba.entity;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 public class Question {
     private Integer questionId;
     private String questionTitle;
     private String questionerName;
     private Date questionTime;
-    private String questionContent;
+    private String savePath;
     private Integer answerNum;
 
     public Integer getQuestionId() {
@@ -42,12 +43,12 @@ public class Question {
         this.questionTime = questionTime;
     }
 
-    public String getQuestionContent() {
-        return questionContent;
+    public String getSavePath() {
+        return savePath;
     }
 
-    public void setQuestionContent(String questionContent) {
-        this.questionContent = questionContent;
+    public void setSavePath(String savePath) {
+        this.savePath = savePath;
     }
 
     public Integer getAnswerNum() {
@@ -65,7 +66,7 @@ public class Question {
                 ", questionTitle='" + questionTitle + '\'' +
                 ", questionerName='" + questionerName + '\'' +
                 ", questionTime=" + questionTime +
-                ", questionContent='" + questionContent + '\'' +
+                ", savePath='" + savePath + '\'' +
                 ", answerNum=" + answerNum +
                 '}';
     }

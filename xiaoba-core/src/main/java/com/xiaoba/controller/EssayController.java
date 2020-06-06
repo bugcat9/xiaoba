@@ -25,6 +25,8 @@ public class EssayController {
     @Autowired
     EssayService essayService;
 
+    @ApiOperation("得到作者文章接口")
+    @ApiImplicitParam(name = "author",value = "作者名字")
     @GetMapping("/getEssaies")
     public List<Essay> getEssaies(String author){
         return essayService.getEssaies(author);
@@ -55,7 +57,7 @@ public class EssayController {
             @ApiImplicitParam(name = "essayAbstract",value = "文章摘要"),
             @ApiImplicitParam(name = "author",value = "文章作者"),
     })
-    @RequestMapping("/md")
+    @GetMapping("/md")
     @ResponseBody
     public String publishEssay(String content,String title,String essayAbstract,String author){
         return essayService.publishEssay(content, title, essayAbstract, author);
