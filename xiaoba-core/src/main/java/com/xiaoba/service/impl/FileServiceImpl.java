@@ -56,8 +56,8 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public String writeToMd(String content,String title,String essayAbstract,String author) {
-        String fileName = title+".md";
+    public String writeToMd(String content,String filename) {
+        String fileName = filename+".md";
         String pathName = filepath + fileName;
         try {
             PrintWriter pWriter = new PrintWriter(new FileOutputStream(new File(pathName)));
@@ -69,16 +69,6 @@ public class FileServiceImpl implements FileService {
             logger.error("存储为md文件错误:",e);
             e.printStackTrace();
         }
-
-        Essay essay = new Essay();
-        essay.setEssayTitle(title);
-        essay.setEssayAbstract(essayAbstract);
-        essay.setEssayAuthor(author);
-        essay.setEssayPublishTime(new Date());
-        essay.setSavePath(fileName);
-        System.out.println(essay);
-        essayMapper.insertEssay(essay);
-
         return fileName;
     }
 

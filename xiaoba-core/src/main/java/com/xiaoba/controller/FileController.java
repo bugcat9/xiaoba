@@ -55,15 +55,15 @@ public class FileController {
      * @param author
      * @return
      */
-    @RequestMapping("/md")
-    @ResponseBody
-    public String saveMd(String content,String title,String essayAbstract,String author){
-        String filename = fileService.writeToMd(content, title,essayAbstract,author);
-        if (filename!=null){
-            return url+filename;
-        }
-        return "编写失败";
-    }
+//    @RequestMapping("/md")
+//    @ResponseBody
+//    public String saveMd(String content,String title,String essayAbstract,String author){
+//        String filename = fileService.writeToMd(content, title,essayAbstract,author);
+//        if (filename!=null){
+//            return url+filename;
+//        }
+//        return "编写失败";
+//    }
 
     /**
      * 下载文件

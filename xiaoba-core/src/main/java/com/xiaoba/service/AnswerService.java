@@ -13,10 +13,11 @@ public interface AnswerService {
      * 回答问题
      * @param answerer 回答者的用户名
      * @param questionId 回答的问题的id
-     * @param savePath 回答的md文件的保存路径
+     * @param content
      * @return 成功发出回答则返回true
      */
-     boolean answerQuestion(String answerer,int questionId,String savePath);
+
+     String answerQuestion(String answerer,int questionId,String content);
 
     /**
      * 根据回答的id号删除回答

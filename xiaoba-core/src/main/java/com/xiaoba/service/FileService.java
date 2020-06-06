@@ -14,7 +14,8 @@ public interface FileService {
      * @param content
      * @return 在服务器上的地址
      */
-     String writeToMd(String content,String title,String essayAbstract,String author);
+     String writeToMd(String content,String filename);
+
 
      void downloadFile(HttpServletRequest request, HttpServletResponse response, String fileName);
 }
