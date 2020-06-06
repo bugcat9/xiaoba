@@ -31,4 +31,7 @@ public interface TagMapper {
     @Options(useGeneratedKeys = true,keyProperty = "tagId")
     @Insert("insert into tag(tag_id,tag_name) values(#{tagId},#{tagName})")
     int addTag(Tag tag);
+
+    @Select("select * from tag")
+    List<Tag> listTags();
 }

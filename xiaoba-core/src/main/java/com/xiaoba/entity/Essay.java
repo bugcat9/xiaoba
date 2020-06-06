@@ -14,7 +14,7 @@ public class Essay {
     private Date essayPublishTime;
     private String savePath;
     private Integer commentNum;
-    private Category category;
+    private String category;
     private List<Tag> tagList;
 
     public Integer getEssayId() {
@@ -73,11 +73,11 @@ public class Essay {
         this.commentNum = commentNum;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
@@ -99,7 +99,7 @@ public class Essay {
                 ", essayPublishTime=" + essayPublishTime +
                 ", savePath='" + savePath + '\'' +
                 ", commentNum=" + commentNum +
-                ", category=" + category +
+                ", category='" + category + '\'' +
                 ", tagList=" + tagList +
                 '}';
     }
