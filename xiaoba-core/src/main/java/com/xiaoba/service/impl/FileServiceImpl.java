@@ -1,4 +1,4 @@
-package com.xiaoba.service.Impl;
+package com.xiaoba.service.impl;
 
 import com.xiaoba.entity.Essay;
 import com.xiaoba.mapper.EssayMapper;

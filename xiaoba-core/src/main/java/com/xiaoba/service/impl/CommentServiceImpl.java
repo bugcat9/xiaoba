@@ -1,4 +1,4 @@
-package com.xiaoba.service.Impl;
+package com.xiaoba.service.impl;
 
 import com.xiaoba.constans.SysConstants;
 import com.xiaoba.entity.UserComment;

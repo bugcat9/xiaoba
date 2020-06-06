@@ -1,7 +1,7 @@
 package com.xiaoba.controller;
 
 import com.xiaoba.entity.Answer;
-import com.xiaoba.service.Impl.AnswerServiceImpl;
+import com.xiaoba.service.impl.AnswerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

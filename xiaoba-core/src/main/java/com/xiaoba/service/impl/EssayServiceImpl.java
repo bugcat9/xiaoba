@@ -1,10 +1,11 @@
-package com.xiaoba.service.Impl;
+package com.xiaoba.service.impl;
 
 import com.xiaoba.constans.PathContants;
 import com.xiaoba.entity.Essay;
+import com.xiaoba.mapper.CategoryMapper;
 import com.xiaoba.mapper.EssayMapper;
+import com.xiaoba.mapper.TagMapper;
 import com.xiaoba.service.EssayService;
-import com.xiaoba.util.PathLoadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +18,16 @@ public class EssayServiceImpl implements EssayService {
     @Autowired
     EssayMapper essayMapper;
 
+    @Autowired
+    TagMapper tagMapper;
+
+    @Autowired
+    CategoryMapper categoryMapper;
+
     @Override
     public List<Essay> getEssaies(String author) {
         List<Essay> essays = essayMapper.listEssay(author);
+        //设置访问位置
         for (Essay e : essays) {
             e.setSavePath(PathContants.ESSAY_PATH+e.getSavePath());
         }

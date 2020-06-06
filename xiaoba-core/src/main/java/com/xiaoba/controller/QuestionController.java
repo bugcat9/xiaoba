@@ -4,6 +4,7 @@ import com.xiaoba.entity.Question;
 import com.xiaoba.service.QuestionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,15 @@ public class QuestionController {
     @Autowired
     QuestionService questionService;
 
+    @ApiOperation(value = "发布问题")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "asker", value = "提问者"),
+            @ApiImplicitParam(name = "questionTitle", value = "问题的名字"),
+            @ApiImplicitParam(name = "questionContent", value = "问题的内容")
+    }
+    )
     @GetMapping("/askQuestion")
+    @ResponseBody
     public boolean askQuestion(String asker,String questionTitle,String questionContent){
         return questionService.askQuestion(asker, questionTitle, questionContent);
     }

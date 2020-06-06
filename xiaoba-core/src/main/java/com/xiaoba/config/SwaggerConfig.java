@@ -33,9 +33,9 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("dbBlog")
-                .description("dbBlog的接口文档")
-                .termsOfServiceUrl("http://www.dbBlog.com")
+                .title("cug校吧")
+                .description("cug校吧的接口文档")
+                .termsOfServiceUrl("http://www.wangjifeng.work")
                 .build();
     }
 
