@@ -1,7 +1,10 @@
 package com.xiaoba.entity;
 
-import java.util.Date;
 
+import lombok.Data;
+
+import java.sql.Date;
+@Data
 public class Answer {
 
     private Integer answerId;

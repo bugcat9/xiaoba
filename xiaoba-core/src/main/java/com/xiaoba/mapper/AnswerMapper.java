@@ -21,7 +21,7 @@ public interface AnswerMapper {
      */
     @Options(useGeneratedKeys = true,keyProperty = "answerId")
     @Insert("insert into answer (question_id,answerer,answer_time,save_path) " +
-            "values (#{questionId},#{answer},#{answerTime},#{savePath})")
+            "values (#{questionId},#{answerer},#{answerTime},#{savePath})")
     int insertAnswer(Answer anwer);
 
     /**
@@ -65,5 +65,6 @@ public interface AnswerMapper {
     @Select("select * from answer where question_id=#{questionId}")
     List<Answer> getAnswerOfQuestion(Integer questionId);
 
-
+    @Select("select * from answer")
+    List<Answer> allAnswers();
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
  */
 @Api(tags = "提问相关接口")
 @RequestMapping("/question")
-@Controller
+@RestController
 public class QuestionController {
     @Autowired
     QuestionService questionService;
@@ -45,5 +46,12 @@ public class QuestionController {
     public List<Question> getQuestionsBySomeone(String asker){
         return questionService.getQuestionsBySomeone(asker);
     }
+
+    @ApiOperation(value = "得到所有问题")
+    @GetMapping("/allQuestions")
+    public List<Question> allQuestions(){
+        return questionService.allQuestions();
+    }
+
 
 }

@@ -39,4 +39,10 @@ public class AnswerController {
     public List<Answer> getAnswerByQuestion(int questionId){
         return answerService.getAnswerByQuestion(questionId);
     }
+
+    @ApiOperation(value = "得到所有回答")
+    @GetMapping("/allAnswers")
+    List<Answer> allAnswers(){
+        return answerService.allAnswers();
+    }
 }

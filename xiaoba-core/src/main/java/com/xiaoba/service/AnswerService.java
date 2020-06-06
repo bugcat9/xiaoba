@@ -39,4 +39,6 @@ public interface AnswerService {
      * @return 回答列表
      */
      List<Answer> getAnswerByQuestion(int questionId);
+
+     List<Answer> allAnswers();
 }

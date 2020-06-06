@@ -28,12 +28,13 @@ public class QuestionServiceImpl implements QuestionService {
         Question question=new Question();
         question.setQuestionTitle(questionTitle);
         question.setQuestionerName(asker);
+        question.setAnswerNum(0);
         java.util.Date utilDate=new java.util.Date();
         question.setQuestionTime(new Date(utilDate.getTime()));
-        String filename = questionTitle+".md";
-        String path = fileService.writeToMd(questionContent, filename);
+        String path = fileService.writeToMd(questionContent, questionTitle);
+        question.setSavePath(path);
         int result=questionMapper.insertQuestion(question);
-        return path;
+        return PathContants.ESSAY_PATH+path;
     }
 
     @Override
@@ -47,6 +48,15 @@ public class QuestionServiceImpl implements QuestionService {
         List<Question> questions = questionMapper.getQuestionOfSb(asker);
         for (Question question: questions) {
             question.setSavePath(PathContants.ESSAY_PATH+question.getSavePath());
+        }
+        return questions;
+    }
+
+    @Override
+    public List<Question> allQuestions() {
+        List<Question> questions =  questionMapper.allQuestions();
+        for (Question question:questions) {
+            question.setSavePath(PathContants.QUESTION_PATH+question.getSavePath());
         }
         return questions;
     }

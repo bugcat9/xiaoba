@@ -19,7 +19,7 @@ public interface QuestionMapper {
      * @return
      */
     @Options(useGeneratedKeys = true,keyProperty = "questionId")
-    @Insert("insert into question (question_title,questioner_name,question_time,question_content) values (#{questionTitle},#{questionerName},#{questionTime},#{questionContent})")
+    @Insert("insert into question (question_title,questioner_name,question_time,save_path,answer_num) values (#{questionTitle},#{questionerName},#{questionTime},#{savePath},#{answerNum})")
     int insertQuestion(Question question);
 
     /**
@@ -54,4 +54,7 @@ public interface QuestionMapper {
      */
     @Select("select * from question where questioner_name=#{questionerName}")
     List<Question> getQuestionOfSb(String questioner);
+
+    @Select("select * from question ")
+    List<Question> allQuestions();
 }

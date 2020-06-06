@@ -30,4 +30,6 @@ public interface QuestionService {
      * @return 问题列表
      */
      List<Question> getQuestionsBySomeone(String asker);
+
+    List<Question> allQuestions();
 }
