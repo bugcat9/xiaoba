@@ -1,6 +1,6 @@
 package com.xiaoba.service;
 
-import com.xiaoba.entity.EssayIndex;
+//import com.xiaoba.entity.EssayIndex;
 import com.xiaoba.entity.Essay;
 
 import java.io.IOException;
@@ -14,15 +14,20 @@ import java.util.Map;
 
 public interface ElasticSearchService {
 
-    public EssayIndex buildEssayIndex(Essay essay);
-
-    public Map<String,Object> search(String keyWord, int currentPage) throws IOException;
+    /**
+     * 搜索文章
+     * @param keyWord 搜索关键字
+     * @param currentPage 搜索当前页
+     * @return Map的key包含结果list，当前页，以及总页数
+     */
+    public Map<String,Object> searchEssay(String keyWord,int currentPage) throws IOException;
 
     /**
-     * 高亮搜索
-     * @param keyWord
-     * @param currentPage
-     * @return
+     * 搜索问题
+     * @param keyWord 搜索关键字
+     * @param currentPage 搜索当前页
+     * @return Map的key包含结果list，当前页，以及总页数
      */
-    public Map<String,Object> esarchHighLight(String keyWord,int currentPage) throws IOException;
+    public Map<String,Object> searchQuestion(String keyWord,int currentPage) throws IOException;
+
 }

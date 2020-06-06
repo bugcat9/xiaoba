@@ -1,10 +1,15 @@
 package com.xiaoba.contants;
 
 public class ElasticSearchContants {
+    //final public static String INDEX="essay";
     /**
-     * 索引名
+     * 文章索引名
      */
-    final public static String INDEX="essay";
+    final public static String ESSAY_INDEX="essay";
+    /**
+     * 问题索引名
+     */
+    final public static String QUESTION_INDEX="question";
     /**
      * 当前页
      */
@@ -34,4 +39,14 @@ public class ElasticSearchContants {
      * 文章作者
      */
     final public static String ESSAY_AUTHOR="essayAuthor";
+
+    /**
+     * 问题标题
+     */
+    final public static String QUESTION_TITLE="questionTitle";
+
+    /**
+     * 提问者
+     */
+    final public static String QUESTIONER_NAME="questionerName";
 }

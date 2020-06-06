@@ -10,4 +10,9 @@ public class PathLoadUtil {
     public static String loadEssay(String pathInDb){
         return PathContants.ESSAY_PATH+pathInDb;
     }
+
+
+    public static String loadQuestion(String pathInDb){
+        return PathContants.QUESTION_PATH+pathInDb;
+    }
 }

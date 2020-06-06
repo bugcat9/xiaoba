@@ -11,4 +11,10 @@ public class PathContants {
      */
     public final static String ESSAY_PATH ="http://39.99.203.80:8080/images/";
 
+
+    /**
+     * 问题内容md存储路径
+     */
+    public final static String QUESTION_PATH ="http://39.99.203.80:8080/images/";
+
 }

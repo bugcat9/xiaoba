@@ -1,30 +1,44 @@
 package com.xiaoba.controller;
 
 import com.xiaoba.service.ElasticSearchService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.Map;
 
-@Controller
+@Api(tags = "搜索的接口")
+@RestController
+@RequestMapping("/search")
 public class SearchController {
     @Autowired
     private ElasticSearchService elasticSearchService;
 
+    @ApiOperation(value = "搜索文章")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "keyword",value = "关键字"),
+            @ApiImplicitParam(name = "currentPage",value = "搜索的页数")
+    })
     @ResponseBody
-    @GetMapping("/search")
-    public Map<String,Object> search(String keyword, int currentPage) throws IOException {
-        return elasticSearchService.search(keyword,currentPage);
+    @GetMapping("/essay")
+    public Map<String,Object> searchEssay(String keyword, int currentPage) throws IOException {
+        return elasticSearchService.searchEssay(keyword,currentPage);
     }
 
+    @ApiOperation(value = "搜索问题")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "keyword",value = "关键字"),
+            @ApiImplicitParam(name = "currentPage",value = "搜索的页数")
+    })
     @ResponseBody
-    @GetMapping("/highLight")
-    public Map<String,Object> esarchHighLight(String keyWord,int currentPage) throws IOException {
-       return elasticSearchService.esarchHighLight(keyWord, currentPage);
+    @GetMapping("/question")
+    public Map<String,Object> searchQuestion(String keyWord,int currentPage) throws IOException {
+       return elasticSearchService.searchQuestion(keyWord, currentPage);
     }
 
 
