@@ -23,13 +23,13 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-
+#  redis配置
   redis:
     database: 0
     host: 39.98.248.52
     port: 6379
     timeout: 10000 #连接池超时时长
-
+#  elasticsearch配置
   elasticsearch:
     rest:
       uris: http://39.98.61.174:9200
@@ -40,4 +40,11 @@ spring:
     username: 1767508581@qq.com
     password: jgukizrhflnjddhd
     default-encoding: UTF-8
+    
+#  rabbitmq设置
+  rabbitmq:
+    host: 39.98.248.52
+    port: 5672
+    username: guest
+    password: guest
 

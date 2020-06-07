@@ -37,8 +37,8 @@ public class SearchController {
     })
     @ResponseBody
     @GetMapping("/question")
-    public Map<String,Object> searchQuestion(String keyWord,int currentPage) throws IOException {
-       return elasticSearchService.searchQuestion(keyWord, currentPage);
+    public Map<String,Object> searchQuestion(String keyword,int currentPage) throws IOException {
+       return elasticSearchService.searchQuestion(keyword, currentPage);
     }
 
 
