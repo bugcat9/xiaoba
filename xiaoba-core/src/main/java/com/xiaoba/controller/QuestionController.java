@@ -53,5 +53,10 @@ public class QuestionController {
         return questionService.allQuestions();
     }
 
-
+    @ApiOperation(value = "通过id得到问题")
+    @ApiImplicitParam(name = "questionId" ,value = "问题id")
+    @GetMapping("/getQuestion")
+    public Question findQuestionById(Integer questionId){
+        return questionService.findQuestionById(questionId);
+    }
 }

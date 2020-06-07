@@ -60,4 +60,9 @@ public class QuestionServiceImpl implements QuestionService {
         }
         return questions;
     }
+
+    @Override
+    public Question findQuestionById(Integer questionId) {
+        return questionMapper.findQuestionById(questionId);
+    }
 }

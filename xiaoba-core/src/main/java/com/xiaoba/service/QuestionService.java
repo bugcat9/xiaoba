@@ -31,5 +31,7 @@ public interface QuestionService {
      */
      List<Question> getQuestionsBySomeone(String asker);
 
-    List<Question> allQuestions();
+     List<Question> allQuestions();
+
+     Question findQuestionById(Integer questionId);
 }
