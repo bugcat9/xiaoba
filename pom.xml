@@ -8,6 +8,7 @@
         <module>xiaoba-core</module>
         <module>xiaoba-auth</module>
         <module>xiaoba-search</module>
+        <module>xiaoba-message</module>
     </modules>
 
     <parent>
