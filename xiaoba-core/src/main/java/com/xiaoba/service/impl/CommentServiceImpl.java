@@ -14,6 +14,8 @@ import java.util.List;
 @Service
 public class CommentServiceImpl implements CommentService {
 
+    private static Integer PAGE_SIZE = 5;
+
     @Autowired
     UserCommentMapper userCommentMapper;
 
@@ -21,24 +23,24 @@ public class CommentServiceImpl implements CommentService {
     EssayMapper essayMapper;
 
     @Override
-    public List<UserComment> listCommentsByEssay(Integer essayId) {
-        return userCommentMapper.listComments(0,essayId);
+    public List<UserComment> listCommentsByEssay(Integer essayId,Integer pageIndex) {
+        return userCommentMapper.listComments(0,essayId,pageIndex,PAGE_SIZE);
     }
 
 
     @Override
-    public List<UserComment> getCommentsOfAnswer(Integer answerId) {
-        return userCommentMapper.listComments(SysConstants.ANSWER,answerId);
+    public List<UserComment> getCommentsOfAnswer(Integer answerId,Integer pageIndex) {
+        return userCommentMapper.listComments(SysConstants.ANSWER,answerId,pageIndex,PAGE_SIZE);
     }
 
     @Override
-    public List<UserComment> getCommentsOfComment(Integer commentId) {
-        return userCommentMapper.listComments(SysConstants.COMMENT,commentId);
+    public List<UserComment> getCommentsOfComment(Integer commentId,Integer pageIndex) {
+        return userCommentMapper.listComments(SysConstants.COMMENT,commentId,pageIndex,PAGE_SIZE);
     }
 
     @Override
-    public List<UserComment> getCommentsOfSb(String commentatorName) {
-        return userCommentMapper.getCommentsOfSb(commentatorName);
+    public List<UserComment> getCommentsOfSb(String commentatorName,Integer pageIndex) {
+        return userCommentMapper.getCommentsOfSb(commentatorName,pageIndex,PAGE_SIZE);
     }
 
     @Override

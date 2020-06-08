@@ -29,16 +29,23 @@ public interface AnswerService {
     /**
      * 获得某个人的所有回答
      * @param anserer 回答者的用户名
+     * @param pageIndex 页数
      * @return 回答列表
      */
-     List<Answer> getAnswerBySomeone(String anserer);
+     List<Answer> getAnswerBySomeone(String anserer,Integer pageIndex);
 
     /**
      * 获得某个问题下的所有回答
      * @param questionId 问题的ID号
+     * @param pageIndex 页数
      * @return 回答列表
      */
-     List<Answer> getAnswerByQuestion(int questionId);
+     List<Answer> getAnswerByQuestion(int questionId,Integer pageIndex);
 
-     List<Answer> allAnswers();
+    /**
+     * 获得所有回答
+     * @param pageIndex 页数
+     * @return  回答
+     */
+     List<Answer> allAnswers(Integer pageIndex);
 }

@@ -18,6 +18,8 @@ import java.util.List;
 @Service
 public class EssayServiceImpl implements EssayService {
 
+    private static Integer PAGE_SIZE = 5;
+
     @Autowired
     EssayMapper essayMapper;
 
@@ -28,8 +30,8 @@ public class EssayServiceImpl implements EssayService {
     FileService fileService;
 
     @Override
-    public List<Essay> getEssaies(String author) {
-        List<Essay> essays = essayMapper.listEssay(author);
+    public List<Essay> getEssaies(String author,Integer pageIdex) {
+        List<Essay> essays = essayMapper.listEssay(author,pageIdex,PAGE_SIZE);
         //设置访问位置
         for (Essay e : essays) {
             e.setSavePath(PathContants.ESSAY_PATH+e.getSavePath());
@@ -73,8 +75,8 @@ public class EssayServiceImpl implements EssayService {
     }
 
     @Override
-    public List<Tag> getAllTags() {
-        return tagMapper.listTags();
+    public List<Tag> getAllTags(Integer pageIndex) {
+        return tagMapper.listTags(pageIndex,PAGE_SIZE);
     }
 
     @Override

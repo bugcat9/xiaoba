@@ -17,7 +17,7 @@ public interface SysUserMapper {
     @Options(useGeneratedKeys = true,keyProperty = "userId")
     @Insert("insert into sys_user(user_name,user_password,user_role,user_avatar_path,user_sex,user_telephone,user_email) " +
             "values(#{userName},#{userPassword},#{userRole},#{userAvatarPath},#{userSex},#{userTelephone},#{userEmail})")
-    public int insertUser(SysUser sysUser);
+    int insertUser(SysUser sysUser);
 
     /**
      *  删除 SysUser 通过id
@@ -25,7 +25,7 @@ public interface SysUserMapper {
      * @return
      */
     @Delete("delete from sys_user where user_id=#{userId}")
-    public int deleteUserById(Integer userId);
+    int deleteUserById(Integer userId);
 
     /**
      * 更新 sys_user

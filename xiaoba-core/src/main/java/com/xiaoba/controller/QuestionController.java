@@ -43,14 +43,14 @@ public class QuestionController {
     @ApiImplicitParam(name = "asker" ,value = "提问者")
     @GetMapping("/getQuestions")
     @ResponseBody
-    public List<Question> getQuestionsBySomeone(String asker){
-        return questionService.getQuestionsBySomeone(asker);
+    public List<Question> getQuestionsBySomeone(String asker,Integer pageIndex){
+        return questionService.getQuestionsBySomeone(asker,pageIndex);
     }
 
     @ApiOperation(value = "得到所有问题")
     @GetMapping("/allQuestions")
-    public List<Question> allQuestions(){
-        return questionService.allQuestions();
+    public List<Question> allQuestions(Integer pageIndex){
+        return questionService.allQuestions(pageIndex);
     }
 
     @ApiOperation(value = "通过id得到问题")

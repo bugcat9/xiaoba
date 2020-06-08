@@ -1,5 +1,6 @@
 package com.xiaoba.service.impl;
 
+import com.xiaoba.constans.PathContants;
 import com.xiaoba.entity.SysUser;
 import com.xiaoba.entity.SysUserToken;
 import com.xiaoba.exception.ErrorEnum;
@@ -37,7 +38,7 @@ public class LoginServiceImpl implements LoginService {
             String token = tokenService.createToken(sysUser.getUserId());
 
             result.put("token", token);
-            String avatar = "http://39.99.203.80:8080/images/"+sysUser.getUserAvatarPath();
+            String avatar = PathContants.IMG_PATH +sysUser.getUserAvatarPath();
             result.put("avatar", avatar);
             String access = "admin";
             result.put("access", access);
@@ -53,7 +54,9 @@ public class LoginServiceImpl implements LoginService {
         if (sysUserToken==null) {
             return null;
         }
-        return sysUserMapper.selectById(sysUserToken.getUserId());
+        SysUser sysUser = sysUserMapper.selectById(sysUserToken.getUserId());
+        sysUser.setUserAvatarPath(PathContants.IMG_PATH +sysUser.getUserAvatarPath());
+        return sysUser;
     }
 
 

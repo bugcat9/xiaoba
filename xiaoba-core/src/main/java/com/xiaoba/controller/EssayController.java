@@ -28,8 +28,8 @@ public class EssayController {
     @ApiOperation("得到作者文章接口")
     @ApiImplicitParam(name = "author",value = "作者名字")
     @GetMapping("/getEssaies")
-    public List<Essay> getEssaies(String author){
-        return essayService.getEssaies(author);
+    public List<Essay> getEssaies(String author,Integer pageIndex){
+        return essayService.getEssaies(author,pageIndex);
     }
 
     @GetMapping("/getEssay")
@@ -39,8 +39,8 @@ public class EssayController {
 
     @ApiOperation(value = "得到所有tag接口")
     @GetMapping("/allTags")
-    public List<Tag> getAllTags(){
-        return essayService.getAllTags();
+    public List<Tag> getAllTags(Integer pageIndex){
+        return essayService.getAllTags(pageIndex);
     }
 
     @ApiOperation(value = "添加标签的接口")

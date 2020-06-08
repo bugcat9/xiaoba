@@ -25,7 +25,7 @@ public interface EssayMapper {
     int deleteEssayById(Integer essayId);
 
     @Update("update essay set essay_title=#{essayTitle},essay_author=#{essayAuthor},essay_publish_time=#{essayPublishTime},save_path=#{savePath}")
-    void updateEssay(Essay essay);
+    int updateEssay(Essay essay);
 
     @Select("select * from essay where essay_title=#{essayTitle} and essay_author=#{essayAuthor} and essay_publish_time=#{essayPublishTime}")
     Essay getEssay(String essayTitle, String essayAuthor, Date essayPublishTime);
@@ -33,8 +33,8 @@ public interface EssayMapper {
     @Select("select * from essay where essay_id=#{essayId}")
     Essay findEssayById(Integer essayId);
 
-    @Select("select * from essay where essay_author=#{essayAuthor}")
-    List<Essay> listEssay(String essayAuthor);
+    @Select("select * from essay where essay_author=#{essayAuthor} order by essay_publish_time limit ${pageIndex*count},#{count}")
+    List<Essay> listEssay(String essayAuthor,int pageIndex,int count);
 
     /**
      * 当文章被评论时，评论数加一

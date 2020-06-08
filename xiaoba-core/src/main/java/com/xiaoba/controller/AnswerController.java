@@ -34,15 +34,19 @@ public class AnswerController {
     }
 
     @ApiOperation(value = "得到问题的所有回答")
-    @ApiImplicitParam(name = "questionId",value = "问题id")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "questionId",value = "问题id"),
+            @ApiImplicitParam(name = "pageIndex",value = "页数")
+    })
     @GetMapping("/getAnswers")
-    public List<Answer> getAnswerByQuestion(int questionId){
-        return answerService.getAnswerByQuestion(questionId);
+    public List<Answer> getAnswerByQuestion(int questionId,int pageIndex){
+        return answerService.getAnswerByQuestion(questionId,pageIndex);
     }
 
     @ApiOperation(value = "得到所有回答")
+    @ApiImplicitParam(name = "pageIndex",value = "页数")
     @GetMapping("/allAnswers")
-    List<Answer> allAnswers(){
-        return answerService.allAnswers();
+    List<Answer> allAnswers(int pageIndex){
+        return answerService.allAnswers(pageIndex);
     }
 }

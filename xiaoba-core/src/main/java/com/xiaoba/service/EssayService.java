@@ -12,7 +12,7 @@ public interface EssayService {
      * @param author
      * @return
      */
-    List<Essay> getEssaies(String author);
+    List<Essay> getEssaies(String author,Integer pageIndex);
 
     /**
      * 得到文章
@@ -42,7 +42,7 @@ public interface EssayService {
      * 得到所有的tag
      * @return
      */
-    List<Tag> getAllTags();
+    List<Tag> getAllTags(Integer pageIdenx);
 
     boolean addTag(String tagName);
 }

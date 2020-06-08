@@ -13,5 +13,5 @@ public interface RegisterService {
      */
      boolean registerUser(String userName,String userPassword,String email);
 
-     boolean updateUser(String token,String userName,Integer sex,String telephone,String email);
+     boolean updateUser(String token,String userName,String password,Integer sex,String telephone,String email);
 }

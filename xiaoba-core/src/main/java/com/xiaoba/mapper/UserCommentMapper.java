@@ -18,8 +18,8 @@ public interface UserCommentMapper {
     @Select("Select * from user_comment where comment_id=#{commentId}")
     UserComment selectCommentById(Integer commentId);
 
-    @Select("Select * from user_comment where parent_type=#{parentType} and parent_id=#{parentId}")
-    List<UserComment> listComments(Integer parentType,Integer parentId);
+    @Select("Select * from user_comment where parent_type=#{parentType} and parent_id=#{parentId} order by comment_time limit ${pageSize*count},#{count}")
+    List<UserComment> listComments(Integer parentType,Integer parentId,int pageSize,int count);
 
     /**
      * 删除某个父对象的所有评论
@@ -43,6 +43,6 @@ public interface UserCommentMapper {
      * @param commentatorName 评论者
      * @return 评论列表
      */
-    @Select("Select * from user_comment where commentator_name=#{commentatorName}")
-    List<UserComment> getCommentsOfSb(String commentatorName);
+    @Select("Select * from user_comment where commentator_name=#{commentatorName} order by comment_time limit ${pageIndex*count},#{count}")
+    List<UserComment> getCommentsOfSb(String commentatorName,int pageIndex,int count);
 }

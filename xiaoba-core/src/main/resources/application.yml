@@ -46,5 +46,6 @@ spring:
     host: 39.98.248.52
     port: 5672
     username: guest
-    password: guest
+    password: zn19980921
+
 

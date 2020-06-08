@@ -17,6 +17,7 @@ import java.util.List;
 @Service
 public class QuestionServiceImpl implements QuestionService {
 
+    private final static Integer PAGE_SIZE = 5;
     @Autowired
     QuestionMapper questionMapper;
 
@@ -44,8 +45,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<Question> getQuestionsBySomeone(String asker) {
-        List<Question> questions = questionMapper.getQuestionOfSb(asker);
+    public List<Question> getQuestionsBySomeone(String asker,Integer pageIndex) {
+        List<Question> questions = questionMapper.getQuestionOfSb(asker,pageIndex,PAGE_SIZE);
         for (Question question: questions) {
             question.setSavePath(PathContants.ESSAY_PATH+question.getSavePath());
         }
@@ -53,8 +54,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<Question> allQuestions() {
-        List<Question> questions =  questionMapper.allQuestions();
+    public List<Question> allQuestions(Integer pageIndex) {
+        List<Question> questions =  questionMapper.allQuestions(pageIndex,PAGE_SIZE);
         for (Question question:questions) {
             question.setSavePath(PathContants.QUESTION_PATH+question.getSavePath());
         }

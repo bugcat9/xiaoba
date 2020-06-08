@@ -17,11 +17,14 @@ import java.util.UUID;
  */
 @Service
 public class AnswerServiceImpl implements AnswerService {
+
+    private static Integer PAGE_SIZE = 5;
     @Autowired
     AnswerMapper answerMapper;
 
     @Autowired
     FileService fileService;
+
 
     @Override
     public String answerQuestion(String answerer, int questionId,String content) {
@@ -47,18 +50,18 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public List<Answer> getAnswerBySomeone(String anserer) {
-        return answerMapper.getAnswerOfSb(anserer);
+    public List<Answer> getAnswerBySomeone(String anserer,Integer pageIndex) {
+        return answerMapper.getAnswerOfSb(anserer,pageIndex,PAGE_SIZE);
     }
 
     @Override
-    public List<Answer> getAnswerByQuestion(int questionId) {
-        return answerMapper.getAnswerOfQuestion(questionId);
+    public List<Answer> getAnswerByQuestion(int questionId,Integer pageIndex) {
+        return answerMapper.getAnswerOfQuestion(questionId,pageIndex,PAGE_SIZE);
     }
 
     @Override
-    public List<Answer> allAnswers() {
-        List<Answer> answers = answerMapper.allAnswers();
+    public List<Answer> allAnswers(Integer pageIndex) {
+        List<Answer> answers = answerMapper.allAnswers(pageIndex,PAGE_SIZE);
         for (Answer answer:answers){
             answer.setSavePath(PathContants.ESSAY_PATH+answer.getSavePath());
         }

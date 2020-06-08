@@ -1,5 +1,6 @@
 package com.xiaoba.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.xiaoba.entity.Answer;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import java.util.List;
  */
 @Mapper
 @Repository
-public interface AnswerMapper {
+public interface AnswerMapper{
 
     /**
      *添加回答
@@ -39,7 +40,7 @@ public interface AnswerMapper {
     @Update("update answer set question_id=#{questionId}," +
             "answerer=#{answerer},answer_time=#{answerTime},save_path=#{savePath} " +
             "where answer_id=#{answerId}")
-    void updateAnswer(Answer answer);
+    int updateAnswer(Answer answer);
 
     /**
      *通过answer_id查找answer
@@ -52,19 +53,29 @@ public interface AnswerMapper {
     /**
      *通过用户名获得这个人的所有回答
      * @param answerer
+     * @param pageIndex
+     * @param count
      * @return
      */
-    @Select("select * from answer where answerer=#{answerer}")
-    List<Answer> getAnswerOfSb(String answerer);
+    @Select("select * from answer where answerer=#{answerer} order by answer_time limit ${pageIndex*count},#{count}")
+    List<Answer> getAnswerOfSb(String answerer,int pageIndex,int count);
 
     /**
      * 通过问题id获得该问题的所有回答
      * @param questionId
+     * @param pageIndex
+     * @param count
      * @return
      */
-    @Select("select * from answer where question_id=#{questionId}")
-    List<Answer> getAnswerOfQuestion(Integer questionId);
+    @Select("select * from answer where question_id=#{questionId} order by answer_time limit ${pageIndex*count},#{count}")
+    List<Answer> getAnswerOfQuestion(Integer questionId,int pageIndex,int count);
 
-    @Select("select * from answer")
-    List<Answer> allAnswers();
+    /**
+     * 获得所有回答
+     * @param pageIndex
+     * @param count
+     * @return
+     */
+    @Select("select * from answer order by answer_time limit ${pageIndex*count},#{count}")
+    List<Answer> allAnswers(int pageIndex,int count);
 }

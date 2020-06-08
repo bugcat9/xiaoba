@@ -6,28 +6,31 @@ import java.util.List;
 
 public interface CommentService {
 
-   List<UserComment> listCommentsByEssay(Integer essayId);
+   List<UserComment> listCommentsByEssay(Integer essayId,Integer pageIndex);
 
    /**
     * 获得一篇回答下的所有评论
     * @param answerId
+    * @param pageIndex
     * @return
     */
-    List<UserComment> getCommentsOfAnswer(Integer answerId);
+    List<UserComment> getCommentsOfAnswer(Integer answerId,Integer pageIndex);
 
    /**
     * 获得一个评论下的所有评论
     * @param commentId
+    * @param pageIndex
     * @return
     */
-    List<UserComment> getCommentsOfComment(Integer commentId);
+    List<UserComment> getCommentsOfComment(Integer commentId,Integer pageIndex);
 
    /**
     * 获得某个人的所有评论
     * @param commentatorName 评论者
+    * @param pageIndex
     * @return 评论列表
     */
-    List<UserComment> getCommentsOfSb(String commentatorName);
+    List<UserComment> getCommentsOfSb(String commentatorName,Integer pageIndex);
 
    /**
     * 当一篇文章被删除，删除这篇文章所有评论

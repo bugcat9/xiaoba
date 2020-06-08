@@ -27,11 +27,12 @@ public interface QuestionService {
     /**
      * 获得某个用户提出的问题
      * @param asker 用户名
+     * @param pageIndex
      * @return 问题列表
      */
-     List<Question> getQuestionsBySomeone(String asker);
+     List<Question> getQuestionsBySomeone(String asker,Integer pageIndex);
 
-     List<Question> allQuestions();
+     List<Question> allQuestions(Integer pageIndex);
 
      Question findQuestionById(Integer questionId);
 }

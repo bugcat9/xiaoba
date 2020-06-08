@@ -37,7 +37,7 @@ public interface QuestionMapper {
     @Update("update question set question_title=#{questionTitle}, questioner_name=#{questionerName}," +
             "question_time=#{questionTime},question_content=#{questionContent} " +
             "where question_id=#{questionId}")
-    void updateQuestion(Question question);
+    int updateQuestion(Question question);
 
     /**
      * 根据question_id查找某个question
@@ -52,9 +52,9 @@ public interface QuestionMapper {
      * @param questioner
      * @return
      */
-    @Select("select * from question where questioner_name=#{questionerName}")
-    List<Question> getQuestionOfSb(String questioner);
+    @Select("select * from question where questioner_name=#{questionerName} order by answer_time limit ${pageIndex*count},#{count}")
+    List<Question> getQuestionOfSb(String questioner,int pageIndex,int count);
 
-    @Select("select * from question ")
-    List<Question> allQuestions();
+    @Select("select * from question order by answer_time limit ${pageIndex*count},#{count}")
+    List<Question> allQuestions(int pageIndex,int count);
 }

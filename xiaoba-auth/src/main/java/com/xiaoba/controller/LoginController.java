@@ -10,6 +10,7 @@ import com.xiaoba.service.LoginService;
 import com.xiaoba.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -47,6 +48,10 @@ public class LoginController {
      * @param uuid 生成 验证码的 id
      * @throws IOException
      */
+    @ApiOperation("得到验证码")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "uuid",value = "验证id")
+    })
     @GetMapping("/captcha.jpg")
     public void captcha(HttpServletRequest request,HttpServletResponse response, String uuid) throws IOException {
         response.setHeader("Cache-Control", "no-store, no-cache");
@@ -65,6 +70,13 @@ public class LoginController {
      * @param form 登录的表单
      * @return
      */
+    @ApiOperation(value = "登录")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userName",value = "用户名"),
+            @ApiImplicitParam(name = "userPassword",value = "密码"),
+            @ApiImplicitParam(name = "captcha",value = "验证码"),
+            @ApiImplicitParam(name = "uuid",value = "uuid")
+    })
     @GetMapping("/login")
     @ResponseBody
     public Map<String,Object> login(SysLoginForm form){
@@ -91,12 +103,16 @@ public class LoginController {
      * @param token
      * @return
      */
+    @ApiOperation("得到用户信息")
+    @ApiImplicitParam(name = "token",value = "用户token")
     @GetMapping("/user")
     @ResponseBody
     public SysUser getInfo(@RequestParam("token")  String token){
         return loginService.getInfo(token);
     }
 
+    @ApiOperation("退出登录")
+    @ApiImplicitParam(name = "token",value = "用户token")
     @ResponseBody
     @GetMapping("/logout")
     public String logout(String token){

@@ -7,6 +7,8 @@ import com.xiaoba.service.RegisterService;
 import com.xiaoba.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author zhouning
@@ -21,6 +23,7 @@ public class RegisterServiceImpl implements RegisterService {
     TokenService tokenService;
 
     @Override
+
     public boolean registerUser(String userName, String userPassword,String email) {
 
         SysUser sysUser = sysUserMapper.getUserByName(userName);
@@ -47,14 +50,17 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public boolean updateUser(String token, String userName, Integer sex, String telephone, String email) {
+    public boolean updateUser(String token, String userName,String password,Integer sex, String telephone, String email) {
         SysUserToken sysUserToken = tokenService.queryByToken(token);
         if (sysUserToken==null){
             return false;
         }
 
+
+        //得到用户后更改用户信息
         SysUser sysUser = sysUserMapper.selectById(sysUserToken.getUserId());
         sysUser.setUserName(userName);
+        sysUser.setUserPassword(password);
         sysUser.setUserSex(sex);
         sysUser.setUserTelephone(telephone);
         sysUser.setUserEmail(email);
