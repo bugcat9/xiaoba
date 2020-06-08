@@ -55,8 +55,18 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
+    public int CountofSbAnswer(String anserer) {
+        return answerMapper.countOfSbAnswer(anserer);
+    }
+
+    @Override
     public List<Answer> getAnswerByQuestion(int questionId,Integer pageIndex) {
         return answerMapper.getAnswerOfQuestion(questionId,pageIndex,PAGE_SIZE);
+    }
+
+    @Override
+    public int countOfQuestionAnswer(int questionId) {
+        return answerMapper.countOfQuestionAnswer(questionId);
     }
 
     @Override
@@ -66,5 +76,10 @@ public class AnswerServiceImpl implements AnswerService {
             answer.setSavePath(PathContants.ESSAY_PATH+answer.getSavePath());
         }
         return answers;
+    }
+
+    @Override
+    public int countOfAllAnswers() {
+        return answerMapper.countOfAllAnswer();
     }
 }

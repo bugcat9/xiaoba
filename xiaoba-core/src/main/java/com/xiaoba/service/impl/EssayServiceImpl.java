@@ -45,6 +45,11 @@ public class EssayServiceImpl implements EssayService {
     }
 
     @Override
+    public int countOfAuthorEssay(String author) {
+        return essayMapper.countOfAuthorEssay(author);
+    }
+
+    @Override
     public Essay getEssay(Integer id) {
 
         Essay essay=essayMapper.findEssayById(id);
@@ -79,6 +84,11 @@ public class EssayServiceImpl implements EssayService {
     @Override
     public List<Tag> getAllTags(Integer pageIndex) {
         return tagMapper.listTags(pageIndex,PAGE_SIZE);
+    }
+
+    @Override
+    public int countOfAllTags() {
+        return tagMapper.countOfTags();
     }
 
     @Override

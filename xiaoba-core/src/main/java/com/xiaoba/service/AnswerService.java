@@ -34,6 +34,9 @@ public interface AnswerService {
      */
      List<Answer> getAnswerBySomeone(String anserer,Integer pageIndex);
 
+
+     int CountofSbAnswer(String anserer);
+
     /**
      * 获得某个问题下的所有回答
      * @param questionId 问题的ID号
@@ -42,10 +45,14 @@ public interface AnswerService {
      */
      List<Answer> getAnswerByQuestion(int questionId,Integer pageIndex);
 
+     int countOfQuestionAnswer(int questionId);
+
     /**
      * 获得所有回答
      * @param pageIndex 页数
      * @return  回答
      */
      List<Answer> allAnswers(Integer pageIndex);
+
+     int countOfAllAnswers();
 }

@@ -18,9 +18,11 @@ public interface UserCommentMapper {
     @Select("Select * from user_comment where comment_id=#{commentId}")
     UserComment selectCommentById(Integer commentId);
 
-    @Select("Select * from user_comment where parent_type=#{parentType} and parent_id=#{parentId} order by comment_time limit ${pageSize*count},#{count}")
+    @Select("select * from user_comment where parent_type=#{parentType} and parent_id=#{parentId} order by comment_time limit ${pageSize*count},#{count}")
     List<UserComment> listComments(Integer parentType,Integer parentId,int pageSize,int count);
 
+    @Select("select count(*) from user_comment where parent_type=#{parentType} and parent_id=#{parentId}")
+    int countOfComments(Integer parentType,Integer parentId);
     /**
      * 删除某个父对象的所有评论
      * @param parentType 父对象类型
@@ -45,4 +47,7 @@ public interface UserCommentMapper {
      */
     @Select("Select * from user_comment where commentator_name=#{commentatorName} order by comment_time limit ${pageIndex*count},#{count}")
     List<UserComment> getCommentsOfSb(String commentatorName,int pageIndex,int count);
+
+    @Select("Select count(*) from user_comment where commentator_name=#{commentatorName}")
+    int countOfSbComment(String commentatorName);
 }

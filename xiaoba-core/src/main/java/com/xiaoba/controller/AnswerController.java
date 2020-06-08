@@ -43,10 +43,23 @@ public class AnswerController {
         return answerService.getAnswerByQuestion(questionId,pageIndex);
     }
 
+    @ApiOperation("得到问题回答的数量")
+    @ApiImplicitParam(name = "questionId",value = "问题id")
+    @GetMapping("/countOfAnswer")
+    public int countOfQuestionAnswer(int questionId){
+        return answerService.countOfQuestionAnswer(questionId);
+    }
+
     @ApiOperation(value = "得到所有回答")
     @ApiImplicitParam(name = "pageIndex",value = "页数")
     @GetMapping("/allAnswers")
     List<Answer> allAnswers(int pageIndex){
         return answerService.allAnswers(pageIndex);
+    }
+
+    @ApiOperation("得到问题回答的数量")
+    @GetMapping("/countOfAllAnswer")
+    public int countOfAllAnswers(){
+        return answerService.countOfAllAnswers();
     }
 }

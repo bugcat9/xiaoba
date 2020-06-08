@@ -1,5 +1,6 @@
 package com.xiaoba.controller;
 
+import com.xiaoba.constans.PathContants;
 import com.xiaoba.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,28 +43,11 @@ public class FileController {
 
         boolean result = fileService.upload(file);
         if (result){
-            return url+file.getOriginalFilename();
+            return PathContants.IMG_PATH +file.getOriginalFilename();
         }
         return "上传失败";
     }
 
-    /**
-     * 传送 md 内容给服务器，存为md文件
-     * @param content
-     * @param title
-     * @param essayAbstract
-     * @param author
-     * @return
-     */
-//    @RequestMapping("/md")
-//    @ResponseBody
-//    public String saveMd(String content,String title,String essayAbstract,String author){
-//        String filename = fileService.writeToMd(content, title,essayAbstract,author);
-//        if (filename!=null){
-//            return url+filename;
-//        }
-//        return "编写失败";
-//    }
 
     /**
      * 下载文件

@@ -40,17 +40,36 @@ public class QuestionController {
     }
 
     @ApiOperation(value = "得到提问者提的问题相关接口")
-    @ApiImplicitParam(name = "asker" ,value = "提问者")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "asker" ,value = "提问者"),
+            @ApiImplicitParam(name = "pageIndex" ,value = "页数"),
+
+    })
     @GetMapping("/getQuestions")
     @ResponseBody
     public List<Question> getQuestionsBySomeone(String asker,Integer pageIndex){
         return questionService.getQuestionsBySomeone(asker,pageIndex);
     }
 
+    @ApiOperation(value = "得到提问者提的问题数量接口")
+    @ApiImplicitParam(name = "asker" ,value = "提问者")
+    @GetMapping("/countOfSbQuestion")
+    public int countOfSbQuestion(String asker){
+        return questionService.countOfSbQuestions(asker);
+    }
+
     @ApiOperation(value = "得到所有问题")
+    @ApiImplicitParam(name = "pageIndex" ,value = "页数")
     @GetMapping("/allQuestions")
     public List<Question> allQuestions(Integer pageIndex){
         return questionService.allQuestions(pageIndex);
+    }
+
+
+    @ApiOperation(value = "得到所有问题的数量")
+    @GetMapping("/countOfAllQuestions")
+    public int countOfAllQuestions(){
+        return questionService.countOfQuestions();
     }
 
     @ApiOperation(value = "通过id得到问题")

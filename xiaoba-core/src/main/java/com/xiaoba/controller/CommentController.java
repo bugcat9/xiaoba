@@ -31,6 +31,13 @@ public class CommentController {
         return commentService.listCommentsByEssay(essayId,pageIndex);
     }
 
+    @ApiOperation("得到一篇文章的评论数量")
+    @ApiImplicitParam(name = "essayId",value = "文章id")
+    @GetMapping("/countOfEssayComments")
+    public int countOfEssayComments(Integer essayId){
+        return commentService.countOfEssayCommnets(essayId);
+    }
+
     @ApiOperation("添加评论")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "essayId",value = "文章id"),

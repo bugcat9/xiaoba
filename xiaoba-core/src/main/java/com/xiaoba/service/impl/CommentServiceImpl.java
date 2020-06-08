@@ -24,7 +24,12 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<UserComment> listCommentsByEssay(Integer essayId,Integer pageIndex) {
-        return userCommentMapper.listComments(0,essayId,pageIndex,PAGE_SIZE);
+        return userCommentMapper.listComments(SysConstants.ESSAY,essayId,pageIndex,PAGE_SIZE);
+    }
+
+    @Override
+    public int countOfEssayCommnets(Integer essayId) {
+        return userCommentMapper.countOfComments(SysConstants.ESSAY,essayId);
     }
 
 
@@ -34,13 +39,28 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public int countOfAnswerComent(Integer answerId) {
+        return userCommentMapper.countOfComments(SysConstants.ANSWER,answerId);
+    }
+
+    @Override
     public List<UserComment> getCommentsOfComment(Integer commentId,Integer pageIndex) {
         return userCommentMapper.listComments(SysConstants.COMMENT,commentId,pageIndex,PAGE_SIZE);
     }
 
     @Override
+    public int countOfCommentComment(Integer commentId) {
+        return userCommentMapper.countOfComments(SysConstants.COMMENT,commentId);
+    }
+
+    @Override
     public List<UserComment> getCommentsOfSb(String commentatorName,Integer pageIndex) {
         return userCommentMapper.getCommentsOfSb(commentatorName,pageIndex,PAGE_SIZE);
+    }
+
+    @Override
+    public int countOfSbComments(String commentatorName) {
+        return userCommentMapper.countOfSbComment(commentatorName);
     }
 
     @Override

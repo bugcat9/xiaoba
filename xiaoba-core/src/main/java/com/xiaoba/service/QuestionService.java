@@ -32,7 +32,11 @@ public interface QuestionService {
      */
      List<Question> getQuestionsBySomeone(String asker,Integer pageIndex);
 
+     int countOfSbQuestions(String asker);
+
      List<Question> allQuestions(Integer pageIndex);
+
+     int countOfQuestions();
 
      Question findQuestionById(Integer questionId);
 }

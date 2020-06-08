@@ -8,6 +8,8 @@ public interface CommentService {
 
    List<UserComment> listCommentsByEssay(Integer essayId,Integer pageIndex);
 
+   int countOfEssayCommnets(Integer essayId);
+
    /**
     * 获得一篇回答下的所有评论
     * @param answerId
@@ -15,6 +17,8 @@ public interface CommentService {
     * @return
     */
     List<UserComment> getCommentsOfAnswer(Integer answerId,Integer pageIndex);
+
+    int countOfAnswerComent(Integer answerId);
 
    /**
     * 获得一个评论下的所有评论
@@ -24,6 +28,8 @@ public interface CommentService {
     */
     List<UserComment> getCommentsOfComment(Integer commentId,Integer pageIndex);
 
+    int countOfCommentComment(Integer commentId);
+
    /**
     * 获得某个人的所有评论
     * @param commentatorName 评论者
@@ -32,6 +38,7 @@ public interface CommentService {
     */
     List<UserComment> getCommentsOfSb(String commentatorName,Integer pageIndex);
 
+    int countOfSbComments(String commentatorName);
    /**
     * 当一篇文章被删除，删除这篇文章所有评论
     * @param essayId 文章ID

@@ -34,4 +34,7 @@ public interface TagMapper {
 
     @Select("select * from tag  limit ${pageIndex*count},#{count}")
     List<Tag> listTags(int pageIndex,int count);
+
+    @Select("select count(*) from tag")
+    int countOfTags();
 }

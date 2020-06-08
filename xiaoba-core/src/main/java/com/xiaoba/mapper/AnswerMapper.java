@@ -60,6 +60,9 @@ public interface AnswerMapper{
     @Select("select * from answer where answerer=#{answerer} order by answer_time limit ${pageIndex*count},#{count}")
     List<Answer> getAnswerOfSb(String answerer,int pageIndex,int count);
 
+    @Select("select count(*) from answer where answerer=#{answerer} ")
+    int countOfSbAnswer(String answerer);
+
     /**
      * 通过问题id获得该问题的所有回答
      * @param questionId
@@ -70,6 +73,9 @@ public interface AnswerMapper{
     @Select("select * from answer where question_id=#{questionId} order by answer_time limit ${pageIndex*count},#{count}")
     List<Answer> getAnswerOfQuestion(Integer questionId,int pageIndex,int count);
 
+    @Select("select count(*) from  answer where question_id=#{questionId}")
+    int countOfQuestionAnswer(Integer questionId);
+
     /**
      * 获得所有回答
      * @param pageIndex
@@ -78,4 +84,7 @@ public interface AnswerMapper{
      */
     @Select("select * from answer order by answer_time limit ${pageIndex*count},#{count}")
     List<Answer> allAnswers(int pageIndex,int count);
+
+    @Select("select count(*) from answer")
+    int countOfAllAnswer();
 }

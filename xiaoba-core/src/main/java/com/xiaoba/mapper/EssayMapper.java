@@ -36,6 +36,9 @@ public interface EssayMapper {
     @Select("select * from essay where essay_author=#{essayAuthor} order by essay_publish_time limit ${pageIndex*count},#{count}")
     List<Essay> listEssay(String essayAuthor,int pageIndex,int count);
 
+    @Select("select count(*) from essay where essay_author=#{essayAuthor}")
+    int countOfAuthorEssay(String essayAuthor);
+
     /**
      * 当文章被评论时，评论数加一
      * @param essayId 文章id

@@ -54,12 +54,22 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public int countOfSbQuestions(String asker) {
+        return questionMapper.countOfSbQuetion(asker);
+    }
+
+    @Override
     public List<Question> allQuestions(Integer pageIndex) {
         List<Question> questions =  questionMapper.allQuestions(pageIndex,PAGE_SIZE);
         for (Question question:questions) {
             question.setSavePath(PathContants.QUESTION_PATH+question.getSavePath());
         }
         return questions;
+    }
+
+    @Override
+    public int countOfQuestions() {
+        return questionMapper.countOfAllQuetions();
     }
 
     @Override

@@ -26,7 +26,7 @@ public class ElasticSearchContants {
     /**
      * 单页最大显示
      */
-    final public static int PAGE_SIZE=10;
+    final public static int PAGE_SIZE=5;
     /**
      * 文章标题
      */

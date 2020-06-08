@@ -14,6 +14,8 @@ public interface EssayService {
      */
     List<Essay> getEssaies(String author,Integer pageIndex);
 
+
+    int countOfAuthorEssay(String author);
     /**
      * 得到文章
      * @param id 文章id
@@ -44,5 +46,6 @@ public interface EssayService {
      */
     List<Tag> getAllTags(Integer pageIdenx);
 
+    int countOfAllTags();
     boolean addTag(String tagName);
 }
