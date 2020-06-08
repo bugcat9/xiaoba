@@ -52,9 +52,9 @@ public interface QuestionMapper {
      * @param questioner
      * @return
      */
-    @Select("select * from question where questioner_name=#{questionerName} order by answer_time limit ${pageIndex*count},#{count}")
+    @Select("select * from question where questioner_name=#{questioner} order by question_time limit ${pageIndex*count},#{count}")
     List<Question> getQuestionOfSb(String questioner,int pageIndex,int count);
 
-    @Select("select * from question order by answer_time limit ${pageIndex*count},#{count}")
+    @Select("select * from question order by question_time limit ${pageIndex*count},#{count}")
     List<Question> allQuestions(int pageIndex,int count);
 }

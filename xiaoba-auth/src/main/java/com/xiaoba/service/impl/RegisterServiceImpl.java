@@ -2,6 +2,7 @@ package com.xiaoba.service.impl;
 
 import com.xiaoba.entity.SysUser;
 import com.xiaoba.entity.SysUserToken;
+import com.xiaoba.mapper.EssayMapper;
 import com.xiaoba.mapper.SysUserMapper;
 import com.xiaoba.service.RegisterService;
 import com.xiaoba.service.TokenService;
@@ -22,8 +23,11 @@ public class RegisterServiceImpl implements RegisterService {
     @Autowired
     TokenService tokenService;
 
-    @Override
+    @Autowired
+    EssayMapper essayMapper;
 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean registerUser(String userName, String userPassword,String email) {
 
         SysUser sysUser = sysUserMapper.getUserByName(userName);

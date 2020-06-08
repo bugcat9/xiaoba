@@ -35,8 +35,10 @@ public class EssayServiceImpl implements EssayService {
         //设置访问位置
         for (Essay e : essays) {
             e.setSavePath(PathContants.ESSAY_PATH+e.getSavePath());
-            //得到标签
+            //得到标签，标签没有id，不过没有影响
             List<Tag> tags=tagMapper.getTagsByEssayId(e.getEssayId());
+//            for(Tag tag:tags){
+//            }
             e.setTagList(tags);
         }
         return essays;

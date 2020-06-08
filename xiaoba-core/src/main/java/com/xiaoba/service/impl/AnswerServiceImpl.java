@@ -65,7 +65,6 @@ public class AnswerServiceImpl implements AnswerService {
         for (Answer answer:answers){
             answer.setSavePath(PathContants.ESSAY_PATH+answer.getSavePath());
         }
-
         return answers;
     }
 }

@@ -8,7 +8,7 @@ import com.xiaoba.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -68,7 +68,8 @@ public class CommentServiceImpl implements CommentService {
         userComment.setParentId(essayId);
         userComment.setCommentatorName(commentatorName);
         userComment.setCommentContent(commentContent);
-        userComment.setCommentTime(new Date());
+        java.util.Date date = new  java.util.Date();
+        userComment.setCommentTime(new Date(date.getTime()));
         int result= userCommentMapper.insertComment(userComment);
         if (result==1){
             result = essayMapper.addCommentNum(essayId);
@@ -86,7 +87,8 @@ public class CommentServiceImpl implements CommentService {
         userComment.setParentId(answerId);
         userComment.setCommentatorName(commentatorName);
         userComment.setCommentContent(commentContent);
-        userComment.setCommentTime(new Date());
+        java.util.Date date = new  java.util.Date();
+        userComment.setCommentTime(new Date(date.getTime()));
         int result= userCommentMapper.insertComment(userComment);
         //返回匹配行数
         return result==1;
@@ -99,7 +101,8 @@ public class CommentServiceImpl implements CommentService {
         userComment.setParentId(commentId);
         userComment.setCommentatorName(commentatorName);
         userComment.setCommentContent(commentContent);
-        userComment.setCommentTime(new Date());
+        java.util.Date date = new  java.util.Date();
+        userComment.setCommentTime(new Date(date.getTime()));
         int result= userCommentMapper.insertComment(userComment);
         //返回匹配行数
         return result==1;
