@@ -40,11 +40,7 @@ spring:
     username: 1767508581@qq.com
     password: jgukizrhflnjddhd
     default-encoding: UTF-8
-    port: 465
-    properties:
-      smtp:
-        socketFactory:
-          class: javax.net.ssl.SSLSocketFactory
+
   #  rabbitmq设置
   rabbitmq:
     host: 39.98.248.52
