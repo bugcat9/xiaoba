@@ -120,13 +120,13 @@ public class HighLightBuilderUtil {
                 String time=(String)map.get("essayPublishTime");
                 time=time.substring(0,time.length()-5).replace('T',' ');
                 map.replace("essayPublishTime",time);
-                map.replace("savaPath", PathLoadUtil.loadEssay((String)map.get("savePath")));
+                map.replace("savePath", PathLoadUtil.loadEssay((String)map.get("savePath")));
             }
             else if(ElasticSearchContants.QUESTION_INDEX.equals(index)){
                 String time=(String)map.get("questionTime");
                 time=time.substring(0,time.length()-5).replace('T',' ');
                 map.replace("questionTime",time);
-                map.replace("savaPath",PathLoadUtil.loadQuestion((String)map.get("savaPath")));
+                map.replace("savePath",PathLoadUtil.loadQuestion((String)map.get("savePath")));
             }
             list.add(map);
         }
