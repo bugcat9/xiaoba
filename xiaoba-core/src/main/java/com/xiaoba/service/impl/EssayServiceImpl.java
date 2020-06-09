@@ -74,9 +74,10 @@ public class EssayServiceImpl implements EssayService {
         essay.setSavePath(fileName);
         java.util.Date utilDate=new java.util.Date();
         essay.setEssayPublishTime(new Date(utilDate.getTime()));
+        essay.setCategory("未分类");
         int result=essayMapper.insertEssay(essay);
 
-        return path;
+        return PathContants.ESSAY_PATH+ path;
     }
 
     @Override
@@ -106,7 +107,16 @@ public class EssayServiceImpl implements EssayService {
 
     @Override
     public List<Essay> allOfEssay(Integer pageIndex) {
-        return essayMapper.allOfEssay(pageIndex);
+        List<Essay> essays = essayMapper.allOfEssay(pageIndex,PAGE_SIZE);
+        for (Essay e : essays) {
+            e.setSavePath(PathContants.ESSAY_PATH+e.getSavePath());
+            //得到标签，标签没有id，不过没有影响
+            List<Tag> tags=tagMapper.getTagsByEssayId(e.getEssayId());
+//            for(Tag tag:tags){
+//            }
+            e.setTagList(tags);
+        }
+        return essays;
     }
 
     @Override

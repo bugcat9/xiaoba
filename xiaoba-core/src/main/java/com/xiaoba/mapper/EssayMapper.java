@@ -18,7 +18,7 @@ public interface EssayMapper {
      * @return
      */
     @Options(useGeneratedKeys = true,keyProperty = "essayId")
-    @Insert("insert into essay(essay_title,essay_abstract,essay_author,essay_publish_time,save_path) values(#{essayTitle},#{essayAbstract},#{essayAuthor},#{essayPublishTime},#{savePath})")
+    @Insert("insert into essay(essay_title,essay_abstract,essay_author,essay_publish_time,save_path,category) values(#{essayTitle},#{essayAbstract},#{essayAuthor},#{essayPublishTime},#{savePath},#{category})")
     int insertEssay(Essay essay);
 
     @Delete("delete from essay where essay_id=#{essayId}")
@@ -61,7 +61,7 @@ public interface EssayMapper {
      * @return
      */
     @Select("select * from essay order by essay_publish_time limit ${pageIndex*count},#{count}")
-    List<Essay> allOfEssay(Integer pageIndex);
+    List<Essay> allOfEssay(int pageIndex,int count);
 
     @Select("select count(*) from essay")
     int countOfAllofEssay();

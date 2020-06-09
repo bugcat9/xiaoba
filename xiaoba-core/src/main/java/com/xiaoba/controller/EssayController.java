@@ -8,10 +8,7 @@ import com.xiaoba.service.EssayService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -74,7 +71,7 @@ public class EssayController {
             @ApiImplicitParam(name = "essayAbstract",value = "文章摘要"),
             @ApiImplicitParam(name = "author",value = "文章作者"),
     })
-    @GetMapping("/md")
+    @PostMapping("/md")
     @ResponseBody
     public String publishEssay(String content,String title,String essayAbstract,String author){
         return essayService.publishEssay(content, title, essayAbstract, author);
