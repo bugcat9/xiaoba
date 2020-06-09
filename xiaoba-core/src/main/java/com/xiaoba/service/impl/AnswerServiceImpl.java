@@ -88,7 +88,11 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public List<Answer> getAnswerByQuestion(int questionId,Integer pageIndex) {
-        return answerMapper.getAnswerOfQuestion(questionId,pageIndex,PAGE_SIZE);
+        List<Answer> answers= answerMapper.getAnswerOfQuestion(questionId,pageIndex,PAGE_SIZE);
+        for (Answer answer:answers){
+            answer.setSavePath(PathContants.ESSAY_PATH+answer.getSavePath());
+        }
+        return answers;
     }
 
     @Override
