@@ -81,5 +81,10 @@ public class MessageServiceImpl implements MessageService {
         return messages;
     }
 
+    @Override
+    public int countOfMsg(String receiver) {
+        return messageMapper.countOfMsg(receiver);
+    }
+
 
 }

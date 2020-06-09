@@ -24,4 +24,6 @@ public interface MessageService {
      * @return
      */
     List<Message> receiveMsg(String receiver,int pageIndex);
+
+    int countOfMsg(String receiver);
 }

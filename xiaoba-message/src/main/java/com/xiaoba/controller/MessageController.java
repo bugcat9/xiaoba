@@ -63,4 +63,11 @@ public class MessageController {
     public List<Message> receiveMsg(String receiver,int pageIndex){
         return messageService.receiveMsg(receiver, pageIndex);
     }
+
+    @ApiOperation(value = "消息的数量")
+    @ApiImplicitParam(name = "receiver",value = "接收者")
+    @GetMapping("/countOfMsg")
+    public int countOfMsg(String receiver){
+        return messageService.countOfMsg(receiver);
+    }
 }
