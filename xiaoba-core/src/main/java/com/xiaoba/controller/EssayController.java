@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -73,8 +74,8 @@ public class EssayController {
     })
     @PostMapping("/md")
     @ResponseBody
-    public String publishEssay(String content,String title,String essayAbstract,String author){
-        return essayService.publishEssay(content, title, essayAbstract, author);
+    public String publishEssay(String content, String title, String essayAbstract, String author,String[] tags){
+        return essayService.publishEssay(content, title, essayAbstract,author,tags);
     }
 
     @ApiOperation(value = "得到所有文章")

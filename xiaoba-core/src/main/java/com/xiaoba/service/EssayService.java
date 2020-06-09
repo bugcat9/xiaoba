@@ -31,7 +31,7 @@ public interface EssayService {
      * @param essayAuthor 作者
      * @return 发表成功则返回true
      */
-     String publishEssay(String content,String essayTitle,String essayAbstract,String essayAuthor);
+     String publishEssay(String content,String essayTitle,String essayAbstract,String essayAuthor,String[] tags);
 
     /**
      * 根据文章ID删除文章

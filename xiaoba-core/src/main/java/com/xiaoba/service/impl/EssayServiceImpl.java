@@ -63,7 +63,7 @@ public class EssayServiceImpl implements EssayService {
 
 
     @Override
-    public String publishEssay(String content,String essayTitle,String essayAbstract, String essayAuthor) {
+    public String publishEssay(String content,String essayTitle,String essayAbstract, String essayAuthor,String[] tags) {
 
         String path = fileService.writeToMd(content,essayTitle);
         String fileName = essayTitle+".md";
@@ -76,7 +76,10 @@ public class EssayServiceImpl implements EssayService {
         essay.setEssayPublishTime(new Date(utilDate.getTime()));
         essay.setCategory("未分类");
         int result=essayMapper.insertEssay(essay);
-
+        essay = essayMapper.getEssay(essayTitle, essayAuthor, new Date(utilDate.getTime()));
+        for (String tag:tags) {
+            addEssayTag(essay.getEssayId(),tag);
+        }
         return PathContants.ESSAY_PATH+ path;
     }
 

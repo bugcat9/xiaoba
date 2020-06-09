@@ -41,4 +41,11 @@ public class Tag {
                 ", tagName='" + tagName + '\'' +
                 '}';
     }
+
+    public Tag() {}
+
+    public Tag(Integer tagId, String tagName) {
+        this.tagId = tagId;
+        this.tagName = tagName;
+    }
 }
