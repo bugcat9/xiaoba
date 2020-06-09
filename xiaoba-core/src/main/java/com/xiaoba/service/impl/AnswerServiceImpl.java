@@ -2,16 +2,19 @@ package com.xiaoba.service.impl;
 
 import com.xiaoba.constans.PathContants;
 import com.xiaoba.entity.Answer;
+import com.xiaoba.entity.AnswerFrom;
+import com.xiaoba.entity.Question;
 import com.xiaoba.mapper.AnswerMapper;
+import com.xiaoba.mapper.QuestionMapper;
 import com.xiaoba.service.AnswerService;
 import com.xiaoba.service.CommentService;
 import com.xiaoba.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Array;
 import java.sql.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author 王文旭
@@ -28,6 +31,8 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Autowired
     CommentService commentService;
+    @Autowired
+    QuestionMapper questionMapper;
 
     @Override
     public String answerQuestion(String answerer, int questionId,String content) {
@@ -48,15 +53,32 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public boolean deleteAnswer(int answerId) {
+        Answer answer = answerMapper.findAnswerById(answerId);
         int result=answerMapper.deleteAnswerById(answerId);
         //删除回答的所有评论
         commentService.deleteCommentsOfAnswer(answerId);
+        fileService.deletFile(answer.getSavePath());
         return result==1;
     }
 
     @Override
-    public List<Answer> getAnswerBySomeone(String anserer,Integer pageIndex) {
-        return answerMapper.getAnswerOfSb(anserer,pageIndex,PAGE_SIZE);
+    public List<AnswerFrom> getAnswerBySomeone(String anserer, Integer pageIndex) {
+        List<Answer> answers =answerMapper.getAnswerOfSb(anserer,pageIndex,PAGE_SIZE);
+//        List<Question> questions =new  ArrayList<>();
+        List<AnswerFrom> answerFroms = new ArrayList<>();
+        for (Answer answer:answers) {
+            answer.setSavePath(PathContants.QUESTION_PATH+answer.getSavePath());
+            Question question = questionMapper.findQuestionById(answer.getQuestionId());
+            question.setSavePath(PathContants.QUESTION_PATH+question.getSavePath());
+            AnswerFrom answerFrom = new AnswerFrom() ;
+            answerFrom.setAnswer(answer);
+            answerFrom.setQuestion(question);
+            answerFroms.add(answerFrom);
+        }
+//        Map<String,Object> result =new HashMap<>();
+//        result.put("answer",answers);
+//        result.put("question",questions);
+        return answerFroms;
     }
 
     @Override
@@ -86,5 +108,10 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public int countOfAllAnswers() {
         return answerMapper.countOfAllAnswer();
+    }
+
+    @Override
+    public boolean updateAnwser(Integer answerId, String content) {
+        return false;
     }
 }
