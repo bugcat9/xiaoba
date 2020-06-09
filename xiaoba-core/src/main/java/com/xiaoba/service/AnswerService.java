@@ -1,8 +1,10 @@
 package com.xiaoba.service;
 
 import com.xiaoba.entity.Answer;
+import com.xiaoba.entity.AnswerFrom;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 王文旭
@@ -32,7 +34,7 @@ public interface AnswerService {
      * @param pageIndex 页数
      * @return 回答列表
      */
-     List<Answer> getAnswerBySomeone(String anserer,Integer pageIndex);
+    List<AnswerFrom> getAnswerBySomeone(String anserer, Integer pageIndex);
 
 
      int CountofSbAnswer(String anserer);
@@ -55,4 +57,6 @@ public interface AnswerService {
      List<Answer> allAnswers(Integer pageIndex);
 
      int countOfAllAnswers();
+
+     boolean updateAnwser(Integer answerId,String content);
 }

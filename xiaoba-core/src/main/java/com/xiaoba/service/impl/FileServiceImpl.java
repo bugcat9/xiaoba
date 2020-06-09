@@ -23,8 +23,7 @@ public class FileServiceImpl implements FileService {
     @Value("${filepath}")
     private String filepath;
 
-    @Autowired
-    EssayMapper essayMapper;
+
 
     @Override
     public boolean upload(MultipartFile file) {
@@ -97,6 +96,15 @@ public class FileServiceImpl implements FileService {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deletFile(String fileName) {
+        String pathName = filepath + fileName;
+        File file = new File(pathName);
+        if (file.exists()){
+            file.delete();
         }
     }
 }

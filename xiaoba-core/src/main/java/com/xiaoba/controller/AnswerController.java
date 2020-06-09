@@ -1,6 +1,8 @@
 package com.xiaoba.controller;
 
 import com.xiaoba.entity.Answer;
+import com.xiaoba.entity.AnswerFrom;
+import com.xiaoba.service.AnswerService;
 import com.xiaoba.service.impl.AnswerServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -13,13 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @Api(tags = "回答问题的接口")
 @RequestMapping("/answer")
 @RestController
 public class AnswerController {
     @Autowired
-    AnswerServiceImpl answerService;
+    AnswerService answerService;
+
 
     @ApiOperation(value = "回答问题")
     @ApiImplicitParams({
@@ -70,5 +74,20 @@ public class AnswerController {
         return answerService.deleteAnswer(answerId);
     }
 
+    @ApiOperation("得到个人的回答")
+    @GetMapping("/getAnswerBySomeone")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "answerName",value = "回答者"),
+            @ApiImplicitParam(name = "pageIndex",value = "页数")
+    })
+    public List<AnswerFrom> getAnswerBySomeone(String answerName, Integer pageIndex) {
+        return answerService.getAnswerBySomeone(answerName,pageIndex);
+    }
 
+    @ApiOperation("得到个人的回答数量")
+    @ApiImplicitParam(name = "answerName",value = "回答者")
+    @GetMapping("/CountofSbAnswer")
+    public int CountofSbAnswer(String answerName){
+        return answerService.CountofSbAnswer(answerName);
+    }
 }

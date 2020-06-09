@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author 王文旭
@@ -26,13 +27,14 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public String askQuestion(String asker,String questionTitle, String questionContent) {
+        String file= UUID.randomUUID().toString();
         Question question=new Question();
         question.setQuestionTitle(questionTitle);
         question.setQuestionerName(asker);
         question.setAnswerNum(0);
         java.util.Date utilDate=new java.util.Date();
         question.setQuestionTime(new Date(utilDate.getTime()));
-        String path = fileService.writeToMd(questionContent, questionTitle);
+        String path = fileService.writeToMd(questionContent, file);
         question.setSavePath(path);
         int result=questionMapper.insertQuestion(question);
         return PathContants.ESSAY_PATH+path;
