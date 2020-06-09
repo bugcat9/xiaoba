@@ -93,5 +93,13 @@ public class EssayController {
         return essayService.countOfAllofEssay();
     }
 
-
+    @ApiOperation("文章添加标签")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "essayId",value = "文章id"),
+            @ApiImplicitParam(name = "tagName",value = "tag名字"),
+    })
+    @GetMapping("/addEssayTag")
+    public boolean addEssayTag(int essayId, String tagName){
+        return essayService.addEssayTag(essayId, tagName);
+    }
 }

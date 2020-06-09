@@ -112,9 +112,13 @@ public class EssayServiceImpl implements EssayService {
     @Override
     public boolean addEssayTag(int essayId, String tagName) {
 
-
+        Tag tag = tagMapper.getTagsByName(tagName);
+        if(tag==null){
+            tag = new Tag();
+            tag.setTagName(tagName);
+            tagMapper.addTag(tag);
+        }
         int res = tagMapper.addEssayTag(essayId, tagName);
-
         return res==1;
     }
 }
