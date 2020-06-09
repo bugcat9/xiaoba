@@ -132,14 +132,14 @@ public class HighLightBuilderUtil {
         }
 
         int size=(int)response.getHits().getTotalHits().value;
-        int pageNum=size/ElasticSearchContants.PAGE_SIZE+1;
-        System.out.println(pageNum);
+        //int pageNum=size/ElasticSearchContants.PAGE_SIZE+1;
+
         //装载返回结果
         Map<String,Object> result =new HashMap<>();
         //当前页的页数
         result.put(ElasticSearchContants.CURRENT_PAGE,currentPage);
-        //总的页数
-        result.put(ElasticSearchContants.PAGE_NUM,pageNum);
+        //总的结果数
+        result.put(ElasticSearchContants.COUNT,size);
         //搜索结果
         result.put(ElasticSearchContants.SEARCH_LIST,list);
         System.out.print(result);

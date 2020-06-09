@@ -49,4 +49,9 @@ public class ElasticSearchContants {
      * 提问者
      */
     final public static String QUESTIONER_NAME="questionerName";
+
+    /**
+     * 搜索结果数
+     */
+    final public static String COUNT="count";
 }
