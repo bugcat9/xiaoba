@@ -49,4 +49,9 @@ public class CommentController {
         return commentService.addCommentOfEssay(essayId,commentatorName,commentContent);
     }
 
+    @ApiImplicitParam(name = "commentId",value = "评论id")
+    @GetMapping("/deleteCommentById")
+    public boolean deleteCommentById(Integer commentId) {
+        return commentService.deleteCommentById(commentId);
+    }
 }

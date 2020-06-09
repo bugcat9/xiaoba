@@ -78,4 +78,11 @@ public class QuestionController {
     public Question findQuestionById(Integer questionId){
         return questionService.findQuestionById(questionId);
     }
+
+    @ApiOperation(value = "删除问题")
+    @ApiImplicitParam(name = "questionId" ,value = "问题id")
+    @GetMapping("/deleteQuestion")
+    public boolean deleteQuestion(int questionId){
+        return questionService.deleteQuestion(questionId);
+    }
 }

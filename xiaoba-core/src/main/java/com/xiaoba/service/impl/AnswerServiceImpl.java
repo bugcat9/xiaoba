@@ -4,6 +4,7 @@ import com.xiaoba.constans.PathContants;
 import com.xiaoba.entity.Answer;
 import com.xiaoba.mapper.AnswerMapper;
 import com.xiaoba.service.AnswerService;
+import com.xiaoba.service.CommentService;
 import com.xiaoba.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,8 @@ public class AnswerServiceImpl implements AnswerService {
     @Autowired
     FileService fileService;
 
+    @Autowired
+    CommentService commentService;
 
     @Override
     public String answerQuestion(String answerer, int questionId,String content) {
@@ -46,6 +49,8 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public boolean deleteAnswer(int answerId) {
         int result=answerMapper.deleteAnswerById(answerId);
+        //删除回答的所有评论
+        commentService.deleteCommentsOfAnswer(answerId);
         return result==1;
     }
 

@@ -62,4 +62,13 @@ public class AnswerController {
     public int countOfAllAnswers(){
         return answerService.countOfAllAnswers();
     }
+
+    @ApiOperation("删除回答")
+    @ApiImplicitParam(name = "answerId",value = "问题id")
+    @GetMapping("/deleteAnswer")
+    public boolean deleteAnswer(int answerId){
+        return answerService.deleteAnswer(answerId);
+    }
+
+
 }

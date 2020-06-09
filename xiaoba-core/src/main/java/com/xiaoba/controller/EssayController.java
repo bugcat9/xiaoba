@@ -102,4 +102,11 @@ public class EssayController {
     public boolean addEssayTag(int essayId, String tagName){
         return essayService.addEssayTag(essayId, tagName);
     }
+
+    @ApiOperation("删除文章")
+    @ApiImplicitParam(name = "essayId",value = "文章id")
+    @GetMapping("/deleteEssay")
+    public boolean deleteEssay(Integer essayId){
+        return essayService.deleteEssay(essayId);
+    }
 }

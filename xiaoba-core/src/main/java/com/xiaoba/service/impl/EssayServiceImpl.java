@@ -5,6 +5,7 @@ import com.xiaoba.entity.Essay;
 import com.xiaoba.entity.Tag;
 import com.xiaoba.mapper.EssayMapper;
 import com.xiaoba.mapper.TagMapper;
+import com.xiaoba.service.CommentService;
 import com.xiaoba.service.EssayService;
 import com.xiaoba.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class EssayServiceImpl implements EssayService {
 
     @Autowired
     FileService fileService;
+
+    @Autowired
+    CommentService commentService;
 
     @Override
     public List<Essay> getEssaies(String author,Integer pageIdex) {
@@ -78,6 +82,7 @@ public class EssayServiceImpl implements EssayService {
     @Override
     public boolean deleteEssay(Integer essayId) {
         int result=essayMapper.deleteEssayById(essayId);
+        commentService.deleteCommentsOfEssay(essayId);
         return result==1;
     }
 
