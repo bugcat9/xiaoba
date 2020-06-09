@@ -55,4 +55,6 @@ public interface EssayService {
     int countOfAllofEssay();
 
     boolean addEssayTag(int essayId,String tagName);
+
+    boolean updateEssay(Essay essay,String content);
 }

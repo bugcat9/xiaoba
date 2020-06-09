@@ -78,4 +78,18 @@ public class QuestionServiceImpl implements QuestionService {
     public Question findQuestionById(Integer questionId) {
         return questionMapper.findQuestionById(questionId);
     }
+
+    @Override
+    public boolean updateQuestion(int questionId, String questionName, String content) {
+        Question question = questionMapper.findQuestionById(questionId);
+        question.setQuestionerName(questionName);
+        String file= UUID.randomUUID().toString();
+        String path = fileService.writeToMd(content, file);
+        fileService.deletFile(question.getSavePath());
+        question.setSavePath(path);
+        int res = questionMapper.updateQuestion(question);
+        return res==1;
+    }
+
+
 }

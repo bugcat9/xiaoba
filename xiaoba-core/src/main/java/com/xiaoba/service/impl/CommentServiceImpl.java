@@ -133,4 +133,17 @@ public class CommentServiceImpl implements CommentService {
         int result=userCommentMapper.deleteCommentById(commentId);
         return result==1;
     }
+
+    @Override
+    public boolean updateComment(Integer commentId, String commentContent) {
+        UserComment userComment = userCommentMapper.selectCommentById(commentId);
+        int res = 0;
+        if (userComment!=null){
+            userComment.setCommentContent(commentContent);
+            res = userCommentMapper.updateComment(userComment);
+        }
+        return res==1;
+    }
+
+
 }

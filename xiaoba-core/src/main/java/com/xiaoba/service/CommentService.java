@@ -93,4 +93,6 @@ public interface CommentService {
     * @return 返回匹配数量，删除成功返回1
     */
     boolean deleteCommentById(Integer commentId);
+
+    boolean updateComment(Integer commentId,String commentContent);
 }

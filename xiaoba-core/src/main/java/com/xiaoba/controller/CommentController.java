@@ -49,9 +49,20 @@ public class CommentController {
         return commentService.addCommentOfEssay(essayId,commentatorName,commentContent);
     }
 
+    @ApiOperation("删除文章评论")
     @ApiImplicitParam(name = "commentId",value = "评论id")
     @GetMapping("/deleteCommentById")
     public boolean deleteCommentById(Integer commentId) {
         return commentService.deleteCommentById(commentId);
+    }
+
+    @ApiOperation("更改文章评论")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "commentId",value = "评论id"),
+            @ApiImplicitParam(name = "commentContent",value = "评论内容")
+    })
+    @GetMapping("/updateComment")
+    public boolean updateComment(Integer commentId, String commentContent){
+        return commentService.updateComment(commentId, commentContent);
     }
 }

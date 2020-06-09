@@ -53,4 +53,7 @@ public interface UserCommentMapper {
 
     @Update("UPDATE user_comment SET commentator_name=#{lastName} WHERE commentator_name=#{oldName}")
     int updateCommentName(String oldName,String lastName);
+
+    @Update("update user_comment set comment_content = #{commentContent} where comment_id=#{commentId}")
+    int updateComment(UserComment userComment);
 }

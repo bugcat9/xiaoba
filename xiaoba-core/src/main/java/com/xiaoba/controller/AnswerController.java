@@ -90,4 +90,14 @@ public class AnswerController {
     public int CountofSbAnswer(String answerName){
         return answerService.CountofSbAnswer(answerName);
     }
+
+    @ApiOperation("修改个人回答")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "answerId",value = "回答id"),
+            @ApiImplicitParam(name = "content",value = "更新的内容")
+    })
+    @GetMapping("/updateAnwser")
+    public boolean updateAnwser(Integer answerId, String content){
+        return answerService.updateAnwser(answerId, content);
+    }
 }
