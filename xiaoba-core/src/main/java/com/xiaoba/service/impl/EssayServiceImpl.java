@@ -98,4 +98,14 @@ public class EssayServiceImpl implements EssayService {
         int res = tagMapper.addTag(tag);
         return res==1;
     }
+
+    @Override
+    public List<Essay> allOfEssay(Integer pageIndex) {
+        return essayMapper.allOfEssay(pageIndex);
+    }
+
+    @Override
+    public int countOfAllofEssay() {
+        return essayMapper.countOfAllofEssay();
+    }
 }

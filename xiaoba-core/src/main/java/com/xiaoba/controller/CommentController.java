@@ -38,7 +38,7 @@ public class CommentController {
         return commentService.countOfEssayCommnets(essayId);
     }
 
-    @ApiOperation("添加评论")
+    @ApiOperation("添加文章评论")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "essayId",value = "文章id"),
             @ApiImplicitParam(name = "commentatorName",value = "文章名字"),

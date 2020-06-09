@@ -55,4 +55,15 @@ public interface EssayMapper {
     @Update("update essay set comment_num=comment_num-1 where essay_id=#{essayId} and comment_num>0")
     int decCommentNum(Integer essayId);
 
+    /**
+     * 得到所有文章
+     * @param pageIndex
+     * @return
+     */
+    @Select("select * from essay order by essay_publish_time limit ${pageIndex*count},#{count}")
+    List<Essay> allOfEssay(Integer pageIndex);
+
+    @Select("select count(*) from essay")
+    int countOfAllofEssay();
+
 }

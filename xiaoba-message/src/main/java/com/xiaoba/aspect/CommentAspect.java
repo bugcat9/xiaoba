@@ -1,7 +1,8 @@
 package com.xiaoba.aspect;
 
-
-import com.xiaoba.entity.Question;
+import com.xiaoba.entity.Essay;
+import com.xiaoba.service.CommentService;
+import com.xiaoba.service.EssayService;
 import com.xiaoba.service.MessageService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -12,11 +13,15 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class RegisterAspect {
+public class CommentAspect {
+
+    @Autowired
+    EssayService essayService;
+
     @Autowired
     MessageService messageService;
 
-    @Pointcut("execution(* com.xiaoba.controller.RegisterController.register(..))")
+    @Pointcut("execution(* com.xiaoba.controller.CommentController.addComment(..))")
     public void declareJointPointExpression(){}
 
     @AfterReturning(value="declareJointPointExpression()", returning="result")
@@ -29,8 +34,12 @@ public class RegisterAspect {
         }
         boolean res = (boolean) result;
         if (res){
-            String userName = (String) args[0];
-            messageService.createQueue(userName);
+            Integer id = (Integer) args[0];
+            String commentName = (String) args[1];
+            //发送消息
+            Essay essay = essayService.getEssay(id);
+            String msg = "你的文章："+essay.getEssayTitle()+"被"+commentName+"评论";
+            messageService.sendMessage(essay.getEssayAuthor(), msg);
         }
     }
 }

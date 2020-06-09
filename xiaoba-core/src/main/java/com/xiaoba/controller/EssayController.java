@@ -79,4 +79,17 @@ public class EssayController {
     public String publishEssay(String content,String title,String essayAbstract,String author){
         return essayService.publishEssay(content, title, essayAbstract, author);
     }
+
+    @ApiOperation(value = "得到所有文章")
+    @ApiImplicitParam(name = "pageIndex",value = "页数")
+    @GetMapping("/allOfEssay")
+    public List<Essay> allOfEssay(Integer pageIndex){
+        return essayService.allOfEssay(pageIndex);
+    }
+
+    @ApiOperation(value = "得到所有文章的数量")
+    @GetMapping("/countOfAllofEssay")
+    public int countOfAllofEssay(){
+        return essayService.countOfAllofEssay();
+    }
 }

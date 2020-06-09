@@ -47,5 +47,10 @@ public interface EssayService {
     List<Tag> getAllTags(Integer pageIdenx);
 
     int countOfAllTags();
+
     boolean addTag(String tagName);
+
+    List<Essay> allOfEssay(Integer pageIndex);
+
+    int countOfAllofEssay();
 }
