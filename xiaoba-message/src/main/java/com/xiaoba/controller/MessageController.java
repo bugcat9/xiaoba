@@ -1,5 +1,6 @@
 package com.xiaoba.controller;
 
+import com.xiaoba.entity.Message;
 import com.xiaoba.service.MessageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -53,4 +54,13 @@ public class MessageController {
         return messageService.receiveMessage(queueName);
     }
 
+    @ApiOperation(value = "接收个人消息从数据库")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "receiver",value = "接收者"),
+            @ApiImplicitParam(name = "pageIndex",value = "页面")
+    })
+    @GetMapping("/receiveMsg")
+    public List<Message> receiveMsg(String receiver,int pageIndex){
+        return messageService.receiveMsg(receiver, pageIndex);
+    }
 }

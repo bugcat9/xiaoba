@@ -38,6 +38,6 @@ public class AnswerAspect {
         //发送消息
         String msg = "你的问题："+question.getQuestionTitle()+"被"+answerer+"回答";
         messageService.sendMessage(question.getQuestionerName(), msg);
-
+        messageService.sendMessage(answerer, question.getQuestionerName(), msg);
     }
 }

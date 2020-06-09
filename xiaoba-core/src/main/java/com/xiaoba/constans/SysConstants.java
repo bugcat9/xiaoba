@@ -24,4 +24,9 @@ public class SysConstants {
     public final static int ANSWER=2;
 
     public final static int COMMENT=3;
+
+
+    public final static int MESSAGE_UNREAD = 0;
+
+    public final static int MESSAGE_READ = 1;
 }

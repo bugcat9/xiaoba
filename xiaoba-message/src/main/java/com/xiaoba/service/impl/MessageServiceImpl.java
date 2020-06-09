@@ -1,18 +1,26 @@
 package com.xiaoba.service.impl;
 
 import com.xiaoba.constans.RabbitMqConstants;
+import com.xiaoba.constans.SysConstants;
+import com.xiaoba.entity.Message;
+import com.xiaoba.mapper.MessageMapper;
 import com.xiaoba.service.MessageService;
 import com.xiaoba.util.RabbitMqUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import java.sql.Date;
+import java.util.List;
 @Service
 public class MessageServiceImpl implements MessageService {
 
     @Autowired
     RabbitMqUtils rabbitMqUtils;
 
+    @Autowired
+    MessageMapper messageMapper;
+
+    private static final int PAGE_SIZE =5;
     @Override
     public boolean sendMessage(String queueName, Object obj) {
         try{
@@ -22,6 +30,22 @@ public class MessageServiceImpl implements MessageService {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public boolean sendMessage(String sender, String receiver, String msg) {
+        Message message = new Message();
+        message.setMessageSender(sender);
+        message.setMessageReceiver(receiver);
+        message.setMessageStatus(SysConstants.MESSAGE_UNREAD);
+        message.setContent(msg);
+        java.util.Date date = new java.util.Date();
+        message.setSendTime(new Date(date.getTime()));
+        int res=0;
+        res=messageMapper.insertMessage(message);
+
+
+        return res==1;
     }
 
     @Override
@@ -44,5 +68,18 @@ public class MessageServiceImpl implements MessageService {
     public Object receiveMessage(String queueName) {
         return rabbitMqUtils.receive(queueName);
     }
+
+    @Override
+    public List<Message> receiveMsg(String receiver,int pageIndex) {
+        List<Message> messages = messageMapper.selectMsgByRec(receiver,pageIndex,PAGE_SIZE);
+        for (Message message:messages) {
+            if (message.getMessageStatus()==SysConstants.MESSAGE_UNREAD){
+                //设置状态为已读
+                messageMapper.updateStatus(message.getMessageId(), SysConstants.MESSAGE_READ);
+            }
+        }
+        return messages;
+    }
+
 
 }

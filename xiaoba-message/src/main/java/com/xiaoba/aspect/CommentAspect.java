@@ -40,6 +40,8 @@ public class CommentAspect {
             Essay essay = essayService.getEssay(id);
             String msg = "你的文章："+essay.getEssayTitle()+"被"+commentName+"评论";
             messageService.sendMessage(essay.getEssayAuthor(), msg);
+            //数据库存储
+            messageService.sendMessage( commentName, essay.getEssayAuthor(), msg);
         }
     }
 }
