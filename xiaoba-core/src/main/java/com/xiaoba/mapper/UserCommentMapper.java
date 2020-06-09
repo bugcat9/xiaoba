@@ -50,4 +50,7 @@ public interface UserCommentMapper {
 
     @Select("Select count(*) from user_comment where commentator_name=#{commentatorName}")
     int countOfSbComment(String commentatorName);
+
+    @Update("UPDATE user_comment SET commentator_name=#{lastName} WHERE commentator_name=#{oldName}")
+    int updateCommentName(String oldName,String lastName);
 }

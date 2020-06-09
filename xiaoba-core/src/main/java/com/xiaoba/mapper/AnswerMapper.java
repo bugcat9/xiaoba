@@ -87,4 +87,7 @@ public interface AnswerMapper{
 
     @Select("select count(*) from answer")
     int countOfAllAnswer();
+
+    @Update("UPDATE answer SET answerer=#{lastName} WHERE answerer=#{oldName}")
+    int updateAnswerName(String oldName,String lastName);
 }

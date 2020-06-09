@@ -63,4 +63,7 @@ public interface QuestionMapper {
 
     @Select("select count(*) from question ")
     int countOfAllQuetions();
+
+    @Update("UPDATE question SET questioner_name=#{lastName} WHERE questioner_name=#{oldName}")
+    int updateQuestionName(String oldName,String lastName);
 }

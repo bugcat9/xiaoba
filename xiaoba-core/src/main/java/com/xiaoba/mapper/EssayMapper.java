@@ -66,4 +66,7 @@ public interface EssayMapper {
     @Select("select count(*) from essay")
     int countOfAllofEssay();
 
+    @Update("UPDATE essay SET essay_author=#{lastName} WHERE essay_author=#{oldName}")
+    int updateEssayName(String oldName,String lastName);
+
 }

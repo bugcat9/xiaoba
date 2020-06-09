@@ -2,8 +2,8 @@ package com.xiaoba.service.impl;
 
 import com.xiaoba.entity.SysUser;
 import com.xiaoba.entity.SysUserToken;
-import com.xiaoba.mapper.EssayMapper;
-import com.xiaoba.mapper.SysUserMapper;
+import com.xiaoba.entity.UserComment;
+import com.xiaoba.mapper.*;
 import com.xiaoba.service.RegisterService;
 import com.xiaoba.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,17 @@ public class RegisterServiceImpl implements RegisterService {
     TokenService tokenService;
 
     @Autowired
+    AnswerMapper answerMapper;
+
+    @Autowired
     EssayMapper essayMapper;
+
+    @Autowired
+    QuestionMapper questionMapper;
+
+    @Autowired
+    UserCommentMapper userCommentMapper;
+
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -60,10 +70,16 @@ public class RegisterServiceImpl implements RegisterService {
             return false;
         }
 
-
         //得到用户后更改用户信息
         SysUser sysUser = sysUserMapper.selectById(sysUserToken.getUserId());
-        sysUser.setUserName(userName);
+        if (!userName.equals(sysUser.getUserName())){
+            answerMapper.updateAnswerName(sysUser.getUserName(),userName);
+            essayMapper.updateEssayName(sysUser.getUserName(),userName);
+            questionMapper.updateQuestionName(sysUser.getUserName(), userName);
+            userCommentMapper.updateCommentName(sysUser.getUserName(), userName);
+            sysUser.setUserName(userName);
+        }
+
         sysUser.setUserPassword(password);
         sysUser.setUserSex(sex);
         sysUser.setUserTelephone(telephone);
