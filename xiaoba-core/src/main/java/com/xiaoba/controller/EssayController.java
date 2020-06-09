@@ -92,4 +92,6 @@ public class EssayController {
     public int countOfAllofEssay(){
         return essayService.countOfAllofEssay();
     }
+
+
 }

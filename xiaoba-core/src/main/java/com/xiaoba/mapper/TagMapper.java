@@ -37,4 +37,11 @@ public interface TagMapper {
 
     @Select("select count(*) from tag")
     int countOfTags();
+
+    @Options(useGeneratedKeys = true,keyProperty = "id")
+    @Insert("insert into t_essay_tag t_essay_tag(essay_id,tag_name) values(#{essayId},#{tagName})")
+    int addEssayTag(int essayId,String tagName);
+
+    @Select("select * from where tag_name=-#{tagName}")
+    Tag getTagsByName(String tagName);
 }

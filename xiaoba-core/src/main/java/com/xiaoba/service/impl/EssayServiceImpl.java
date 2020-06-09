@@ -108,4 +108,13 @@ public class EssayServiceImpl implements EssayService {
     public int countOfAllofEssay() {
         return essayMapper.countOfAllofEssay();
     }
+
+    @Override
+    public boolean addEssayTag(int essayId, String tagName) {
+
+
+        int res = tagMapper.addEssayTag(essayId, tagName);
+
+        return res==1;
+    }
 }
