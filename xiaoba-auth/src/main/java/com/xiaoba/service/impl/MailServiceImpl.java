@@ -61,7 +61,7 @@ public class MailServiceImpl implements MailService {
         String code=redisUtils.get(redisKey);
         //删除验证码
         redisUtils.delete(redisKey);
-        if(verifyCode.equalsIgnoreCase(code)){
+        if(verifyCode.equals(code)){
             return true;
         }
         return false;
