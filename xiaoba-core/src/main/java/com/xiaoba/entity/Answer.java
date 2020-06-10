@@ -4,6 +4,11 @@ package com.xiaoba.entity;
 import lombok.Data;
 
 import java.sql.Date;
+
+/**
+ *
+ * @author zhouning
+ */
 @Data
 public class Answer {
 

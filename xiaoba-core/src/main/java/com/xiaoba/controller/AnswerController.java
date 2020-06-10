@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author zhouning
+ */
 @Api(tags = "回答问题的接口")
 @RequestMapping("/answer")
 @RestController
@@ -87,8 +90,8 @@ public class AnswerController {
     @ApiOperation("得到个人的回答数量")
     @ApiImplicitParam(name = "answerName",value = "回答者")
     @GetMapping("/CountofSbAnswer")
-    public int CountofSbAnswer(String answerName){
-        return answerService.CountofSbAnswer(answerName);
+    public int countofSbAnswer(String answerName){
+        return answerService.countofSbAnswer(answerName);
     }
 
     @ApiOperation("修改个人回答")

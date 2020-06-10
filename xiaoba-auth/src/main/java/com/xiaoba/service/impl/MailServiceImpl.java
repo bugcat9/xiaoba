@@ -13,6 +13,9 @@ import org.thymeleaf.context.Context;
 
 import static com.xiaoba.service.impl.CaptchaServiceImpl.CAPTCHA_EXPIRE;
 
+/**
+ * @author zhouning
+ */
 @Service
 public class MailServiceImpl implements MailService {
 

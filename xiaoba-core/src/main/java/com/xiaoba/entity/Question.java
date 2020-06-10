@@ -3,6 +3,9 @@ package com.xiaoba.entity;
 
 import java.sql.Date;
 
+/**
+ * @author wwx
+ */
 public class Question {
     private Integer questionId;
     private String questionTitle;

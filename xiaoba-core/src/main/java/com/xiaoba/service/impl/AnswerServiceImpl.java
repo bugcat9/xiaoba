@@ -94,14 +94,12 @@ public class AnswerServiceImpl implements AnswerService {
             answerFrom.setQuestion(question);
             answerFroms.add(answerFrom);
         }
-//        Map<String,Object> result =new HashMap<>();
-//        result.put("answer",answers);
-//        result.put("question",questions);
+
         return answerFroms;
     }
 
     @Override
-    public int CountofSbAnswer(String anserer) {
+    public int countofSbAnswer(String anserer) {
         return answerMapper.countOfSbAnswer(anserer);
     }
 

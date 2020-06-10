@@ -2,6 +2,9 @@ package com.xiaoba.util;
 
 import com.xiaoba.constans.PathContants;
 
+/**
+ * @author wwx
+ */
 public class PathLoadUtil {
     public static String loadImages(String pathInDb){
         return PathContants.IMG_PATH+pathInDb;

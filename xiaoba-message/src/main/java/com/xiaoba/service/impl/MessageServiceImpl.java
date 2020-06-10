@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.List;
+/**
+ * @author zhouning
+ */
 @Service
 public class MessageServiceImpl implements MessageService {
 

@@ -15,7 +15,7 @@ import java.io.IOException;
 @Slf4j
 public class JsonUtils {
 
-    private final static ObjectMapper objMapper = new ObjectMapper();
+    private final static ObjectMapper OBJ_MAPPER = new ObjectMapper();
 
     /**
      * Json字符串转化成对象
@@ -26,9 +26,9 @@ public class JsonUtils {
      * @throws Exception
      */
     public static <T> T toObj(String jsonString, Class<T> clazz) {
-        objMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+        OBJ_MAPPER.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
         try {
-            return objMapper.readValue(jsonString, clazz);
+            return OBJ_MAPPER.readValue(jsonString, clazz);
         } catch (IOException e) {
             log.error("Json字符串转化成对象出错",e);
         }
@@ -47,7 +47,7 @@ public class JsonUtils {
             return String.valueOf(obj);
         }
         try {
-            return objMapper.writeValueAsString(obj);
+            return OBJ_MAPPER.writeValueAsString(obj);
         } catch (JsonProcessingException e) {
             log.error("转化成json字符串",e);
         }

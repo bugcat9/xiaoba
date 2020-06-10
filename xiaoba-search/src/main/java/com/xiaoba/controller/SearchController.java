@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ * @author zhouning
+ */
 @Api(tags = "搜索的接口")
 @RestController
 @RequestMapping("/search")

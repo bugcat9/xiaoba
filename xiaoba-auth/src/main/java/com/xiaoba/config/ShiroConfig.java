@@ -17,6 +17,11 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * shiro 配置
+ * 权限控制
+ * @author zhouning
+ */
 @Configuration
 public class ShiroConfig {
     @Bean("sessionManager")
@@ -35,7 +40,11 @@ public class ShiroConfig {
         return securityManager;
     }
 
-    //需要修改
+    /**
+     * shiroFilter 为自定义过滤器，可以对相对应的权限进行配置
+     * @param securityManager
+     * @return
+     */
     @Bean("shiroFilter")
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
@@ -52,7 +61,6 @@ public class ShiroConfig {
         filterMap.put("/login", "anon");
         filterMap.put("/captcha.jpg", "anon");
         filterMap.put("/captcha","anon");
-//        filterMap.put("/logout", "logout");
         filterMap.put("/admin/**", "auth");
         //先把认证关了
         filterMap.put("/**", "anon");

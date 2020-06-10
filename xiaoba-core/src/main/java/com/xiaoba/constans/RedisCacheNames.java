@@ -1,5 +1,8 @@
 package com.xiaoba.constans;
 
+/**
+ * @author zhouning
+ */
 public class RedisCacheNames {
     public final static String PROFIX = "LOG:";
 

@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.Date;
 
+/**
+ * @author zhouning
+ */
 @Service
 public class FileServiceImpl implements FileService {
 

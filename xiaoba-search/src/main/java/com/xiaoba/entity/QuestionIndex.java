@@ -6,6 +6,9 @@ import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.sql.Date;
 
+/**
+ * @author wwx
+ */
 @Document(indexName = ElasticSearchContants.QUESTION_INDEX,type = "_doc")
 public class QuestionIndex {
     @Id

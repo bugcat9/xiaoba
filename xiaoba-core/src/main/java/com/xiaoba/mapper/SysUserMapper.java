@@ -30,6 +30,7 @@ public interface SysUserMapper {
     /**
      * 更新 sys_user
      * @param sysUser
+     * @return
      */
     @Update("update sys_user set user_name=#{userName},user_password=#{userPassword},user_role=#{userRole},user_avatar_path=#{userAvatarPath},user_sex=#{userSex},user_telephone=#{userTelephone},user_email=#{userEmail} where user_id=#{userId}")
     int updateUser(SysUser sysUser);

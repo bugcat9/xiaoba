@@ -17,6 +17,9 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * @author zhouning
+ */
 @Service
 public class EssayServiceImpl implements EssayService {
 

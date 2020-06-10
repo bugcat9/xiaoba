@@ -9,17 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.awt.image.BufferedImage;
+/**
+ * @author zhouning
+ */
 @Service
 public class CaptchaServiceImpl implements CaptchaService {
 
-    //生成验证码使用
+    /**
+     * 生成验证码使用
+     */
     @Autowired
     private Producer producer;
 
     @Autowired
     private RedisUtils redisUtils;
 
-    //验证码的时间为5分钟
+    /**
+     *  验证码的时间为5分钟
+     */
     public final static long CAPTCHA_EXPIRE = 60 * 5;
 
     @Override
