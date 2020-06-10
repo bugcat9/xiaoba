@@ -27,14 +27,29 @@ public class MessageServiceTest {
 
 
     @Test
-    public void receiveMsg() {
-        List<Message> messages= messageService.receiveMsg("user02",0);
+    public void receiveUnReadMsg() {
+        List<Message> messages= messageService.receiveUnReadMsg("zhouning",0);
         System.out.println(messages);
+
     }
 
     @Test
-    public void countOfMsg() {
-        int count=messageService.countOfMsg("user02");
+    public void receiveReadMsg() {
+        List<Message> messages= messageService.receiveReadMsg("zhouning",0);
+        System.out.println(messages);
+
+    }
+
+
+    @Test
+    public void countOfReadMsg() {
+        int count=messageService.countOfReadMsg("user02");
+        System.out.println(count);
+    }
+
+    @Test
+    public void countOfUnReadMsg() {
+        int count=messageService.countOfUnReadMsg("user02");
         System.out.println(count);
     }
 }
