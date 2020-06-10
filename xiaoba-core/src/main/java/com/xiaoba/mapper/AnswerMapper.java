@@ -111,4 +111,12 @@ public interface AnswerMapper{
      */
     @Update("UPDATE answer SET answerer=#{lastName} WHERE answerer=#{oldName}")
     int updateAnswerName(String oldName,String lastName);
+
+    /**
+     * 删除一个问题的回答
+     * @param questionId
+     * @return
+     */
+    @Delete("delete from answer where question_id=#{questionId}")
+    int deleteAnswersByQurstionId(int questionId);
 }

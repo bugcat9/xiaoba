@@ -1,7 +1,9 @@
 package com.xiaoba.service.impl;
 
 import com.xiaoba.constans.PathContants;
+import com.xiaoba.entity.Answer;
 import com.xiaoba.entity.Question;
+import com.xiaoba.mapper.AnswerMapper;
 import com.xiaoba.mapper.QuestionMapper;
 import com.xiaoba.service.FileService;
 import com.xiaoba.service.QuestionService;
@@ -21,6 +23,9 @@ public class QuestionServiceImpl implements QuestionService {
     private final static Integer PAGE_SIZE = 5;
     @Autowired
     QuestionMapper questionMapper;
+
+    @Autowired
+    AnswerMapper answerMapper;
 
     @Autowired
     FileService fileService;
@@ -46,6 +51,7 @@ public class QuestionServiceImpl implements QuestionService {
         if (question==null){
             return true;
         }
+        answerMapper.deleteAnswersByQurstionId(questionId);
         fileService.deletFile(question.getSavePath());
         int result=questionMapper.deleteQuestionById(questionId);
         return result==1;
