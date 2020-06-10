@@ -42,6 +42,8 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public boolean deleteQuestion(int questionId) {
+        Question question = questionMapper.findQuestionById(questionId);
+        fileService.deletFile(question.getSavePath());
         int result=questionMapper.deleteQuestionById(questionId);
         return result==1;
     }

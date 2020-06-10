@@ -66,6 +66,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public boolean deleteCommentsOfEssay(Integer essayId) {
+
         int result=userCommentMapper.deleteAllCommentOfParent(SysConstants.ESSAY,essayId);
         return result!=0;
     }
@@ -88,7 +89,9 @@ public class CommentServiceImpl implements CommentService {
         if (essay==null){
             return false;
         }
+        //评论数加一
         essay.setCommentNum(essay.getCommentNum()+1);
+        essayMapper.updateEssay(essay);
         UserComment userComment=new UserComment();
         userComment.setParentType(SysConstants.ESSAY);
         userComment.setParentId(essayId);
@@ -136,6 +139,15 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public boolean deleteCommentById(Integer commentId) {
+        UserComment userComment = userCommentMapper.selectCommentById(commentId);
+        if (userComment.getParentType()==SysConstants.ESSAY){
+            Essay essay = essayMapper.findEssayById(userComment.getParentId());
+            if (essay!=null){
+                //评论数量减一
+                essay.setCommentNum(essay.getCommentNum()-1);
+                essayMapper.updateEssay(essay);
+            }
+        }
         int result=userCommentMapper.deleteCommentById(commentId);
         return result==1;
     }

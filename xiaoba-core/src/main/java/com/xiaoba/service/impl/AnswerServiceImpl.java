@@ -41,8 +41,11 @@ public class AnswerServiceImpl implements AnswerService {
         if (question==null){
             return "文章不存在";
         }
+        //回答数量加一
         question.setAnswerNum((question.getAnswerNum()+1));
+        questionMapper.updateQuestion(question);
         String file= UUID.randomUUID().toString();
+        //存储文件
         String path = fileService.writeToMd(content,file);
         Answer answer=new Answer();
         answer.setAnswerer(answerer);
@@ -62,9 +65,17 @@ public class AnswerServiceImpl implements AnswerService {
         if (answer==null){
             return true;
         }
+        int questionId = answer.getQuestionId();
+        Question question = questionMapper.findQuestionById(questionId);
+        if (question!=null){
+            //回答数量减一
+            question.setAnswerNum(question.getAnswerNum()-1);
+            questionMapper.updateQuestion(question);
+        }
         int result=answerMapper.deleteAnswerById(answerId);
         //删除回答的所有评论
         commentService.deleteCommentsOfAnswer(answerId);
+        //删除回答文件
         fileService.deletFile(answer.getSavePath());
         return result==1;
     }
