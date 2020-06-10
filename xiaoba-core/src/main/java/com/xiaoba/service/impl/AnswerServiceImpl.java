@@ -88,7 +88,11 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public List<Answer> getAnswerByQuestion(int questionId,Integer pageIndex) {
-        return answerMapper.getAnswerOfQuestion(questionId,pageIndex,PAGE_SIZE);
+        List<Answer> answers= answerMapper.getAnswerOfQuestion(questionId,pageIndex,PAGE_SIZE);
+        for (Answer answer:answers){
+            answer.setSavePath(PathContants.ESSAY_PATH+answer.getSavePath());
+        }
+        return answers;
     }
 
     @Override
@@ -112,6 +116,18 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public boolean updateAnwser(Integer answerId, String content) {
-        return false;
+        try{
+            Answer answer = answerMapper.findAnswerById(answerId);
+            fileService.deletFile(answer.getSavePath());
+            String file= UUID.randomUUID().toString();
+            String path = fileService.writeToMd(content,file);
+            answer.setSavePath(path);
+            answerMapper.updateAnswer(answer);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
     }
 }

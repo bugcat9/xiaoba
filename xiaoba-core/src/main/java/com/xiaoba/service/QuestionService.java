@@ -39,4 +39,6 @@ public interface QuestionService {
      int countOfQuestions();
 
      Question findQuestionById(Integer questionId);
+
+     boolean updateQuestion(int questionId,String questionName,String content);
 }

@@ -15,6 +15,7 @@ import javax.xml.crypto.Data;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class EssayServiceImpl implements EssayService {
@@ -66,14 +67,15 @@ public class EssayServiceImpl implements EssayService {
 
     @Override
     public String publishEssay(String content,String essayTitle,String essayAbstract, String essayAuthor,String[] tags) {
+        String file= UUID.randomUUID().toString();
 
-        String path = fileService.writeToMd(content,essayTitle);
-        String fileName = essayTitle+".md";
+        String path = fileService.writeToMd(content,file);
+//        String fileName = file+".md";
         Essay essay=new Essay();
         essay.setEssayTitle(essayTitle);
         essay.setEssayAbstract(essayAbstract);
         essay.setEssayAuthor(essayAuthor);
-        essay.setSavePath(fileName);
+        essay.setSavePath(path);
         java.util.Date utilDate=new java.util.Date();
         essay.setEssayPublishTime(new Date(utilDate.getTime()));
         essay.setCategory("未分类");
@@ -141,4 +143,18 @@ public class EssayServiceImpl implements EssayService {
         int res = tagMapper.addEssayTag(essayId, tagName);
         return res==1;
     }
+
+    @Override
+    public boolean updateEssay(Essay essay, String content) {
+        if (content!=null){
+            String file= UUID.randomUUID().toString();
+            String path = fileService.writeToMd(content,file);
+            fileService.deletFile(essay.getSavePath());
+            essay.setSavePath(path);
+        }
+        int res = essayMapper.updateEssay(essay);
+        return res==1;
+    }
+
+
 }

@@ -85,4 +85,16 @@ public class QuestionController {
     public boolean deleteQuestion(int questionId){
         return questionService.deleteQuestion(questionId);
     }
+
+    @ApiOperation(value = "更新问题")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "questionId" ,value = "问题id"),
+            @ApiImplicitParam(name = "questionName" ,value = "问题名字"),
+            @ApiImplicitParam(name = "content" ,value = "内容")
+
+    })
+    @GetMapping("/updateQuestion")
+    public boolean updateQuestion(int questionId, String questionName, String content){
+        return questionService.updateQuestion(questionId, questionName, content);
+    }
 }

@@ -107,4 +107,11 @@ public class EssayController {
     public boolean deleteEssay(Integer essayId){
         return essayService.deleteEssay(essayId);
     }
+
+    @ApiOperation("修改文章")
+    @ApiImplicitParam(name = "content",value = "文章内容")
+    @GetMapping("/updateEssay")
+    public boolean updateEssay(Essay essay,String content){
+        return essayService.updateEssay(essay, content);
+    }
 }
