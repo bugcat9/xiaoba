@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
 @SpringBootTest
@@ -40,7 +41,7 @@ public class EssayServiceTest {
 
     @Test
     public void publishEssay() {
-        essayService.publishEssay("内容","测试标题","测试摘要","user01",new String[]{"java"});
+        essayService.publishEssay("内容","测试标题"+ UUID.randomUUID(),"测试摘要","user01",new String[]{"java"});
     }
 
     @Test
