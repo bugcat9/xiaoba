@@ -35,9 +35,12 @@ public class AnswerAspect {
         String answerer = (String) args[0];
         int questionId = (int) args[1];
         Question question = questionService.findQuestionById(questionId);
-        //发送消息
-        String msg = "你的问题："+question.getQuestionTitle()+"被"+answerer+"回答";
-        messageService.sendMessage(question.getQuestionerName(), msg);
-        messageService.sendMessage(answerer, question.getQuestionerName(), msg);
+        if (question!=null){
+            //发送消息
+            String msg = "你的问题："+question.getQuestionTitle()+"被"+answerer+"回答";
+            messageService.sendMessage(question.getQuestionerName(), msg);
+            messageService.sendMessage(answerer, question.getQuestionerName(), msg);
+        }
+
     }
 }
