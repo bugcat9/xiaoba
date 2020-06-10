@@ -19,11 +19,20 @@ public interface MessageService {
     Object receiveMessage(String queueName);
 
     /**
-     * 从数据库中得到数据
+     * 从数据库中得到已读消息
      * @param receiver
      * @return
      */
-    List<Message> receiveMsg(String receiver,int pageIndex);
+    List<Message> receiveReadMsg(String receiver,int pageIndex);
 
-    int countOfMsg(String receiver);
+    /**
+     * 从数据库中得到未读消息
+     * @param receiver
+     * @return
+     */
+    List<Message> receiveUnReadMsg(String receiver,int pageIndex);
+
+    int countOfReadMsg(String receiver);
+
+    int countOfUnReadMsg(String receiver);
 }

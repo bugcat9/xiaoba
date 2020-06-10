@@ -54,20 +54,37 @@ public class MessageController {
         return messageService.receiveMessage(queueName);
     }
 
-    @ApiOperation(value = "接收个人消息从数据库")
+    @ApiOperation(value = "接收个人已读消息从数据库")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "receiver",value = "接收者"),
             @ApiImplicitParam(name = "pageIndex",value = "页面")
     })
-    @GetMapping("/receiveMsg")
-    public List<Message> receiveMsg(String receiver,int pageIndex){
-        return messageService.receiveMsg(receiver, pageIndex);
+    @GetMapping("/receiveReadMsg")
+    public List<Message> receiveReadMsg(String receiver,int pageIndex){
+        return messageService.receiveReadMsg(receiver, pageIndex);
     }
 
-    @ApiOperation(value = "消息的数量")
+    @ApiOperation(value = "已读消息消息的数量")
     @ApiImplicitParam(name = "receiver",value = "接收者")
-    @GetMapping("/countOfMsg")
-    public int countOfMsg(String receiver){
-        return messageService.countOfMsg(receiver);
+    @GetMapping("/countOfReadMsg")
+    public int countOfReadMsg(String receiver){
+        return messageService.countOfReadMsg(receiver);
+    }
+
+    @ApiOperation(value = "接收个人未读消息从数据库")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "receiver",value = "接收者"),
+            @ApiImplicitParam(name = "pageIndex",value = "页面")
+    })
+    @GetMapping("/receiveUnReadMsg")
+    public List<Message> receiveUnReadMsg(String receiver,int pageIndex){
+        return messageService.receiveUnReadMsg(receiver, pageIndex);
+    }
+
+    @ApiOperation(value = "未读消息消息的数量")
+    @ApiImplicitParam(name = "receiver",value = "接收者")
+    @GetMapping("/countOfUnReadMsg")
+    public int countOfUnReadMsg(String receiver){
+        return messageService.countOfUnReadMsg(receiver);
     }
 }

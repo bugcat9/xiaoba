@@ -70,8 +70,8 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<Message> receiveMsg(String receiver,int pageIndex) {
-        List<Message> messages = messageMapper.selectMsgByRec(receiver,pageIndex,PAGE_SIZE);
+    public List<Message> receiveUnReadMsg(String receiver,int pageIndex) {
+        List<Message> messages = messageMapper.selectMsgByRec(receiver,SysConstants.MESSAGE_UNREAD,pageIndex,PAGE_SIZE);
         for (Message message:messages) {
             if (message.getMessageStatus()==SysConstants.MESSAGE_UNREAD){
                 //设置状态为已读
@@ -82,9 +82,18 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public int countOfMsg(String receiver) {
-        return messageMapper.countOfMsg(receiver);
+    public List<Message> receiveReadMsg(String receiver, int pageIndex) {
+        return messageMapper.selectMsgByRec(receiver,SysConstants.MESSAGE_READ,pageIndex,PAGE_SIZE);
     }
 
+    @Override
+    public int countOfReadMsg(String receiver) {
+        return messageMapper.countOfMsg(receiver, SysConstants.MESSAGE_READ);
+    }
+
+    @Override
+    public int countOfUnReadMsg(String receiver) {
+        return messageMapper.countOfMsg(receiver, SysConstants.MESSAGE_UNREAD);
+    }
 
 }
