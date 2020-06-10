@@ -88,6 +88,7 @@ public class CommentServiceImpl implements CommentService {
         if (essay==null){
             return false;
         }
+        essay.setCommentNum(essay.getCommentNum()+1);
         UserComment userComment=new UserComment();
         userComment.setParentType(SysConstants.ESSAY);
         userComment.setParentId(essayId);
