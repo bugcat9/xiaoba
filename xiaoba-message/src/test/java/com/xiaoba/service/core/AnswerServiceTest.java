@@ -30,8 +30,8 @@ public class AnswerServiceTest {
 
     @Test
     public void deleteAnswer() {
-        //boolean res= answerService.deleteAnswer(1);
-        //System.out.println("删除一条回答："+res);
+        boolean res= answerService.deleteAnswer(1);
+        System.out.println("删除一条回答："+res);
     }
 
     @Test

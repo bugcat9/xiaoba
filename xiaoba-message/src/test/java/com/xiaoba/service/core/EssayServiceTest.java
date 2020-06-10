@@ -34,13 +34,13 @@ public class EssayServiceTest {
 
     @Test
     public void getEssay() {
-        //Essay essay =essayService.getEssay(1);
-        //Assert.assertNull(essay);
+        Essay essay =essayService.getEssay(1);
+        System.out.println(essay);
     }
 
     @Test
     public void publishEssay() {
-        //essayService.publishEssay();
+        essayService.publishEssay("内容","测试标题","测试摘要","user01",new String[]{"java"});
     }
 
     @Test
