@@ -36,8 +36,11 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public String answerQuestion(String answerer, int questionId,String content) {
+        Question question = questionMapper.findQuestionById(questionId);
+        if (question==null){
+            return "文章不存在";
+        }
         String file= UUID.randomUUID().toString();
-
         String path = fileService.writeToMd(content,file);
         Answer answer=new Answer();
         answer.setAnswerer(answerer);

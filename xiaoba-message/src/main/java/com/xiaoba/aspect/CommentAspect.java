@@ -4,6 +4,7 @@ import com.xiaoba.entity.Essay;
 import com.xiaoba.service.CommentService;
 import com.xiaoba.service.EssayService;
 import com.xiaoba.service.MessageService;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
+@Slf4j
 public class CommentAspect {
 
     @Autowired
@@ -21,16 +23,16 @@ public class CommentAspect {
     @Autowired
     MessageService messageService;
 
-    @Pointcut("execution(* com.xiaoba.controller.CommentController.addComment(..))")
+    @Pointcut("execution(* com.xiaoba.controller.CommentController.addCommentOfEssay(..))")
     public void declareJointPointExpression(){}
 
     @AfterReturning(value="declareJointPointExpression()", returning="result")
     public void afterReturning(JoinPoint joinPoint, Object result){
         String methodName = joinPoint.getSignature().getName();
-        System.out.println("返回通知 The method " + methodName + " ends with " + result);
+        log.info("返回通知 The method " + methodName + " ends with " + result);
         Object [] args = joinPoint.getArgs();
         for (Object arg:args) {
-            System.out.println("参数"+arg);
+            log.info("参数"+arg);
         }
         boolean res = (boolean) result;
         if (res){

@@ -1,10 +1,6 @@
 package com.xiaoba.aspect;
 
-import com.xiaoba.entity.Essay;
-import com.xiaoba.entity.Question;
-import com.xiaoba.service.AnswerService;
-import com.xiaoba.service.MessageService;
-import com.xiaoba.service.QuestionService;
+import com.xiaoba.service.ElasticSearchService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -16,14 +12,11 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @Slf4j
-public class AnswerAspect {
-
+public class EssayAspect {
     @Autowired
-    QuestionService questionService;
-    @Autowired
-    MessageService messageService;
+    ElasticSearchService elasticSearchService;
 
-    @Pointcut("execution(* com.xiaoba.controller.AnswerController.answerQuestion(..))")
+    @Pointcut("execution(* com.xiaoba.controller.EssayController.deleteEssay(..))")
     public void declareJointPointExpression(){}
 
     @AfterReturning(value="declareJointPointExpression()", returning="result")
@@ -31,17 +24,14 @@ public class AnswerAspect {
         String methodName = joinPoint.getSignature().getName();
         log.info("返回通知 The method " + methodName + " ends with " + result);
         Object [] args = joinPoint.getArgs();
+
         for (Object arg:args) {
             log.info("参数"+arg);
         }
-        String answerer = (String) args[0];
-        int questionId = (int) args[1];
-        Question question = questionService.findQuestionById(questionId);
-        if (question!=null){
-            //发送消息
-            String msg = "你的问题："+question.getQuestionTitle()+"被"+answerer+"回答";
-            messageService.sendMessage(question.getQuestionerName(), msg);
-            messageService.sendMessage(answerer, question.getQuestionerName(), msg);
+        boolean res = (boolean) result;
+        if (res){
+            Integer essayId = (Integer) args[0];
+            elasticSearchService.deleteEssayIndex(essayId);
         }
 
     }

@@ -1,6 +1,7 @@
 package com.xiaoba.service.impl;
 
 import com.xiaoba.constans.SysConstants;
+import com.xiaoba.entity.Essay;
 import com.xiaoba.entity.UserComment;
 import com.xiaoba.mapper.EssayMapper;
 import com.xiaoba.mapper.UserCommentMapper;
@@ -83,6 +84,10 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public boolean addCommentOfEssay(Integer essayId, String commentatorName, String commentContent) {
+        Essay essay = essayMapper.findEssayById(essayId);
+        if (essay==null){
+            return false;
+        }
         UserComment userComment=new UserComment();
         userComment.setParentType(SysConstants.ESSAY);
         userComment.setParentId(essayId);
