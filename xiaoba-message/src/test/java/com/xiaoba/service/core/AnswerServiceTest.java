@@ -1,6 +1,7 @@
 package com.xiaoba.service.core;
 
 import com.xiaoba.entity.Answer;
+import com.xiaoba.entity.AnswerFrom;
 import com.xiaoba.service.AnswerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,13 +30,13 @@ public class AnswerServiceTest {
 
     @Test
     public void deleteAnswer() {
-        boolean res= answerService.deleteAnswer(1);
-        System.out.println("删除一条回答："+res);
+        //boolean res= answerService.deleteAnswer(1);
+        //System.out.println("删除一条回答："+res);
     }
 
     @Test
     public void getAnswerBySomeone() {
-        List<Answer> answers= answerService.getAnswerBySomeone("user01",0);
+        List<AnswerFrom> answers= answerService.getAnswerBySomeone("user01",0);
         System.out.println("获取用户的所有回答：");
         System.out.println(answers);
     }
