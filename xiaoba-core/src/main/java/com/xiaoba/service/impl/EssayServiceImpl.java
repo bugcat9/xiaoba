@@ -94,8 +94,13 @@ public class EssayServiceImpl implements EssayService {
 
     @Override
     public boolean deleteEssay(Integer essayId) {
+        Essay essay = essayMapper.findEssayById(essayId);
         int result=essayMapper.deleteEssayById(essayId);
+        //删除所有评论
         commentService.deleteCommentsOfEssay(essayId);
+        //删除本地文件
+        fileService.deletFile(essay.getSavePath());
+
         return result==1;
     }
 

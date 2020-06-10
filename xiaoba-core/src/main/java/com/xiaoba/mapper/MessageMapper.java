@@ -25,9 +25,11 @@ public interface MessageMapper {
     @Update("update message set message_status=#{messageStatus} where message_id=#{messageId}")
     int updateStatus(Integer messageId,Integer messageStatus);
 
-    @Select("select * from message  where message_receiver=#{receiver} order by send_time limit ${pageIndex*count},#{count} ")
-    List<Message> selectMsgByRec(String receiver,int pageIndex,int count);
+    @Select("select * from message  where message_receiver=#{receiver} and message_status=#{messageStatus} " +
+            "order by send_time limit ${pageIndex*count},#{count} ")
+    List<Message> selectMsgByRec(String receiver,int messageStatus,int pageIndex,int count);
 
-    @Select("select count(*) from message   where message_receiver=#{receiver}")
-    int countOfMsg(String receiver);
+    @Select("select count(*) from message   where message_receiver=#{receiver} and message_status=#{messageStatus}")
+    int countOfMsg(String receiver,int messageStatus);
+
 }

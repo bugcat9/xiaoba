@@ -45,7 +45,7 @@ public class CommentController {
             @ApiImplicitParam(name = "commentContent",value = "文章内容")
     })
     @GetMapping("/addComment")
-    public boolean addComment(Integer essayId,String commentatorName,String commentContent){
+    public boolean addCommentOfEssay(Integer essayId,String commentatorName,String commentContent){
         return commentService.addCommentOfEssay(essayId,commentatorName,commentContent);
     }
 

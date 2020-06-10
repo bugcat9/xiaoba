@@ -45,7 +45,7 @@ public class RegisterServiceImpl implements RegisterService {
         if (sysUser!=null){
             return false;
         }
-
+//        if ()
         //创建用户
         sysUser = new SysUser();
         sysUser.setUserName(userName);
