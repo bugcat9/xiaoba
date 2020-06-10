@@ -56,7 +56,9 @@ public class EssayServiceImpl implements EssayService {
 
     @Override
     public Essay getEssay(Integer id) {
-
+        if(id==null) {
+            return null;
+        }
         Essay essay=essayMapper.findEssayById(id);
         essay.setSavePath(PathContants.ESSAY_PATH+essay.getSavePath());
         List<Tag> tags=tagMapper.getTagsByEssayId(id);
