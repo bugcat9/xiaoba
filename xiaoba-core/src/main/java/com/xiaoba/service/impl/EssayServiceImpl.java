@@ -60,9 +60,12 @@ public class EssayServiceImpl implements EssayService {
             return null;
         }
         Essay essay=essayMapper.findEssayById(id);
-        essay.setSavePath(PathContants.ESSAY_PATH+essay.getSavePath());
-        List<Tag> tags=tagMapper.getTagsByEssayId(id);
-        essay.setTagList(tags);
+        if (essay!=null){
+            essay.setSavePath(PathContants.ESSAY_PATH+essay.getSavePath());
+            List<Tag> tags=tagMapper.getTagsByEssayId(id);
+            essay.setTagList(tags);
+        }
+
         return essay;
     }
 
