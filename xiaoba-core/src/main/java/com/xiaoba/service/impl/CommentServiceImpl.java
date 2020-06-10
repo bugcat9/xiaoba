@@ -140,6 +140,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public boolean deleteCommentById(Integer commentId) {
         UserComment userComment = userCommentMapper.selectCommentById(commentId);
+        if (userComment==null){
+            return true;
+        }
         if (userComment.getParentType()==SysConstants.ESSAY){
             Essay essay = essayMapper.findEssayById(userComment.getParentId());
             if (essay!=null){
