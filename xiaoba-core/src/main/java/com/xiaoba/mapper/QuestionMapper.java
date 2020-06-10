@@ -36,7 +36,7 @@ public interface QuestionMapper {
      * @return
      */
     @Update("update question set question_title=#{questionTitle}, questioner_name=#{questionerName}," +
-            "question_time=#{questionTime},save_path=#{savePath} " +
+            "question_time=#{questionTime},save_path=#{savePath},answer_num=#{answerNum} " +
             "where question_id=#{questionId}")
     int updateQuestion(Question question);
 

@@ -39,7 +39,7 @@ public class AnswerServiceImpl implements AnswerService {
         Question question = questionMapper.findQuestionById(questionId);
 
         if (question==null){
-            return "文章不存在";
+            return "问题不存在";
         }
         //回答数量加一
         question.setAnswerNum((question.getAnswerNum()+1));
