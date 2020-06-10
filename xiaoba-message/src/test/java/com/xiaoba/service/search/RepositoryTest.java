@@ -38,7 +38,7 @@ public class RepositoryTest {
         questionIndex.setQuestionId(99);
         questionIndex.setQuestionerName("========================");
         System.out.println("-------------------------");
-        //questionRepository.save(questionIndex);
+        questionRepository.save(questionIndex);
         questionRepository.deleteById(99);
     }
 
