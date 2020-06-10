@@ -28,9 +28,9 @@ public class RegisterAspect {
             System.out.println("参数"+arg);
         }
         boolean res = (boolean) result;
-        if (res){
-            String userName = (String) args[0];
-            messageService.createQueue(userName);
-        }
+//        if (res){
+//            String userName = (String) args[0];
+//            messageService.createQueue(userName);
+//        }
     }
 }

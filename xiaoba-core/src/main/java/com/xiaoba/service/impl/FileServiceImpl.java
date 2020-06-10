@@ -67,6 +67,9 @@ public class FileServiceImpl implements FileService {
         } catch (FileNotFoundException e) {
             logger.error("存储为md文件错误:",e);
             e.printStackTrace();
+        }catch (Exception e){
+            logger.error("存储为md文件错误:",e);
+            e.printStackTrace();
         }
         return fileName;
     }
