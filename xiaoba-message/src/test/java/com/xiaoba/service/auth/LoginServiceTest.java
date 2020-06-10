@@ -3,8 +3,10 @@ package com.xiaoba.service.auth;
 import com.xiaoba.entity.SysUser;
 import com.xiaoba.entity.SysUserToken;
 import com.xiaoba.service.LoginService;
+import com.xiaoba.service.RegisterService;
 import com.xiaoba.service.TokenService;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,13 @@ public class LoginServiceTest {
     @Autowired
     TokenService tokenService;
 
+    @Autowired
+    RegisterService registerService;
+
+    @Before
+    public void register(){
+        registerService.registerUser("user01","123456","11111@qq.com");
+    }
 
     @Test
     public void login() {

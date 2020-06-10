@@ -1,6 +1,8 @@
 package com.xiaoba.service.impl;
 
 import com.xiaoba.contants.ElasticSearchContants;
+import com.xiaoba.repository.EssayRepository;
+import com.xiaoba.repository.QuestionRepository;
 import com.xiaoba.service.ElasticSearchService;
 import com.xiaoba.util.HighLightBuilderUtil;
 import com.xiaoba.util.PathLoadUtil;
@@ -33,6 +35,12 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
     @Autowired
     private RestHighLevelClient restHighLevelClient;
 
+    @Autowired
+    private EssayRepository essayRepository;
+
+    @Autowired
+    private QuestionRepository questionRepository;
+
     @Override
     public Map<String, Object> searchEssay(String keyWord, int currentPage) throws IOException {
         String index=ElasticSearchContants.ESSAY_INDEX;
@@ -49,5 +57,16 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
         SearchRequest request=HighLightBuilderUtil.buildSearchRequest(index,fields,keyWord,currentPage);
         SearchResponse response= restHighLevelClient.search(request, RequestOptions.DEFAULT);
         return HighLightBuilderUtil.parseResponse(response,fields,index,currentPage);
+    }
+
+    @Override
+    public void deleteEssayIndex(Integer essayId) {
+        essayRepository.deleteById(essayId);
+    }
+
+    @Override
+    public void deleteQuestionIndex(Integer questionId) {
+        questionRepository.deleteById(questionId);
+
     }
 }

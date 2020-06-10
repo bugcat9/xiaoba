@@ -30,4 +30,15 @@ public interface ElasticSearchService {
      */
     public Map<String,Object> searchQuestion(String keyWord,int currentPage) throws IOException;
 
+    /**
+     * 删除文章索引
+     * @param essayId 文章ID
+     */
+    public void deleteEssayIndex(Integer essayId);
+
+    /**
+     * 删除问题索引
+     * @param questionId 问题ID
+     */
+    public void deleteQuestionIndex(Integer questionId);
 }
