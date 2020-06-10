@@ -54,6 +54,9 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public boolean deleteAnswer(int answerId) {
         Answer answer = answerMapper.findAnswerById(answerId);
+        if (answer==null){
+            return true;
+        }
         int result=answerMapper.deleteAnswerById(answerId);
         //删除回答的所有评论
         commentService.deleteCommentsOfAnswer(answerId);
