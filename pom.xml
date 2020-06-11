@@ -44,6 +44,10 @@
         <lombok.version>1.18.4</lombok.version>
         <mysql.version>8.0.11</mysql.version>
         <elasticsearch.version>7.6.2</elasticsearch.version>
+        <sonar.login>6f5a1c3b4061c4198f620a6df917890faca048c</sonar.login>
+        <sonar.projectKey>xiaoba-project</sonar.projectKey>
+        <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
+        <sonar.projectName>xiaoba-project</sonar.projectName>
     </properties>
 
     <dependencyManagement>

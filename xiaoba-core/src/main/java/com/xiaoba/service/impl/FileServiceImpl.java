@@ -3,6 +3,7 @@ package com.xiaoba.service.impl;
 import com.xiaoba.entity.Essay;
 import com.xiaoba.mapper.EssayMapper;
 import com.xiaoba.service.FileService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,10 @@ import java.util.Date;
  * @author zhouning
  */
 @Service
+@Slf4j
 public class FileServiceImpl implements FileService {
 
-    private Logger logger = (Logger) LoggerFactory.getLogger(getClass());
+//    private Logger logger = (Logger) LoggerFactory.getLogger(getClass());
 
     @Value("${filepath}")
     private String filepath;
@@ -37,7 +39,7 @@ public class FileServiceImpl implements FileService {
         //fileName = filepath + UUID.randomUUID() + fileName;
         fileName = filepath + fileName;
         System.out.println(fileName);
-        logger.info("托盘存放位置"+fileName);
+        log.info("托盘存放位置"+fileName);
 
         // 文件对象
         File dest = new File(fileName);
@@ -51,7 +53,7 @@ public class FileServiceImpl implements FileService {
             file.transferTo(dest);
             return true;
         } catch (Exception e) {
-            logger.error("文件上传错误:",e);
+            log.error("文件上传错误:",e);
             e.printStackTrace();
         }
         return false;
@@ -61,18 +63,23 @@ public class FileServiceImpl implements FileService {
     public String writeToMd(String content,String filename) {
         String fileName = filename+".md";
         String pathName = filepath + fileName;
+        PrintWriter pWriter = null;
         try {
-            PrintWriter pWriter = new PrintWriter(new FileOutputStream(new File(pathName)));
+             pWriter = new PrintWriter(new FileOutputStream(new File(pathName)));
             //写下中间内容
             pWriter.println(content);
-            pWriter.close();
-            logger.info("编写了文章",pathName);
+
+            log.info("编写了文章",pathName);
         } catch (FileNotFoundException e) {
-            logger.error("存储为md文件错误:",e);
+            log.error("存储为md文件错误:",e);
             e.printStackTrace();
         }catch (Exception e){
-            logger.error("存储为md文件错误:",e);
+            log.error("存储为md文件错误:",e);
             e.printStackTrace();
+        }finally {
+            if (pWriter!=null){
+                pWriter.close();
+            }
         }
         return fileName;
     }
@@ -97,11 +104,23 @@ public class FileServiceImpl implements FileService {
             while((len = fis.read(buf)) != -1) {
                 os.write(buf, 0, len);
             }
-            fis.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            log.error("下载文件错误", e);
         } catch (IOException e) {
             e.printStackTrace();
+            log.error("下载文件错误", e);
+        }catch (Exception e){
+
+        } finally {
+            if (fis!=null){
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    log.error("文件关闭错误", e);
+                }
+            }
         }
     }
 

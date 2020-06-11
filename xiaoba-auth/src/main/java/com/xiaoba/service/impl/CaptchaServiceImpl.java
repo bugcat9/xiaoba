@@ -27,7 +27,7 @@ public class CaptchaServiceImpl implements CaptchaService {
     /**
      *  验证码的时间为5分钟
      */
-    public final static long CAPTCHA_EXPIRE = 60 * 5;
+    public final static long CAPTCHA_EXPIRE = 60L * 5L;
 
     @Override
     public BufferedImage getCaptcha(String uuid) {

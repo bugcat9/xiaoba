@@ -25,7 +25,7 @@ public class MailServiceImpl implements MailService {
     @Autowired
     private RedisUtils redisUtils;
 
-    public final static long VERIFY_CODE_EXPIRE = 60 * 5;
+    public final static long VERIFY_CODE_EXPIRE = 60L * 5L;
     /**
      * 邮件发送人
      */
@@ -51,7 +51,7 @@ public class MailServiceImpl implements MailService {
         String message = "您的注册验证码为："+verifyCode;
         sendMail(reciver, "注册验证码", message);
         // 存进redis,5分钟后过期,将邮箱的主人作为key
-        redisUtils.set(reciver,verifyCode,CAPTCHA_EXPIRE);
+        redisUtils.set(reciver,verifyCode,VERIFY_CODE_EXPIRE);
     }
 
     @Override
