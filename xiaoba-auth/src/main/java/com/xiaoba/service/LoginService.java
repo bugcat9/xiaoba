@@ -10,7 +10,7 @@ import java.util.Map;
 public interface LoginService {
 
     /**
-     *
+     *登录
      * @param userName
      * @param userPassword
      * @return
@@ -24,6 +24,10 @@ public interface LoginService {
      */
      SysUser getInfo(String token);
 
-     void logout(String token);
+    /**
+     * 登出
+     * @param token
+     */
+    void logout(String token);
 
 }

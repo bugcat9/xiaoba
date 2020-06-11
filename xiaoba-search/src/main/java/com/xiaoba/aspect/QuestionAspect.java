@@ -9,6 +9,9 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author zhouning
+ */
 @Aspect
 @Component
 @Slf4j

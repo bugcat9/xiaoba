@@ -56,7 +56,6 @@ public class LoginController {
     public void captcha(HttpServletRequest request,HttpServletResponse response, String uuid) throws IOException {
         response.setHeader("Cache-Control", "no-store, no-cache");
         response.setContentType("image/png");
-//        System.out.println(uuid);
         //获取图片验证码
         BufferedImage image = captchaService.getCaptcha(uuid);
 

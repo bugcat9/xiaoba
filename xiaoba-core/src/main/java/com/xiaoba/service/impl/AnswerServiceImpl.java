@@ -39,7 +39,7 @@ public class AnswerServiceImpl implements AnswerService {
         Question question = questionMapper.findQuestionById(questionId);
 
         if (question==null){
-            return "文章不存在";
+            return "问题不存在";
         }
         //回答数量加一
         question.setAnswerNum((question.getAnswerNum()+1));
@@ -88,20 +88,21 @@ public class AnswerServiceImpl implements AnswerService {
         for (Answer answer:answers) {
             answer.setSavePath(PathContants.QUESTION_PATH+answer.getSavePath());
             Question question = questionMapper.findQuestionById(answer.getQuestionId());
-            question.setSavePath(PathContants.QUESTION_PATH+question.getSavePath());
-            AnswerFrom answerFrom = new AnswerFrom() ;
-            answerFrom.setAnswer(answer);
-            answerFrom.setQuestion(question);
-            answerFroms.add(answerFrom);
+            if (question!=null){
+                question.setSavePath(PathContants.QUESTION_PATH+question.getSavePath());
+                AnswerFrom answerFrom = new AnswerFrom() ;
+                answerFrom.setAnswer(answer);
+                answerFrom.setQuestion(question);
+                answerFroms.add(answerFrom);
+            }
+
         }
-//        Map<String,Object> result =new HashMap<>();
-//        result.put("answer",answers);
-//        result.put("question",questions);
+
         return answerFroms;
     }
 
     @Override
-    public int CountofSbAnswer(String anserer) {
+    public int countofSbAnswer(String anserer) {
         return answerMapper.countOfSbAnswer(anserer);
     }
 

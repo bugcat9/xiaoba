@@ -10,9 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+/**
+ * @author zhouning
+ */
 @Service
 public class TokenServiceImpl implements TokenService {
-    //12小时后过期
+    /**
+     *     12小时后过期
+     */
     private final static int EXPIRE = 3600 * 12;
     @Autowired
     private RedisUtils redisUtils;

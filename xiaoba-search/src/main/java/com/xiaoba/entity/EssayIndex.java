@@ -5,6 +5,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.sql.Date;
+/**
+ * @author wwx
+ */
 @Document(indexName = ElasticSearchContants.ESSAY_INDEX,type = "_doc")
 public class EssayIndex {
 

@@ -4,10 +4,24 @@ import com.xiaoba.entity.UserComment;
 
 import java.util.List;
 
+/**
+ * @author zhouning
+ */
 public interface CommentService {
 
+    /**
+     * 得到一篇文章的评论
+     * @param essayId
+     * @param pageIndex
+     * @return
+     */
    List<UserComment> listCommentsByEssay(Integer essayId,Integer pageIndex);
 
+    /**
+     * 得到一篇文章的评论数量
+     * @param essayId
+     * @return
+     */
    int countOfEssayCommnets(Integer essayId);
 
    /**
@@ -18,7 +32,12 @@ public interface CommentService {
     */
     List<UserComment> getCommentsOfAnswer(Integer answerId,Integer pageIndex);
 
-    int countOfAnswerComent(Integer answerId);
+    /**
+     * 返回一个回答的评论数量
+     * @param answerId
+     * @return
+     */
+    int countOfAnswerComment(Integer answerId);
 
    /**
     * 获得一个评论下的所有评论
@@ -28,6 +47,11 @@ public interface CommentService {
     */
     List<UserComment> getCommentsOfComment(Integer commentId,Integer pageIndex);
 
+    /**
+     * 返回评论的评论数量
+     * @param commentId
+     * @return
+     */
     int countOfCommentComment(Integer commentId);
 
    /**
@@ -38,7 +62,13 @@ public interface CommentService {
     */
     List<UserComment> getCommentsOfSb(String commentatorName,Integer pageIndex);
 
+    /**
+     * 返回一个人的评论数量
+     * @param commentatorName
+     * @return
+     */
     int countOfSbComments(String commentatorName);
+
    /**
     * 当一篇文章被删除，删除这篇文章所有评论
     * @param essayId 文章ID
@@ -94,5 +124,11 @@ public interface CommentService {
     */
     boolean deleteCommentById(Integer commentId);
 
+    /**
+     * 更新评论
+     * @param commentId
+     * @param commentContent
+     * @return
+     */
     boolean updateComment(Integer commentId,String commentContent);
 }

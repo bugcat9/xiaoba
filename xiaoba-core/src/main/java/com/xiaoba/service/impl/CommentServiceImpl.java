@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.util.List;
 
+/**
+ * @author zhouning
+ */
 @Service
 public class CommentServiceImpl implements CommentService {
 
@@ -40,7 +43,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public int countOfAnswerComent(Integer answerId) {
+    public int countOfAnswerComment(Integer answerId) {
         return userCommentMapper.countOfComments(SysConstants.ANSWER,answerId);
     }
 
@@ -90,8 +93,8 @@ public class CommentServiceImpl implements CommentService {
             return false;
         }
         //评论数加一
-        essay.setCommentNum(essay.getCommentNum()+1);
-        essayMapper.updateEssay(essay);
+//        essay.setCommentNum(essay.getCommentNum()+1);
+//        essayMapper.updateEssay(essay);
         UserComment userComment=new UserComment();
         userComment.setParentType(SysConstants.ESSAY);
         userComment.setParentId(essayId);

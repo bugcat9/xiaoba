@@ -1,6 +1,9 @@
 package com.xiaoba.entity;
 
 
+/**
+ * @author zhouning
+ */
 public class SysLoginForm {
     private String userName;
     private String userPassword;

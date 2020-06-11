@@ -1,5 +1,8 @@
 package com.xiaoba.contants;
 
+/**
+ * @author wwx
+ */
 public class ElasticSearchContants {
     //final public static String INDEX="essay";
     /**

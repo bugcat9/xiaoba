@@ -17,6 +17,7 @@ import java.util.Set;
 /**
  * 自定义realm程序
  *
+ * @author zhouning
  */
 @Component
 public class AuthRealm extends AuthorizingRealm {

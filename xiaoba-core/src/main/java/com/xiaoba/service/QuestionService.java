@@ -12,6 +12,7 @@ public interface QuestionService {
     /**
      * 提问
      * @param asker 提问者的用户名
+     * @param questionTitle
      * @param questionContent 提问内容
      * @return 成功发出问题返回true
      */
@@ -32,13 +33,39 @@ public interface QuestionService {
      */
      List<Question> getQuestionsBySomeone(String asker,Integer pageIndex);
 
+    /**
+     * 问题数量
+     * @param asker
+     * @return
+     */
      int countOfSbQuestions(String asker);
 
+    /**
+     * 得到所有问题
+     * @param pageIndex
+     * @return
+     */
      List<Question> allQuestions(Integer pageIndex);
 
+    /**
+     * 问题数量
+     * @return
+     */
      int countOfQuestions();
 
+    /**
+     * 返回问题
+     * @param questionId
+     * @return
+     */
      Question findQuestionById(Integer questionId);
 
+    /**
+     * 更新问题
+     * @param questionId
+     * @param questionName
+     * @param content
+     * @return
+     */
      boolean updateQuestion(int questionId,String questionName,String content);
 }

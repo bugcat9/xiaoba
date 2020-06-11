@@ -1,5 +1,8 @@
 package com.xiaoba.entity;
 
+/**
+ * @author zhouning
+ */
 public class AnswerFrom {
     private Answer answer;
     private Question question;

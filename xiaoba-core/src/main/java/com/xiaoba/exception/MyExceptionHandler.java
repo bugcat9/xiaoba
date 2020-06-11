@@ -12,6 +12,9 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * @author zhouning
+ */
 @ControllerAdvice
 @Slf4j
 public class MyExceptionHandler {

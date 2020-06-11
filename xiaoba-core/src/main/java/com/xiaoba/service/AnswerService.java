@@ -36,8 +36,12 @@ public interface AnswerService {
      */
     List<AnswerFrom> getAnswerBySomeone(String anserer, Integer pageIndex);
 
-
-     int CountofSbAnswer(String anserer);
+    /**
+     *  返回anserer回答问题的数量
+     * @param anserer
+     * @return
+     */
+     int countofSbAnswer(String anserer);
 
     /**
      * 获得某个问题下的所有回答
@@ -47,6 +51,11 @@ public interface AnswerService {
      */
      List<Answer> getAnswerByQuestion(int questionId,Integer pageIndex);
 
+    /**
+     * 返回 questionId问题回答的数量
+     * @param questionId
+     * @return
+     */
      int countOfQuestionAnswer(int questionId);
 
     /**
@@ -56,7 +65,17 @@ public interface AnswerService {
      */
      List<Answer> allAnswers(Integer pageIndex);
 
-     int countOfAllAnswers();
+    /**
+     * 返回回答的数量
+     * @return
+     */
+    int countOfAllAnswers();
 
+    /**
+     * 更新回答内容
+     * @param answerId
+     * @param content
+     * @return
+     */
      boolean updateAnwser(Integer answerId,String content);
 }

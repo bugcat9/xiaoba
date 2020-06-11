@@ -1,5 +1,8 @@
 package com.xiaoba.constans;
 
+/**
+ * @author wwx
+ */
 public class PathContants {
     /**
      * 图片存储路径

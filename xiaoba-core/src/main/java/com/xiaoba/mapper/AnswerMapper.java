@@ -33,7 +33,11 @@ public interface AnswerMapper{
     @Delete("delete from answer where answer_id=#{answerId}")
     int deleteAnswerById(Integer answerId);
 
-
+    /**
+     *  更新anwer表
+     * @param answer
+     * @return
+     */
     @Update("update answer set question_id=#{questionId}," +
             "answerer=#{answerer},answer_time=#{answerTime},save_path=#{savePath} " +
             "where answer_id=#{answerId}")
@@ -57,17 +61,29 @@ public interface AnswerMapper{
     @Select("select * from answer where answerer=#{answerer} order by answer_time limit ${pageIndex*count},#{count}")
     List<Answer> getAnswerOfSb(String answerer,int pageIndex,int count);
 
+    /**
+     * 返回 answerer 回答问题的数量
+     * @param answerer
+     * @return
+     */
     @Select("select count(*) from answer where answerer=#{answerer} ")
     int countOfSbAnswer(String answerer);
 
     /**
      * 通过问题id获得该问题的所有回答
      * @param questionId
+     * @param pageIndex
+     * @param count
      * @return
      */
     @Select("select * from answer where question_id=#{questionId} order by answer_time limit ${pageIndex*count},#{count}")
     List<Answer> getAnswerOfQuestion(Integer questionId,int pageIndex,int count);
 
+    /**
+     * 返回 questionId问题回答的 数量
+     * @param questionId
+     * @return
+     */
     @Select("select count(*) from  answer where question_id=#{questionId}")
     int countOfQuestionAnswer(Integer questionId);
 
@@ -80,9 +96,27 @@ public interface AnswerMapper{
     @Select("select * from answer order by answer_time limit ${pageIndex*count},#{count}")
     List<Answer> allAnswers(int pageIndex,int count);
 
+    /**
+     * 返回 回答的数量
+     * @return
+     */
     @Select("select count(*) from answer")
     int countOfAllAnswer();
 
+    /**
+     * 更新用户名时，更新answer表中，回答者的名字
+     * @param oldName
+     * @param lastName
+     * @return
+     */
     @Update("UPDATE answer SET answerer=#{lastName} WHERE answerer=#{oldName}")
     int updateAnswerName(String oldName,String lastName);
+
+    /**
+     * 删除一个问题的回答
+     * @param questionId
+     * @return
+     */
+    @Delete("delete from answer where question_id=#{questionId}")
+    int deleteAnswersByQurstionId(int questionId);
 }
