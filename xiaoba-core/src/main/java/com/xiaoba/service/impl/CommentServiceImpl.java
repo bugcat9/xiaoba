@@ -93,8 +93,8 @@ public class CommentServiceImpl implements CommentService {
             return false;
         }
         //评论数加一
-        essay.setCommentNum(essay.getCommentNum()+1);
-        essayMapper.updateEssay(essay);
+//        essay.setCommentNum(essay.getCommentNum()+1);
+//        essayMapper.updateEssay(essay);
         UserComment userComment=new UserComment();
         userComment.setParentType(SysConstants.ESSAY);
         userComment.setParentId(essayId);
