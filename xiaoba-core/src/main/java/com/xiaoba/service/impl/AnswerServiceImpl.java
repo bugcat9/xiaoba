@@ -88,11 +88,14 @@ public class AnswerServiceImpl implements AnswerService {
         for (Answer answer:answers) {
             answer.setSavePath(PathContants.QUESTION_PATH+answer.getSavePath());
             Question question = questionMapper.findQuestionById(answer.getQuestionId());
-            question.setSavePath(PathContants.QUESTION_PATH+question.getSavePath());
-            AnswerFrom answerFrom = new AnswerFrom() ;
-            answerFrom.setAnswer(answer);
-            answerFrom.setQuestion(question);
-            answerFroms.add(answerFrom);
+            if (question!=null){
+                question.setSavePath(PathContants.QUESTION_PATH+question.getSavePath());
+                AnswerFrom answerFrom = new AnswerFrom() ;
+                answerFrom.setAnswer(answer);
+                answerFrom.setQuestion(question);
+                answerFroms.add(answerFrom);
+            }
+
         }
 
         return answerFroms;
