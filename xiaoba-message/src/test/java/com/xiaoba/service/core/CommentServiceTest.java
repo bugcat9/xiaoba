@@ -92,7 +92,7 @@ public class CommentServiceTest {
 
     @Test
     public void addCommentOfEssay() {
-        boolean res= commentService.addCommentOfEssay(2,"user01","测试评论");
+        boolean res= commentService.addCommentOfEssay(6,"王文旭","测试评论");
         System.out.println("对一篇文章发表评论:"+res);
     }
 

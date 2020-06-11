@@ -20,11 +20,11 @@ public class ElasticSearchServiceTest {
 
     @Test
     public void searchEssay() throws IOException {
-        elasticSearchService.searchEssay("java",0);
+        elasticSearchService.searchEssay("一篇文章",3);
     }
 
     @Test
     public void searchQuestion() throws IOException {
-        elasticSearchService.searchQuestion("什么",0);
+        elasticSearchService.searchQuestion("测试",4);
     }
 }

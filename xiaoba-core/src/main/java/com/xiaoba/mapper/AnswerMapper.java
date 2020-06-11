@@ -33,10 +33,7 @@ public interface AnswerMapper{
     @Delete("delete from answer where answer_id=#{answerId}")
     int deleteAnswerById(Integer answerId);
 
-    /**
-     *更新Answer
-     * @param answer
-     */
+
     @Update("update answer set question_id=#{questionId}," +
             "answerer=#{answerer},answer_time=#{answerTime},save_path=#{savePath} " +
             "where answer_id=#{answerId}")
@@ -66,8 +63,6 @@ public interface AnswerMapper{
     /**
      * 通过问题id获得该问题的所有回答
      * @param questionId
-     * @param pageIndex
-     * @param count
      * @return
      */
     @Select("select * from answer where question_id=#{questionId} order by answer_time limit ${pageIndex*count},#{count}")

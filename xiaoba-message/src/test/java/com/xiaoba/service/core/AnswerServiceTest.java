@@ -23,7 +23,7 @@ public class AnswerServiceTest {
 
     @Test
     public void answerQuestion() {
-        String res= answerService.answerQuestion("测试回答",1, "回答内容");
+        String res= answerService.answerQuestion("王文旭",2, "回答内容");
         System.out.println("回答一个问题");
         System.out.println(res);
     }
