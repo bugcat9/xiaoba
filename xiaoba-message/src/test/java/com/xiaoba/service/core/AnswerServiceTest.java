@@ -43,7 +43,7 @@ public class AnswerServiceTest {
 
     @Test
     public void countofSbAnswer() {
-        int count=answerService.CountofSbAnswer("user01");
+        int count=answerService.countofSbAnswer("user01");
         System.out.println("获取用户的回答的数量:"+count);
     }
 

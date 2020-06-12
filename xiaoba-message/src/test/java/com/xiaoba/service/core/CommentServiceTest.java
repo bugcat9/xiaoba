@@ -42,7 +42,7 @@ public class CommentServiceTest {
 
     @Test
     public void countOfAnswerComent() {
-        int count=commentService.countOfAnswerComent(1);
+        int count=commentService.countOfCommentComment(1);
         System.out.println("获取一篇回答下的评论数："+count);
     }
 
@@ -110,7 +110,7 @@ public class CommentServiceTest {
 
     @Test
     public void deleteCommentById() {
-        boolean res= commentService.deleteCommentById(1);
-        System.out.println("对一篇文章发表评论:"+res);
+        //boolean res= commentService.deleteCommentById(1);
+        //System.out.println("对一篇文章发表评论:"+res);
     }
 }
