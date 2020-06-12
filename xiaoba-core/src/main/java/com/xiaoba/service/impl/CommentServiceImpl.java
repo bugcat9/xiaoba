@@ -150,8 +150,9 @@ public class CommentServiceImpl implements CommentService {
             Essay essay = essayMapper.findEssayById(userComment.getParentId());
             if (essay!=null){
                 //评论数量减一
-                essay.setCommentNum(essay.getCommentNum()-1);
-                essayMapper.updateEssay(essay);
+//                essay.setCommentNum(essay.getCommentNum()-1);
+//                essayMapper.updateEssay(essay);
+                essayMapper.decCommentNum(essay.getEssayId());
             }
         }
         int result=userCommentMapper.deleteCommentById(commentId);

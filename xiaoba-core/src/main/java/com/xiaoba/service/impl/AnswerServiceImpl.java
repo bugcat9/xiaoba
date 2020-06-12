@@ -9,6 +9,7 @@ import com.xiaoba.mapper.QuestionMapper;
 import com.xiaoba.service.AnswerService;
 import com.xiaoba.service.CommentService;
 import com.xiaoba.service.FileService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ import java.util.*;
  * @author 王文旭
  */
 @Service
+@Slf4j
 public class AnswerServiceImpl implements AnswerService {
 
     private static Integer PAGE_SIZE = 5;
@@ -145,6 +147,7 @@ public class AnswerServiceImpl implements AnswerService {
             answerMapper.updateAnswer(answer);
         }catch (Exception e){
             e.printStackTrace();
+            log.error("更新回答出现问题", e);
             return false;
         }
 
