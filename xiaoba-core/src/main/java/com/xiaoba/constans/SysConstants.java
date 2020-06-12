@@ -4,11 +4,11 @@ package com.xiaoba.constans;
  * @author zhouning
  */
 public class SysConstants {
-    public static String SUPER_ADMIN = "super_admin";
+    public final static String SUPER_ADMIN = "super_admin";
 
-    public static String ADMIN = "admin";
+    public final static String ADMIN = "admin";
 
-    public static String USER = "user";
+    public final static String USER = "user";
 
     /**
      * 评论的父对象类型：

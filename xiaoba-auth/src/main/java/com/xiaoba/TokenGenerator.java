@@ -1,5 +1,7 @@
 package com.xiaoba;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.security.MessageDigest;
 import java.util.UUID;
 
@@ -7,6 +9,7 @@ import java.util.UUID;
  * 用于生成token
  * @author zhouning
  */
+@Slf4j
 public class TokenGenerator {
 
     private static final char[] HEX_CODE = "0123456789abcdef".toCharArray();
@@ -36,6 +39,7 @@ public class TokenGenerator {
             return toHexString(messageDigest);
         } catch (Exception e) {
             e.printStackTrace();
+            log.error("token生成出现问题", e);
         }
         return null;
     }
