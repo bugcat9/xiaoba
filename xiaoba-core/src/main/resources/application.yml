@@ -2,7 +2,7 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://39.98.61.174:3306/cugbar
+    url: jdbc:mysql://127.0.0.1:3306/cugbar
     driver-class-name: com.mysql.jdbc.Driver
 #    选择阿里的DruidDataSource作为数据源
     type: com.alibaba.druid.pool.DruidDataSource
@@ -26,24 +26,24 @@ spring:
 #  redis配置
   redis:
     database: 0
-    host: 39.98.248.52
+    host: 127.0.0.1
     port: 6379
     timeout: 10000 #连接池超时时长
 #  elasticsearch配置
   elasticsearch:
     rest:
-      uris: http://39.98.61.174:9200
+      uris: http://127.0.0.1:9200
 
 #  邮箱设置
   mail:
     host: smtp.qq.com
-    username: 1767508581@qq.com
+    username: xxxxxxx@qq.com
     password: jgukizrhflnjddhd
     default-encoding: UTF-8
 
   #  rabbitmq设置
   rabbitmq:
-    host: 39.98.248.52
+    host: 127.0.0.1
     port: 5672
     username: guest
     password: zn19980921
